@@ -1,3 +1,15 @@
+/* =========================
+ table of contents
+ ===========================
+ 1- Header Design
+ 2 Pop Up Menu
+ 3- Responsive Design
+
+*/
+
+/* =========================
+ 1- Header Design
+ =========================== */
 header.flex {
   justify-content: space-evenly;
   padding: 0 2.4rem;
@@ -13,10 +25,6 @@ header.flex nav {
 
 header ul {
   gap: 16px;
-}
-
-header button.menu {
-  display: none;
 }
 
 header ul li a {
@@ -44,13 +52,51 @@ header .fixed {
   background-color: rgba(40, 40, 48, 0.91);
 }
 
+@keyframes modelOpen {
+  0% {
+    scale: 0;
+  }
+  60% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+header button.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-header-color);
+  color: var(--subtitle-color);
+  height: 2.4rem;
+  width: 2.4rem;
+  border: 1px solid rgba(244, 165, 96, 0.249);
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+header .icons:hover {
+  color: var(--title-color);
+  border: 1px solid rgb(244, 165, 96);
+}
+
+/* =========================
+ 2 Pop Up Menu
+ =========================== */
 header .fixed ul.model {
   background-color: var(--bg-secondary-color);
-  width: 85%;
+  width: 80%;
   margin: 2rem auto;
   padding: 1rem 2rem;
   border-radius: 12px;
   box-shadow: 1px 1px 40px rgba(49, 49, 49, 0.292);
+  animation: modelOpen 0.77s ease-in-out;
+}
+
+header .menu {
+  display: none;
 }
 
 header .fixed ul.model li {
@@ -62,14 +108,26 @@ header .fixed ul.model li {
 }
 
 header .fixed ul.model li:first-child {
-  text-align: end;
   border: none;
   padding-bottom: 0;
   padding-top: 0.2rem;
+  text-align: end;
+  margin-bottom: -3rem;
 }
 
 header .fixed ul.model li:last-child {
   border-bottom: none;
+}
+
+header .close-icon {
+  cursor: pointer;
+  color: var(--title-color);
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+header .close-icon:hover {
+  color: crimson;
+  rotate: 180deg;
 }
 
 header .fixed ul.model li a {
@@ -82,7 +140,9 @@ header .fixed ul li a:hover {
   color: var(--blue-color);
 }
 
-/* responsive */
+/* =========================
+ 3- Responsive Design
+ =========================== */
 @media (max-width: 768px) {
   header.flex {
     justify-content: space-around;
@@ -92,8 +152,8 @@ header .fixed ul li a:hover {
     display: none;
   }
 
-  header button.menu {
-    display: block;
+  header .menu {
+    display: flex;
   }
 
   header .fixed {

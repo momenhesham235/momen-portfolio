@@ -9,6 +9,10 @@
   --subtitle-color: rgb(161 161 170);
   --bg-header-color: rgb(39, 39, 42);
   --blue-color: rgb(93, 188, 252);
+  --icons-hover-color: #d4d4d8;
+
+  --lg-container-padding: 4.8rem;
+  --md-container-padding: 1rem;
 }
 
 .light {
@@ -41,25 +45,27 @@ a {
 }
 
 button {
-  border: none;
-  outline: none;
+  all: unset;
   cursor: pointer;
-  transition: all 0.3s ease;
+}
+button:active {
+  scale: 0.9;
 }
 
 .container {
   background-color: var(--bg-secondary-color);
-  max-width: min(1200px, 100%);
+  max-width: min(1200px, 90%);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--lg-container-padding);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0 0 8px 8px;
   box-shadow: 1px 1px 40px rgba(49, 49, 49, 0.292);
 }
 
 .divider {
   border-bottom: 1px solid var(--border-color);
-  margin: 20px 0;
+  width: calc(100% + var(--lg-container-padding) + var(--lg-container-padding));
+  margin: 2rem 0 2rem calc(-1 * var(--lg-container-padding));
 }
 
 .flex {
@@ -69,4 +75,16 @@ button {
 
 .border {
   border: 1px solid red;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--md-container-padding);
+  }
+  .divider {
+    width: calc(
+      100% + var(--md-container-padding) + var(--md-container-padding)
+    );
+    margin: 1.5rem 0 1.5rem calc(-1 * var(--md-container-padding));
+  }
 }

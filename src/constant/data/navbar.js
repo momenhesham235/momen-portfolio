@@ -11,7 +11,7 @@ const navbarData = [
   },
   {
     id: 3,
-    title: "Projects ",
+    title: "Projects",
     link: "#projects",
   },
   {
@@ -22,7 +22,8 @@ const navbarData = [
   {
     id: 5,
     title: "Resume",
-    link: "#resume",
+    link: "Momen-Hesham-CV.pdf",
+    download: true,
   },
 ];
 
