@@ -44,26 +44,6 @@ header button {
   font-size: 1.2rem;
 }
 
-header .fixed {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background-color: rgba(40, 40, 48, 0.91);
-}
-
-@keyframes modelOpen {
-  0% {
-    scale: 0;
-  }
-  60% {
-    scale: 1.2;
-  }
-  100% {
-    scale: 1;
-  }
-}
-
 header button.icons {
   display: flex;
   align-items: center;
@@ -85,6 +65,27 @@ header .icons:hover {
 /* =========================
  2 Pop Up Menu
  =========================== */
+header .fixed {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(40, 40, 48, 0.91);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes modelOpen {
+  0% {
+    scale: 0;
+  }
+  60% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
 header .fixed ul.model {
   background-color: var(--bg-secondary-color);
   width: 80%;
