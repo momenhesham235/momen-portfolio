@@ -1,4 +1,4 @@
-const navbarData = [
+export const navbarData = [
   {
     id: 1,
     title: "Home",
@@ -16,15 +16,18 @@ const navbarData = [
   },
   {
     id: 4,
+    title: "Skills",
+    link: "#skills",
+  },
+  {
+    id: 5,
     title: "Contact",
     link: "#contact",
   },
   {
-    id: 5,
+    id: 6,
     title: "Resume",
     link: "Momen-Hesham-CV.pdf",
     download: true,
   },
 ];
-
-export default navbarData;

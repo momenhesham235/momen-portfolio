@@ -83,7 +83,7 @@
   }
 }
 
-/* Grid */
+/* Projects Grid */
 .projects-grid {
   max-width: 1100px;
   margin: auto;
@@ -94,21 +94,93 @@
 
 /* Card */
 .project-card {
-  padding: 1.5rem;
-  border-radius: 16px;
   background: #1b1b1b;
-  transition: 0.3s;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-10px);
+  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.35);
 }
 
-.tag {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
+/* Image */
+.project-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.06);
+}
+
+/* Content */
+.project-content {
+  padding: 1.2rem 1.3rem;
+}
+
+/* Title */
+.project-title {
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  color: var(--title-color);
+}
+
+/* Description */
+.project-description {
+  color: var(--subtitle-color);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+}
+
+/* Links Wrapper */
+.project-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Icons */
+.project-link {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.4rem;
+  font-size: 1.2rem;
+  color: var(--subtitle-color);
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  background: darkgoldenrod;
+  color: var(--icons-hover-color);
+  transform: translateY(-3px);
+}
+
+/* More link */
+.project-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
   color: darkgoldenrod;
+  transition: 0.3s;
+}
+
+.project-more:hover {
+  gap: 0.6rem;
+  color: #fff;
 }
 
 /* Responsive */
@@ -117,5 +189,17 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+  }
+
+  .project-image {
+    height: 160px;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+  }
+
+  .project-description {
+    font-size: 0.85rem;
   }
 }

@@ -1,5 +1,5 @@
 import "./header.css";
-import navbarData from "../../constant/data/navbar";
+import {navbarData} from "../../constant/data/navbar";
 import { useState } from "react";
 
 import { LuSunMoon } from "react-icons/lu";

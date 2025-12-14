@@ -8,9 +8,8 @@ const FilterDropdown = ({ value, onChange }) => {
 
   const selectedLabel = options.find((o) => o.value === value)?.label || "All";
 
-  const dropdownRef = useRef(null); // 👈 reference على الـ dropdown
+  const dropdownRef = useRef(null);
 
-  // Hook: detect click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
