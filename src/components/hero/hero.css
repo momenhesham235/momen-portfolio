@@ -68,11 +68,32 @@
   color: darkgoldenrod;
 }
 
-.hero-left p {
-  color: var(--subtitle-color);
-  margin-top: 0.5rem;
+.typing-text {
   font-size: 1.2rem;
-  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid darkgoldenrod;
+
+  width: 0;
+  animation: typing 10s steps(28) infinite, blink 0.7s step-end infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 28ch;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
 
 /* Social Icons */

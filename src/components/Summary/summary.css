@@ -1,0 +1,37 @@
+/* ================= Professional Bio ================= */
+
+.summary-container {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Bio Text */
+.bio {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  opacity: 0.9;
+}
+
+.bio strong {
+  color: darkgoldenrod;
+  font-weight: 600;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .summary h2 {
+    font-size: 2rem;
+  }
+
+  .bio {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary {
+    padding: 3rem 1rem;
+  }
+}

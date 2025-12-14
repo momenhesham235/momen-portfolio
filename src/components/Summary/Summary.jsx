@@ -1,15 +1,18 @@
 import "./summary.css";
+
 const Summary = () => {
   return (
-    <section>
-      <h2>Summary</h2>
-      <p>
-        Results-driven Software Engineer with hands-on experience in JavaScript,
-        React, Node.js, and modern web development frameworks. Skilled in
-        designing and implementing scalable, efficient, and responsive
-        applications. Strong background in problem-solving, debugging, and code
-        optimization.
-      </p>
+    <section className="summary" id="summary">
+      <div className="summary-container">
+        <h2>Professional Bio</h2>
+
+        <p className="bio">
+          Software Engineer specializing in building modern, scalable web
+          applications using <strong>JavaScript, React, and Node.js</strong>.
+          Passionate about clean code, performance optimization, and delivering
+          high-quality user experiences.
+        </p>
+      </div>
     </section>
   );
 };

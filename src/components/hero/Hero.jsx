@@ -18,7 +18,7 @@ const Hero = () => {
           <div className="avatar-wrapper">
             <img src="me.png" alt="Momen Hesham" className="avatar" />
             <span className="badge">
-              <MdVerifiedUser  className="badge-icon"/> Certified Developer
+              <MdVerifiedUser className="badge-icon" /> Certified Developer
             </span>
           </div>
 
@@ -26,7 +26,7 @@ const Hero = () => {
             Hi, I’m <span>Momen</span>
           </h1>
 
-          <p>Frontend & Backend Developer</p>
+          <p className="typing-text">Frontend & Backend Developer</p>
 
           <div className="social-icons">
             <FaFacebook />
