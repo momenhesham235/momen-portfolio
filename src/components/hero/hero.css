@@ -56,6 +56,7 @@
 
 .badge-icon {
   color: var(--blue-color);
+  font-size: 1rem;
 }
 
 /* Text */
@@ -75,7 +76,7 @@
   border-right: 2px solid darkgoldenrod;
 
   width: 0;
-  animation: typing 10s steps(28) infinite, blink 0.7s step-end infinite;
+  animation: typing 10s steps(27) infinite, blink 0.7s step-end infinite;
 }
 
 @keyframes typing {
@@ -83,7 +84,7 @@
     width: 0;
   }
   50% {
-    width: 28ch;
+    width: 27ch;
   }
   100% {
     width: 0;
