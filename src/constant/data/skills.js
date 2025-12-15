@@ -1,39 +1,63 @@
+import {
+  html,
+  css,
+  tailwind,
+  js,
+  typescript,
+  react,
+  zustand,
+  tanstack,
+  next,
+  nodejs,
+  express,
+  graphql,
+  mongodb,
+  postgresql,
+  git,
+  github,
+  docker,
+} from "../../assets";
+
 export const skills = [
   {
     title: "Frontend",
     skills: [
       {
         name: "HTML",
-        img: "https://img.icons8.com/color/48/000000/html-5.png",
+        img: html,
       },
       {
         name: "CSS",
-        img: "https://img.icons8.com/color/48/000000/css3.png",
+        img: css,
       },
       {
         name: "Tailwind CSS",
-        img: "https://img.icons8.com/color/48/000000/tailwindcss.png",
+        img: tailwind,
       },
       {
         name: "JavaScript",
-        img: "https://img.icons8.com/color/48/000000/javascript.png",
+        img: js,
       },
       {
         name: "TypeScript",
-        img: "https://img.icons8.com/color/48/000000/typescript.png",
+        img: typescript,
       },
 
       {
         name: "React",
-        img: "https://img.icons8.com/color/48/000000/react-native.png",
+        img: react,
+      },
+      {
+        name: "zustand",
+        img: zustand,
       },
       {
         name: "Tanstack Query",
-        img: "https://sl.bing.net/gLQM34C5ieW",
+        img: tanstack,
       },
       {
         name: "Next.js",
-        img: "https://img.icons8.com/color/48/000000/nextjs.png",
+        img: next,
       },
     ],
   },
@@ -42,23 +66,23 @@ export const skills = [
     skills: [
       {
         name: "Node.js",
-        img: "https://img.icons8.com/color/48/000000/nodejs.png",
+        img: nodejs,
       },
       {
         name: "Express.js",
-        img: "https://img.icons8.com/ios/48/000000/express-js.png",
+        img: express,
       },
       {
         name: "GraphQL",
-        img: "https://img.icons8.com/color/48/000000/graphql.png",
+        img: graphql,
       },
       {
         name: "MongoDB",
-        img: "https://img.icons8.com/color/48/000000/mongodb.png",
+        img: mongodb,
       },
       {
         name: "PostgreSQL",
-        img: "https://img.icons8.com/color/48/000000/postgreesql.png",
+        img: postgresql,
       },
     ],
   },
@@ -67,15 +91,15 @@ export const skills = [
     skills: [
       {
         name: "Git",
-        img: "https://img.icons8.com/color/48/000000/git.png",
+        img: git,
       },
       {
         name: "GitHub",
-        img: "https://img.icons8.com/material-outlined/48/000000/github.png",
+        img: github,
       },
       {
         name: "Docker",
-        img: "https://img.icons8.com/color/48/000000/docker.png",
+        img: docker,
       },
     ],
   },

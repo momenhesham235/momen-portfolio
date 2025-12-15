@@ -1,36 +1,34 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./footer.css";
 
 const Footer = () => {
   const [hearts, setHearts] = useState([]);
 
-  useEffect(() => {
-    const handleClick = (e) => {
-      const newHeart = {
-        id: Date.now(),
-        x: e.clientX,
-        y: e.clientY,
-      };
-      setHearts((prev) => [...prev, newHeart]);
-
-      setTimeout(() => {
-        setHearts((prev) => prev.filter((h) => h.id !== newHeart.id));
-      }, 1000);
+  const handleHeartClick = (e) => {
+    // نجيب إحداثيات القلب نفسه بالنسبة للصفحة
+    const rect = e.currentTarget.getBoundingClientRect();
+    const newHeart = {
+      id: Date.now(),
+      x: rect.left + rect.width / 2, // منتصف القلب
+      y: rect.top, // أعلى القلب
     };
+    setHearts((prev) => [...prev, newHeart]);
 
-    window.addEventListener("click", handleClick);
-
-    return () => {
-      window.removeEventListener("click", handleClick);
-    };
-  }, []);
+    setTimeout(() => {
+      setHearts((prev) => prev.filter((h) => h.id !== newHeart.id));
+    }, 1000);
+  };
 
   return (
     <footer className="footer">
       <div className="footer-container">
         <p>
           Made with{" "}
-          <span className="heart" title="click to make a heart">
+          <span
+            className="heart"
+            onClick={handleHeartClick}
+            title="Click me! ❤️"
+          >
             ❤️
           </span>{" "}
           by <strong>Momen Hesham</strong> — Thank you for visiting!
