@@ -1,9 +1,9 @@
-import ProjectDetails from "../../components/details/ProjectDetails/ProjectDetails";
+import DetailsProject from "../../components/details/detailsProject/DetailsProject";
 
 const Details = () => {
   return (
     <>
-      <ProjectDetails />
+      <DetailsProject />
     </>
   );
 };

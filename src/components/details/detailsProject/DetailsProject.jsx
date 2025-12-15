@@ -2,10 +2,10 @@ import { useParams, Link } from "react-router-dom";
 import { projectsData } from "../../../constant/data/myProject.js";
 import { FaGithub } from "react-icons/fa";
 import { IoIosLink } from "react-icons/io";
-import "./projectDetails.css";
+import "./detailsProject.css";
 import FeaturesColumns from "../featuresColumns/FeaturesColumns.jsx";
 
-const ProjectDetails = () => {
+const DetailsProject = () => {
   const { id } = useParams();
   const project = projectsData.find((p) => p.id === Number(id));
 
@@ -76,4 +76,4 @@ const ProjectDetails = () => {
   );
 };
 
-export default ProjectDetails;
+export default DetailsProject;
