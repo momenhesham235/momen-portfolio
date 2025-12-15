@@ -27,7 +27,6 @@ export const projectsData = [
     image: projectImage1,
     githubLink: "https://github.com/momenhesham235/template_one",
     liveLink: "https://momenhesham235.github.io/template_one/",
-    more: "more",
     category: "js",
   },
   {
@@ -37,7 +36,6 @@ export const projectsData = [
     image: projectImage1,
     githubLink: "https://github.com/momenhesham235/template_one",
     liveLink: "https://momenhesham235.github.io/template_one/",
-    more: "more",
     category: "react",
   },
   {
@@ -47,7 +45,6 @@ export const projectsData = [
     image: projectImage1,
     githubLink: "https://github.com/momenhesham235/template_one",
     liveLink: "https://momenhesham235.github.io/template_one/",
-    more: "more",
     category: "fullstack",
   },
 ];

@@ -16,7 +16,7 @@
 }
 
 .light {
-  --primary-color: #fff;
+  --bg-primary-color: #fff;
 }
 
 * {
@@ -38,6 +38,7 @@ h2 {
   font-size: 2.3rem;
   margin-bottom: 1.2rem;
   position: relative;
+  color: var(--title-color);
 }
 
 h2::after {

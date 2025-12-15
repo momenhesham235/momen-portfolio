@@ -3,12 +3,6 @@
   margin: auto;
 }
 
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2.5rem;
-}
-
 /* Layout */
 .contact-container {
   display: grid;
@@ -31,11 +25,28 @@
   align-items: center;
   gap: 1rem;
   font-size: 1rem;
+  color: var(--subtitle-color);
 }
 
 .info-item svg {
   font-size: 1.3rem;
   color: darkgoldenrod;
+}
+
+.qr-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #111;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.qr-box p {
+  font-size: 0.85rem;
+  opacity: 0.7;
 }
 
 /* Form */
@@ -64,7 +75,13 @@
   border-color: darkgoldenrod;
 }
 
+.contact-form textarea {
+  resize: vertical;
+  min-height: 9rem;
+}
+
 .contact-form button {
+  text-align: center;
   margin-top: 0.5rem;
   padding: 0.9rem;
   border-radius: 12px;

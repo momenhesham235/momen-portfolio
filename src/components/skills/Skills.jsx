@@ -6,14 +6,20 @@ const Skills = () => {
     <section className="skills" id="skills">
       <h2 className="section-title">Skills</h2>
 
-      <div className="skills-grid">
-        {skills.map((skill) => (
-          <div key={skill.id} className="skill-card">
-            <img src={skill.icon} alt={skill.name} className="skill-icon" />
-            <h4 className="skill-name">{skill.name}</h4>
+      {skills.map((group) => (
+        <div key={group.title} className="skills-group">
+          <h3 className="skills-group-title">{group.title}</h3>
+
+          <div className="skills-grid">
+            {group.skills.map((skill) => (
+              <div key={skill.name} className="skill-card">
+                <img src={skill.img} alt={skill.name} />
+                <span>{skill.name}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </section>
   );
 };
