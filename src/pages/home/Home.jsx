@@ -1,8 +1,8 @@
-import Hero from "../../components/hero/Hero";
-import Summary from "../../components/summary/Summary";
-import Projects from "../../components/projects/Projects";
-import Skills from "../../components/skills/Skills";
-import Contact from "../../components/contact/Contact";
+import Hero from "../../components/hero/Hero.jsx";
+import Summary from "../../components/summary/Summary.jsx";
+import Projects from "../../components/projects/Projects.jsx";
+import Skills from "../../components/skills/Skills.jsx";
+import Contact from "../../components/contact/Contact.jsx";
 
 const Home = () => {
   return (
