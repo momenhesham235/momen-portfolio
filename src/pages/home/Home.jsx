@@ -1,5 +1,5 @@
 import Hero from "../../components/hero/Hero.jsx";
-import Summary from "../../components/summary/Summary.jsx";
+import Bio from "../../components/bio/Bio.jsx";
 import Projects from "../../components/projects/Projects.jsx";
 import Skills from "../../components/skills/Skills.jsx";
 import Contact from "../../components/contact/Contact.jsx";
@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <Hero />
       <div className="divider" />
-      <Summary />
+      <Bio />
       <div className="divider" />
       <Projects />
       <div className="divider" />

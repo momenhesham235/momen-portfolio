@@ -1,12 +1,11 @@
-import "./summary.css";
-
-const Summary = () => {
+import "./bio.css";
+const Bio = () => {
   return (
-    <section className="summary" id="summary">
-      <div className="summary-container">
+    <section className="bio" id="bio">
+      <div className="bio-container">
         <h2>Professional Bio</h2>
 
-        <p className="bio">
+        <p className="bio-text">
           Software Engineer specializing in building modern, scalable web
           applications using <strong>JavaScript, React, and Node.js</strong>.
           Passionate about clean code, performance optimization, and delivering
@@ -17,4 +16,4 @@ const Summary = () => {
   );
 };
 
-export default Summary;
+export default Bio;
