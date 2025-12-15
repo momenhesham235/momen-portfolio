@@ -16,6 +16,10 @@
   align-items: center;
 }
 
+.footer strong {
+  color: darkgoldenrod;
+}
+
 .heart {
   display: inline-block;
   cursor: pointer;

@@ -31,7 +31,8 @@ const Footer = () => {
           >
             ❤️
           </span>{" "}
-          by <strong>Momen Hesham</strong> — Thank you for visiting!
+          by <strong style={{ color: "darkgoldenrod" }}>Momen Hesham</strong> —
+          Thank you for visiting!
         </p>
 
         <p className="footer-copy">
