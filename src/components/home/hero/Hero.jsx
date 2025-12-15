@@ -3,6 +3,7 @@ import { MdVerifiedUser } from "react-icons/md";
 import { FaXTwitter, FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa6";
 
 import "./hero.css";
+import LazyImage from "../../../hooks/onLoad.jsx";
 
 const Hero = () => {
   return (
@@ -11,7 +12,12 @@ const Hero = () => {
         {/* Left */}
         <div className="hero-left">
           <div className="avatar-wrapper">
-            <img src="me.png" alt="Momen Hesham" className="avatar" />
+            <LazyImage
+              src="me.png"
+              alt="Momen Hesham"
+              className="avatar"
+              loading="lazy"
+            />
             <span className="badge">
               <MdVerifiedUser className="badge-icon" /> Certified Developer
             </span>

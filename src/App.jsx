@@ -1,11 +1,12 @@
 import { Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
+
 import Header from "./components/header/Header.jsx";
-import Home from "./pages/home/Home.jsx";
-import Details from "./pages/details/Details.jsx";
 import NotFound from "./pages/notFound/NotFound.jsx";
 import Footer from "./components/footer/Footer.jsx";
 
-import { IoIosArrowUp } from "react-icons/io";
+const Home = lazy(() => import("./pages/home/Home.jsx"));
+const Details = lazy(() => import("./pages/details/Details.jsx"));
 
 function App() {
   const baseUrl = "/momen-portfolio/";

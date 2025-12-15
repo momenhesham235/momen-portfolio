@@ -1,4 +1,5 @@
 import { skills } from "../../../constant/data/skills.js";
+import LazyImage from "../../../hooks/onLoad.jsx";
 import "./skills.css";
 
 const Skills = () => {
@@ -13,7 +14,7 @@ const Skills = () => {
           <div className="skills-grid">
             {group.skills.map((skill) => (
               <div key={skill.name} className="skill-card">
-                <img src={skill.img} alt={skill.name} />
+                <LazyImage src={skill.img} alt={skill.name} />
                 <span>{skill.name}</span>
               </div>
             ))}

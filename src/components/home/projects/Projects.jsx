@@ -6,6 +6,7 @@ import { FaGithub } from "react-icons/fa6";
 import { IoIosLink, IoIosArrowRoundForward } from "react-icons/io";
 
 import "./projects.css";
+import LazyImage from "../../../hooks/onLoad.jsx";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -46,7 +47,7 @@ const Projects = () => {
         ) : (
           filteredProjects.map((project) => (
             <article key={project.id} className="project-card">
-              <img
+              <LazyImage
                 src={project.image}
                 alt={project.title}
                 className="project-image"
