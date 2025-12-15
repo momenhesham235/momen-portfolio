@@ -1,5 +1,3 @@
-import "./header.css";
-
 import { navbarData } from "../../constant/data/navbar";
 import { useState } from "react";
 
@@ -7,6 +5,7 @@ import { LuSunMoon } from "react-icons/lu";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose, IoMoonOutline } from "react-icons/io5";
 
+import "./header.css";
 const Header = () => {
   const [showModel, setShowModel] = useState(false);
 

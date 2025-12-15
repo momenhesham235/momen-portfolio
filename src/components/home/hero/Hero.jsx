@@ -1,9 +1,6 @@
-import { socialLinks } from "../../constant/data/heroData.js";
+import { socialLinks } from "../../../constant/data/heroData.js";
 import { MdVerifiedUser } from "react-icons/md";
 import { FaXTwitter, FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa6";
-
-
-import { IoMail } from "react-icons/io5";
 
 import "./hero.css";
 

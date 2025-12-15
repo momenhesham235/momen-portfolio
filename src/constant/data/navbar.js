@@ -2,7 +2,7 @@ export const navbarData = [
   {
     id: 1,
     title: "Home",
-    link: "#home",
+    link: "/momen-portfolio/",
   },
   {
     id: 2,

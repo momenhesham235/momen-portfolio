@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { projectsData } from "../../constant/data/myProject.js";
+import { projectsData } from "../../../constant/data/myProject.js";
 import FilterDropdown from "./FilterDropdown.jsx";
 import { FaGithub } from "react-icons/fa6";
 import { IoIosLink, IoIosArrowRoundForward } from "react-icons/io";
@@ -8,10 +8,10 @@ import { IoIosLink, IoIosArrowRoundForward } from "react-icons/io";
 import "./projects.css";
 
 const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects =
-    activeFilter === "All"
+    activeFilter === "all"
       ? projectsData
       : projectsData.filter((project) => project.category === activeFilter);
   return (
@@ -28,7 +28,7 @@ const Projects = () => {
         {filteredProjects.length === 0 ? (
           <div className="no-projects">
             <p>
-              🚫 No projects found
+              🚫 No projects found{" "}
               {activeFilter !== "All" && (
                 <>
                   for <strong>{activeFilter}</strong>

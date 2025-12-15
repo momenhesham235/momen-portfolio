@@ -18,6 +18,15 @@ export const projectsData = [
     githubLink: "https://github.com/momenhesham235/template_one",
     liveLink: "https://momenhesham235.github.io/template_one/",
     category: "html",
+    features: [
+      "semantic HTML",
+      "Responsive Design",
+      "Flexbox",
+      "CSS Variables",
+      "CSS Custom Properties",
+      "CSS Grid",
+    ],
+    tech: ["HTML", "CSS", "Responsive Design"],
   },
   {
     id: 2,
@@ -30,6 +39,8 @@ export const projectsData = [
     liveLink:
       "https://momenhesham235.github.io/Product-Management-System-Javascript/",
     category: "js",
+    features: ["local storage", "DOM manipulation"],
+    tech: ["HTML", "CSS", "JavaScript"],
   },
   {
     id: 3,
@@ -39,6 +50,12 @@ export const projectsData = [
     githubLink: "https://github.com/momenhesham235/template_one",
     liveLink: "https://aribnb-clone-nine.vercel.app/",
     category: "next",
+    features: [
+      "Server-side rendering",
+      "Tailwind CSS for styling",
+      "OpenWeatherMap API for fetching data",
+    ],
+    tech: ["Next.js", "Tailwind CSS", "OpenWeatherMap API"],
   },
   {
     id: 4,
@@ -48,5 +65,14 @@ export const projectsData = [
     githubLink: "https://github.com/momenhesham235/MERN-Stack-Twitter-Clone",
     liveLink: "https://github.com/momenhesham235/MERN-Stack-Twitter-Clone",
     category: "fullstack",
+    features: [
+      "JWT Authentication",
+      "Mongoose for MongoDB",
+      "Morgan & Winston for logging",
+      "Tailwind CSS for styling",
+      "React Router for routing",
+      "Tanstack Query for API",
+    ],
+    tech: ["MongoDB", "Express", "React", "Node.js"],
   },
 ];

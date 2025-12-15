@@ -1,4 +1,4 @@
-import { skills } from "../../constant/data/skills.js";
+import { skills } from "../../../constant/data/skills.js";
 import "./skills.css";
 
 const Skills = () => {

@@ -1,0 +1,14 @@
+.features-columns {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.features-columns ul {
+  list-style: disc inside;
+  flex: 1;
+}
+
+.features-columns li {
+  margin-bottom: 0.6rem;
+}
