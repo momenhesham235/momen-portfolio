@@ -1,9 +1,9 @@
 import { useParams, Link } from "react-router-dom";
-import { projectsData } from "../../../constant/data/myProject";
+import { projectsData } from "../../../constant/data/myProject.js";
 import { FaGithub } from "react-icons/fa";
 import { IoIosLink } from "react-icons/io";
 import "./projectDetails.css";
-import FeaturesColumns from "../featuresColumns/FeaturesColumns";
+import FeaturesColumns from "../featuresColumns/FeaturesColumns.jsx";
 
 const ProjectDetails = () => {
   const { id } = useParams();
