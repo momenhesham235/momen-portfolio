@@ -39,7 +39,7 @@ const Projects = () => {
 
             <button
               className="reset-filter"
-              onClick={() => setActiveFilter("All")}
+              onClick={() => setActiveFilter("all")}
             >
               Show all projects
             </button>

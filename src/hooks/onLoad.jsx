@@ -27,15 +27,7 @@ const LazyImage = ({ src, alt, className }) => {
     return <div ref={imgRef} style={{ minHeight: "100px" }} />;
   }
 
-  return (
-    <img
-      ref={imgRef}
-      src={src}
-      alt={alt}
-      className={className}
-      onLoad={() => console.log(`${alt} loaded`)}
-    />
-  );
+  return <img ref={imgRef} src={src} alt={alt} className={className} />;
 };
 
 export default LazyImage;
