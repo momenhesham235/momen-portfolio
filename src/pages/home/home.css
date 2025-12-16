@@ -2,7 +2,7 @@
   position: fixed;
   z-index: 999;
   bottom: 2rem;
-  right: 2%;
+  right: 3%;
   background-color: darkgoldenrod;
   color: #fff;
   font-size: 1.2rem;
@@ -35,4 +35,5 @@
     height: 30px;
     font-size: 1rem;
   }
+  
 }
