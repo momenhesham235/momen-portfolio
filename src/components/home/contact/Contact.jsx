@@ -1,8 +1,7 @@
-import QRCode from "react-qr-code";
-
 import { FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa";
 import { FaClock, FaLanguage } from "react-icons/fa6";
-import { IoMail } from "react-icons/io5";
+import ContactForm from "./ContactForm";
+
 import "./contact.css";
 
 const Contact = () => {
@@ -52,13 +51,7 @@ const Contact = () => {
         </div>
 
         {/* Form */}
-        <form className="contact-form">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea placeholder="Your Message" rows="5" required></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
+        <ContactForm />
       </div>
     </section>
   );

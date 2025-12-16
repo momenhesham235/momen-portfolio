@@ -87,10 +87,20 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .contact-form button:hover {
   opacity: 0.85;
+}
+
+.contact-form button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 /* Responsive */

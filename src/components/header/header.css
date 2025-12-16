@@ -28,7 +28,7 @@ header ul {
 }
 
 header ul li a {
-  color: var(--title-color);
+  color: var(--subtitle-color);
   opacity: 0.9;
   font-size: 0.88rem;
   font-weight: 500;
