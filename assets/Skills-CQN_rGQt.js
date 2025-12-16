@@ -1,1 +1,0 @@
-import{j as s,L as o}from"./index-G2fDJ6mU.js";const i=()=>s.jsx("section",{class:"coming-soon",children:s.jsxs("div",{class:"coming-soon-container",children:[s.jsx("h1",{children:"🚧 Coming Soon"}),s.jsx("p",{children:"This page is under construction and will be available soon. "}),s.jsx(o,{to:"/",class:"back-home",children:"← Back to Home"})]})});export{i as default};
