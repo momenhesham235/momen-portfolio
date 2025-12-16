@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { navbarData } from "../../constant/data/navbar";
 import { useEffect, useState } from "react";
 
@@ -39,7 +37,7 @@ const Header = () => {
         <ul className="flex">
           {navbarData.map((item) => (
             <li key={item.id}>
-              <Link to={item.link}>{item.title}</Link>
+              <a href={item.link}>{item.title}</a>
             </li>
           ))}
         </ul>
@@ -61,11 +59,7 @@ const Header = () => {
             </li>
             {navbarData.map((item) => (
               <li key={item.id}>
-                <a
-                  href={item.link}
-                  {...(item.download && { download: true })}
-                  onClick={() => setShowModel(false)}
-                >
+                <a href={item.link} onClick={() => setShowModel(false)}>
                   {item.title}
                 </a>
               </li>

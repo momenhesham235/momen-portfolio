@@ -176,23 +176,6 @@
   justify-content: center;
 }
 
-/* Animation / Placeholder Box */
-.animation {
-  width: 100%;
-  max-width: 400px;
-  height: 300px;
-  border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    var(--card-bg),
-    var(--bg-secondary-color)
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
-}
-
 /* =========================
   RESPONSIVE DESIGN
 =========================== */

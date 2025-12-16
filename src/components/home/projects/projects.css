@@ -11,6 +11,7 @@
 .dropdown {
   position: relative;
   width: 200px;
+  right: 30px;
 }
 
 /* Button */
@@ -127,7 +128,6 @@
     transform: translateY(0);
   }
 }
-
 /* Projects Grid */
 .projects-grid {
   max-width: 1100px;
@@ -247,5 +247,9 @@
 
   .project-description {
     font-size: 0.85rem;
+  }
+
+  .dropdown {
+    right: 20px;
   }
 }

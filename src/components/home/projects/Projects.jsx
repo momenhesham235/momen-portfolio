@@ -4,7 +4,7 @@ import { projectsData } from "../../../constant/data/myProject.js";
 import FilterDropdown from "./FilterDropdown.jsx";
 import { FaGithub } from "react-icons/fa6";
 import { IoIosLink, IoIosArrowRoundForward } from "react-icons/io";
-
+import { motion, AnimatePresence } from "motion/react";
 import "./projects.css";
 import LazyImage from "../../../hooks/onLoad.jsx";
 
@@ -46,47 +46,56 @@ const Projects = () => {
           </div>
         ) : (
           filteredProjects.map((project) => (
-            <article key={project.id} className="project-card">
-              <LazyImage
-                src={project.image}
-                alt={project.title}
-                className="project-image"
-              />
+            <AnimatePresence key={project.id}>
+              <motion.article
+                layout
+                initial={{ transform: "scale(0)", opacity: 0 }}
+                animate={{ transform: "scale(1)", opacity: 1 }}
+                exit={{ transform: "scale(0)", opacity: 0 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                className="project-card"
+              >
+                <LazyImage
+                  src={project.image}
+                  alt={project.title}
+                  className="project-image"
+                />
 
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
+                <div className="project-content">
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-description">{project.description}</p>
 
-                <div className="project-links">
-                  <div>
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link"
+                  <div className="project-links">
+                    <div>
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-link"
+                      >
+                        <FaGithub />
+                      </a>
+
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-link"
+                      >
+                        <IoIosLink />
+                      </a>
+                    </div>
+
+                    <Link
+                      to={`/momen-portfolio/details/${project.id}`}
+                      className="project-more"
                     >
-                      <FaGithub />
-                    </a>
-
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link"
-                    >
-                      <IoIosLink />
-                    </a>
+                      More <IoIosArrowRoundForward />
+                    </Link>
                   </div>
-
-                  <Link
-                    to={`/momen-portfolio/details/${project.id}`}
-                    className="project-more"
-                  >
-                    More <IoIosArrowRoundForward />
-                  </Link>
                 </div>
-              </div>
-            </article>
+              </motion.article>
+            </AnimatePresence>
           ))
         )}
       </div>

@@ -1,6 +1,8 @@
 import { FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa";
 import { FaClock, FaLanguage } from "react-icons/fa6";
 import ContactForm from "./ContactForm";
+import Lottie from "lottie-react";
+import codingAnimation from "../../../assets/animations/contact us.json";
 
 import "./contact.css";
 
@@ -47,6 +49,10 @@ const Contact = () => {
           <div className="info-item">
             <FaLanguage />
             <span>Arabic (Native), English (Good)</span>
+          </div>
+
+          <div className="contact-animation">
+            <Lottie animationData={codingAnimation} loop={true} />
           </div>
         </div>
 

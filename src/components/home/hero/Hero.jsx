@@ -1,6 +1,6 @@
 import { MdVerifiedUser } from "react-icons/md";
-import { FaXTwitter, FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa6";
-
+import Lottie from "lottie-react";
+import codingAnimation from "../../../assets/animations/Coding.json";
 import "./hero.css";
 import LazyImage from "../../../hooks/onLoad.jsx";
 import { FiDownload } from "react-icons/fi";
@@ -46,7 +46,11 @@ const Hero = () => {
 
         {/* Right */}
         <div className="hero-right">
-          <div className="animation">Animation / Illustration</div>
+          <Lottie
+            animationData={codingAnimation}
+            loop={true}
+            // style={{ width: "80%", height: "80%" }}
+          />
         </div>
       </div>
     </section>

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { useForm, ValidationError } from "@formspree/react";
 import { IoMail } from "react-icons/io5";
-import "./contact.css";
+// import "./contact.css";
 
 const ContactForm = () => {
   const [state, handleSubmit] = useForm("mdkqrlvy");
@@ -11,7 +11,7 @@ const ContactForm = () => {
 
   useEffect(() => {
     if (state.succeeded) {
-      toast.success("Message sent successfully! 👍", {
+      toast.success("Message sent successfully! 👌", {
         position: "top-right",
         duration: 5000,
         theme: "dark",
