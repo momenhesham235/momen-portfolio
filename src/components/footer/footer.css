@@ -1,5 +1,5 @@
 .footer {
-  background-color: #111;
+  background-color: var(--card-bg);
   color: #aaa;
   padding: 2rem 1rem;
   text-align: center;
@@ -14,6 +14,10 @@
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+}
+
+.footer p {
+  color: var(--title-color);
 }
 
 .footer strong {
@@ -62,4 +66,23 @@
     opacity: 0;
     transform: translateY(-60px) scale(1);
   }
+}
+
+/* Social Icons */
+.social-icons {
+  margin-top: 0.2rem;
+  display: flex;
+  gap: 1.2rem;
+  font-size: 1.4rem;
+  color: var(--title-color);
+}
+
+.social-icons svg {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.social-icons svg:hover {
+  color: var(--accent-color);
+  transform: translateY(-4px);
 }

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./footer.css";
+import { socialLinks } from "../../constant/data/heroData";
+import { FaFacebook, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   const [hearts, setHearts] = useState([]);
@@ -35,6 +37,24 @@ const Footer = () => {
           Thank you for visiting!
         </p>
 
+        <div className="social-icons">
+          {socialLinks.map((social) => {
+            return (
+              <a
+                key={social.id}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+              >
+                {social.icon === "FaFacebook" && <FaFacebook />}
+                {social.icon === "FaXTwitter" && <FaXTwitter />}
+                {social.icon === "FaGithub" && <FaGithub />}
+                {social.icon === "FaLinkedin" && <FaLinkedin />}
+              </a>
+            );
+          })}
+        </div>
         <p className="footer-copy">
           &copy; {new Date().getFullYear()} All rights reserved.
         </p>

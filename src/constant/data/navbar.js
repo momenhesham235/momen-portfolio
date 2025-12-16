@@ -6,28 +6,22 @@ export const navbarData = [
   },
   {
     id: 2,
-    title: "Bio",
-    link: "#bio",
+    title: "About",
+    link: "/momen-portfolio/about",
   },
   {
     id: 3,
     title: "Projects",
-    link: "#projects",
+    link: "/momen-portfolio/projects",
   },
   {
     id: 4,
     title: "Skills",
-    link: "#skills",
+    link: "/momen-portfolio/skills",
   },
   {
     id: 5,
     title: "Contact",
-    link: "#contact",
-  },
-  {
-    id: 6,
-    title: "Resume",
-    link: "Momen-Hesham-CV.pdf",
-    download: true,
+    link: "/momen-portfolio/contact",
   },
 ];

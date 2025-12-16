@@ -29,7 +29,7 @@
 
 /* Card */
 .skill-card {
-  background: #1b1b1b;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 1.4rem 1rem;
   display: flex;
@@ -49,6 +49,7 @@
 
 .skill-card span {
   font-size: 0.95rem;
+  text-align: center;
 }
 
 /* Hover */

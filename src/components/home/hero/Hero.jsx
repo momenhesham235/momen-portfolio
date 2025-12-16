@@ -1,9 +1,9 @@
-import { socialLinks } from "../../../constant/data/heroData.js";
 import { MdVerifiedUser } from "react-icons/md";
 import { FaXTwitter, FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa6";
 
 import "./hero.css";
 import LazyImage from "../../../hooks/onLoad.jsx";
+import { FiDownload } from "react-icons/fi";
 
 const Hero = () => {
   return (
@@ -29,23 +29,18 @@ const Hero = () => {
 
           <p className="typing-text">Frontend & Backend Developer</p>
 
-          <div className="social-icons">
-            {socialLinks.map((social) => {
-              return (
-                <a
-                  key={social.id}
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon"
-                >
-                  {social.icon === "FaFacebook" && <FaFacebook />}
-                  {social.icon === "FaXTwitter" && <FaXTwitter />}
-                  {social.icon === "FaGithub" && <FaGithub />}
-                  {social.icon === "FaLinkedin" && <FaLinkedin />}
-                </a>
-              );
-            })}
+          <div className="cv-btn-wrapper">
+            <a
+              href="Momen-Hesham-CV.pdf"
+              className="cv-btn"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Download My CV"
+            >
+              Download CV
+              <FiDownload className="cv-icon" />
+            </a>
           </div>
         </div>
 

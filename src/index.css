@@ -5,18 +5,37 @@
   --bg-primary-color: #000;
   --bg-secondary-color: rgb(24, 24, 27);
   --border-color: rgba(63, 63, 70, 0.4);
-  --title-color: rgb(244 244 245);
-  --subtitle-color: rgb(161 161 170);
+
+  --title-color: rgb(244, 244, 245);
+  --subtitle-color: rgb(161, 161, 170);
+
   --bg-header-color: rgb(39, 39, 42);
   --blue-color: rgb(93, 188, 252);
   --icons-hover-color: #d4d4d8;
+
+  --accent-color: darkgoldenrod;
+  --card-bg: #1b1b1b;
+  --input-bg: #111;
 
   --lg-container-padding: 4.8rem;
   --md-container-padding: 1rem;
 }
 
 .light {
-  --bg-primary-color: #fff;
+  --bg-primary-color: rgb(250, 250, 250);
+  --bg-secondary-color: rgb(255, 255, 255);
+  --border-color: rgba(202, 202, 202, 0.518);
+
+  --title-color: rgb(39, 39, 42);
+  --subtitle-color: rgb(82, 82, 91);
+
+  --bg-header-color: rgb(253, 253, 253);
+  --blue-color: rgb(0, 149, 246);
+  --icons-hover-color: #333;
+
+  --accent-color: rgb(184, 134, 11);
+  --card-bg: rgb(245, 245, 245);
+  --input-bg: #fff;
 }
 
 * {
@@ -29,7 +48,8 @@
 
 body {
   background-color: var(--bg-primary-color);
-  color: #fff;
+  color: var(--title-color);
+  transition: all 0.3s ease;
 }
 
 h2 {
@@ -72,10 +92,10 @@ button:active {
 
 .container {
   background-color: var(--bg-secondary-color);
+  border: 1px solid var(--border-color);
   max-width: min(1200px, 90%);
   margin: 0 auto;
   padding: 0 var(--lg-container-padding);
-  border: 1px solid var(--border-color);
   border-radius: 0 0 8px 8px;
   box-shadow: 1px 1px 40px rgba(49, 49, 49, 0.292);
 }
@@ -107,33 +127,9 @@ button:active {
   }
 }
 
-/* scrollbar */
-/* Chrome, Edge, Safari */
-::-webkit-scrollbar {
-  width: 0.9rem;
-}
-
-::-webkit-scrollbar-track {
-  border: 6px solid #1b1b1b;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
-  border-radius: 8px;
-  background-color: #0f0f0f;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, darkgoldenrod, #a67c00);
-  border-radius: 8px;
-  border: 2px solid #0f0f0f;
-  transition: background 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, gold, darkgoldenrod);
-}
-
 /* Firefox */
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: darkgoldenrod #0f0f0f;
+  scrollbar-color: darkgoldenrod #00000083;
 }

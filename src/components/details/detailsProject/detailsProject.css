@@ -57,6 +57,7 @@
   padding: 0.6rem 1.2rem;
   border-radius: 10px;
   background: #1b1b1b;
+  color: var(--subtitle-color);
   transition: 0.3s;
 }
 
@@ -90,5 +91,3 @@
   color: darkgoldenrod;
   border-radius: 8px;
 }
-
-/* Features columns already موجود في featuresAccordion.css */

@@ -18,9 +18,6 @@
   width: 100%;
   height: 44px;
   padding: 0 1rem;
-  background: #111;
-  color: #fff;
-  border: 1px solid #333;
   border-radius: 12px;
   cursor: pointer;
 
@@ -29,6 +26,10 @@
   align-items: center;
 
   transition: 0.3s ease;
+
+  background-color: var(--card-bg);
+  color: var(--subtitle-color);
+  border: 1px solid var(--border-color);
 }
 
 .dropdown-btn.open {
@@ -51,7 +52,7 @@
   top: 110%;
   left: 0;
   width: 100%;
-  background: #1b1b1b;
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 0.4rem 0;
   z-index: 10;
@@ -68,7 +69,7 @@
 
 .dropdown-menu li:hover {
   background: rgba(184, 134, 11, 0.15);
-  color: darkgoldenrod;
+  color: var(--accent-color);
 }
 
 /* Animation */
@@ -103,8 +104,8 @@
   margin-top: 1.2rem;
   padding: 0.6rem 1.4rem;
   border-radius: 10px;
-  background: darkgoldenrod;
-  color: #000;
+  background-color: var(--accent-color);
+  color: var(--bg-primary-color);
   border: none;
   cursor: pointer;
   font-weight: 500;
@@ -138,11 +139,12 @@
 
 /* Card */
 .project-card {
-  background: #1b1b1b;
   border-radius: 18px;
   overflow: hidden;
   transition: all 0.35s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  background-color: var(--card-bg);
 }
 
 .project-card:hover {
@@ -177,7 +179,7 @@
 
 /* Description */
 .project-description {
-  color: var(--subtitle-color);
+  color: var(--title-color);
   font-size: 0.9rem;
   line-height: 1.6;
   opacity: 0.85;
@@ -208,7 +210,7 @@
 
 .project-link:hover {
   background: darkgoldenrod;
-  color: var(--icons-hover-color);
+  color: var(--title-color);
   transform: translateY(-3px);
 }
 
@@ -224,7 +226,7 @@
 
 .project-more:hover {
   gap: 0.6rem;
-  color: #fff;
+  color: var(--title-color);
 }
 
 /* Responsive */

@@ -48,7 +48,7 @@ export const skills = [
         img: react,
       },
       {
-        name: "zustand",
+        name: "Zustand",
         img: zustand,
       },
       {
