@@ -27,16 +27,35 @@ const DetailsProject = () => {
 
       {/* Content */}
       <div className="details-content">
-        {/* Title */}
+        {/* Project Name & Description */}
         <div className="detail-item">
           <h3 className="detail-label">Project Name</h3>
           <p className="detail-value">{project.title}</p>
         </div>
 
-        {/* Description */}
         <div className="detail-item">
           <h3 className="detail-label">Description</h3>
           <p className="detail-value">{project.description}</p>
+        </div>
+
+        {/* Project Info Grid */}
+        <div className="project-info-grid">
+          <div className="info-item">
+            <h3 className="detail-label">Year</h3>
+            <p className="detail-value">{project.year}</p>
+          </div>
+          <div className="info-item">
+            <h3 className="detail-label">Role</h3>
+            <p className="detail-value">{project.role}</p>
+          </div>
+          <div className="info-item">
+            <h3 className="detail-label">Status</h3>
+            <p className="detail-value">{project.status}</p>
+          </div>
+          <div className="info-item">
+            <h3 className="detail-label">Duration</h3>
+            <p className="detail-value">{project.duration}</p>
+          </div>
         </div>
 
         {/* Features */}
@@ -59,14 +78,26 @@ const DetailsProject = () => {
           </div>
         )}
 
+        {/* Performance */}
+        {project.performance && project.performance.length > 0 && (
+          <div className="detail-item">
+            <h3 className="detail-label">Performance</h3>
+            <ul className="performance-list">
+              {project.performance.map((p, i) => (
+                <li key={i}>{p}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {/* Links */}
         <div className="detail-item">
           <h3 className="detail-label">Links</h3>
           <div className="details-links">
-            <a href={project.githubLink} target="_blank">
+            <a href={project.githubLink} target="_blank" rel="noreferrer">
               <FaGithub /> GitHub
             </a>
-            <a href={project.liveLink} target="_blank">
+            <a href={project.liveLink} target="_blank" rel="noreferrer">
               <IoIosLink /> Live Demo
             </a>
           </div>

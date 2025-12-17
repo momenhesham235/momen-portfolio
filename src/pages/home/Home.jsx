@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy } from "react";
 
 const Hero = lazy(() => import("../../components/home/hero/Hero.jsx"));
 const Bio = lazy(() => import("../../components/home/bio/Bio.jsx"));
@@ -15,23 +15,7 @@ import HeroSkeleton from "../../components/skeleton/HeroSkeleton.jsx";
 import SkillsSkeleton from "../../components/skeleton/SkillsSkeleton.jsx";
 import ProjectsSkeleton from "../../components/skeleton/ProjectsSkeleton.jsx";
 
-import { IoIosArrowUp } from "react-icons/io";
-
-import "./home.css";
-
 const Home = () => {
-  useEffect(() => {
-    const scrollTopBtn = document.querySelector(".scroll-top");
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 150) {
-        scrollTopBtn.classList.add("show");
-      } else {
-        scrollTopBtn.classList.remove("show");
-      }
-    });
-  }, []);
-
   return (
     <>
       <Suspense fallback={<HeroSkeleton />}>
@@ -51,17 +35,6 @@ const Home = () => {
       </Suspense>
       <div className="divider" />
       <Contact />
-      <button
-        className="scroll-top"
-        onClick={() => {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        }}
-      >
-        <IoIosArrowUp />
-      </button>
     </>
   );
 };

@@ -7,7 +7,7 @@ export const socialLinks = [
   {
     id: 2,
     icon: "FaXTwitter",
-    link: "https://x.com/MomenHeshamEl",
+    link: "https://x.com/m0menHeshamel",
   },
   {
     id: 3,
