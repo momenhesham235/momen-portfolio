@@ -6,15 +6,13 @@ const LazyImage = ({ src, alt, className }) => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
 
     if (imgRef.current) observer.observe(imgRef.current);
@@ -22,12 +20,15 @@ const LazyImage = ({ src, alt, className }) => {
     return () => observer.disconnect();
   }, []);
 
-  // if image is not visible return a placeholder
-  if (!isVisible) {
-    return <div ref={imgRef} style={{ minHeight: "100px" }} />;
-  }
-
-  return <img ref={imgRef} src={src} alt={alt} className={className} />;
+  return (
+    <img
+      ref={imgRef}
+      src={src}
+      alt={alt}
+      className={`${className} lazy-image ${isVisible ? "show" : ""}`}
+      loading="lazy"
+    />
+  );
 };
 
 export default LazyImage;

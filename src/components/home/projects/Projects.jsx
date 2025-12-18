@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { projectsData } from "../../../constant/data/myProject.js";
 import FilterDropdown from "./FilterDropdown.jsx";
@@ -8,50 +8,82 @@ import { motion, AnimatePresence } from "motion/react";
 import "./projects.css";
 import LazyImage from "../../../hooks/onLoad.jsx";
 
+const VISIBLE_COUNT = 6; // عدد المشاريع المعروضة
+
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [startIndex, setStartIndex] = useState(0); // pointer for pagination
 
+  // filtered projects
   const filteredProjects =
     activeFilter === "all"
       ? projectsData
       : projectsData.filter((project) => project.category === activeFilter);
+
+  // projects length
+  const total = filteredProjects.length;
+
+  // projects to show
+  const visibleProjects = filteredProjects.slice(
+    startIndex,
+    startIndex + VISIBLE_COUNT
+  );
+
+  // update startIndex when activeFilter changes
+  useEffect(() => {
+    setStartIndex(0);
+  }, [activeFilter]);
+
+  // Next handler
+  const handleNext = () => {
+    if (startIndex + VISIBLE_COUNT < total) {
+      setStartIndex((prev) => prev + 1);
+    }
+  };
+
+  // Prev handler
+  const handlePrev = () => {
+    if (startIndex > 0) {
+      setStartIndex((prev) => prev - 1);
+    }
+  };
+
   return (
     <section id="projects" className="projects">
       {/* Header */}
       <div className="projects-header">
         <h2>Projects</h2>
-
         <FilterDropdown value={activeFilter} onChange={setActiveFilter} />
       </div>
 
-      {/* Cards */}
+      {/* Projects Grid */}
       <div className="projects-grid">
-        {filteredProjects.length === 0 ? (
-          <div className="no-projects">
-            <p>
-              🚫 No projects found{" "}
-              {activeFilter !== "All" && (
-                <>
-                  for <strong>{activeFilter}</strong>
-                </>
-              )}
-            </p>
-
-            <button
-              className="reset-filter"
-              onClick={() => setActiveFilter("all")}
-            >
-              Show all projects
-            </button>
-          </div>
-        ) : (
-          filteredProjects.map((project) => (
-            <AnimatePresence key={project.id}>
+        <AnimatePresence>
+          {visibleProjects.length === 0 ? (
+            <div className="no-projects">
+              <p>
+                🚫 No projects found{" "}
+                {activeFilter !== "all" && (
+                  <>
+                    for <strong>{activeFilter}</strong>
+                  </>
+                )}
+              </p>
+              <button
+                className="reset-filter"
+                onClick={() => setActiveFilter("all")}
+              >
+                Show all projects
+              </button>
+            </div>
+          ) : (
+            visibleProjects.map((project, index) => (
               <motion.article
+                key={project.id}
                 layout
-                initial={{ transform: "scale(0)", opacity: 0 }}
-                animate={{ transform: "scale(1)", opacity: 1 }}
-                exit={{ transform: "scale(0)", opacity: 0 }}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="project-card"
               >
@@ -95,9 +127,26 @@ const Projects = () => {
                   </div>
                 </div>
               </motion.article>
-            </AnimatePresence>
-          ))
-        )}
+            ))
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Pagination / Slider */}
+      <div className="pagination">
+        <button disabled={startIndex === 0} onClick={handlePrev}>
+          Prev
+        </button>
+        <span>
+          {startIndex + 1} - {Math.min(startIndex + VISIBLE_COUNT, total)} of{" "}
+          {total}
+        </span>
+        <button
+          disabled={startIndex + VISIBLE_COUNT >= total}
+          onClick={handleNext}
+        >
+          Next
+        </button>
       </div>
     </section>
   );

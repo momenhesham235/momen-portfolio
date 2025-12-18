@@ -1,3 +1,6 @@
+.projects {
+  overflow: hidden;
+}
 .projects-header {
   max-width: 1100px;
   margin: auto;
@@ -227,6 +230,40 @@
 .project-more:hover {
   gap: 0.6rem;
   color: var(--title-color);
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: var(--card-bg);
+  color: var(--title-color);
+  transition: 0.3s;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: darkgoldenrod;
+  color: #000;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 0.95rem;
+  color: var(--subtitle-color);
 }
 
 /* Responsive */

@@ -12,12 +12,7 @@ const Hero = () => {
         {/* Left */}
         <div className="hero-left">
           <div className="avatar-wrapper">
-            <LazyImage
-              src="me.png"
-              alt="Momen Hesham"
-              className="avatar"
-              loading="lazy"
-            />
+            <LazyImage src="me.png" alt="Momen Hesham" className="avatar" />
             <span className="badge">
               <MdVerifiedUser className="badge-icon" /> Certified Developer
             </span>

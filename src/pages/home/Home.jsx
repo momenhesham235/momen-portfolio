@@ -2,9 +2,9 @@ import { Suspense, lazy } from "react";
 
 const Hero = lazy(() => import("../../components/home/hero/Hero.jsx"));
 const Bio = lazy(() => import("../../components/home/bio/Bio.jsx"));
-// const Experience = lazy(() =>
-//   import("../../components/home/experience/Experience.jsx")
-// );
+const Experience = lazy(() =>
+  import("../../components/home/experience/Experience.jsx")
+);
 const Projects = lazy(() =>
   import("../../components/home/projects/Projects.jsx")
 );
@@ -24,11 +24,11 @@ const Home = () => {
       <div className="divider" />
       <Bio />
       <div className="divider" />
-      {/* <Experience /> */}
-      {/* <div className="divider" /> */}
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />
       </Suspense>
+      <div className="divider" />
+      <Experience />
       <div className="divider" />
       <Suspense fallback={<SkillsSkeleton />}>
         <Skills />

@@ -1,7 +1,5 @@
-import Loading from "./components/skeleton/Loading.jsx";
-
 import { Routes, Route } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import { Toaster } from "react-hot-toast";
 
 import Header from "./components/header/Header.jsx";
@@ -17,20 +15,18 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <main className="container">
-          <Header />
-          <Routes>
-            <Route path={baseUrl} element={<Home />} />
-            <Route path={`${baseUrl}details/:id`} element={<Details />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <ScrollTop />
-          <Footer />
-          {/* Toaster */}
-          <Toaster />
-        </main>
-      </Suspense>
+      <main className="container">
+        <Header />
+        <Routes>
+          <Route path={baseUrl} element={<Home />} />
+          <Route path={`${baseUrl}details/:id`} element={<Details />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ScrollTop />
+        <Footer />
+        {/* Toaster */}
+        <Toaster />
+      </main>
     </>
   );
 }
