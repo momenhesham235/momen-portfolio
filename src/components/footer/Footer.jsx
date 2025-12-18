@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./footer.css";
 import { socialLinks } from "../../constant/data/heroData";
 import { FaFacebook, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { TbBrandLeetcode } from "react-icons/tb";
 
 const Footer = () => {
   const [hearts, setHearts] = useState([]);
@@ -46,11 +47,13 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon"
+                title={social.title}
               >
                 {social.icon === "FaFacebook" && <FaFacebook />}
                 {social.icon === "FaXTwitter" && <FaXTwitter />}
-                {social.icon === "FaGithub" && <FaGithub />}
                 {social.icon === "FaLinkedin" && <FaLinkedin />}
+                {social.icon === "FaGithub" && <FaGithub />}
+                {social.icon === "TbBrandLeetcode" && <TbBrandLeetcode />}
               </a>
             );
           })}

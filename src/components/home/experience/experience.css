@@ -62,7 +62,7 @@
 }
 
 .content {
-  background: #1b1b1b;
+  background: var(--card-bg);
   padding: 1.5rem;
   border-radius: 16px;
   border: 1px solid transparent;

@@ -4,8 +4,13 @@ import { FaGithub } from "react-icons/fa";
 import { IoIosLink } from "react-icons/io";
 import "./detailsProject.css";
 import FeaturesColumns from "../featuresColumns/FeaturesColumns.jsx";
+import { useEffect } from "react";
 
 const DetailsProject = () => {
+  useEffect(() => {
+    document.title = "Project Details | Momen Hesham Portfolio";
+  }, []);
+
   const { id } = useParams();
   const project = projectsData.find((p) => p.id === Number(id));
 
