@@ -7,18 +7,19 @@ import { FiDownload } from "react-icons/fi";
 
 const Hero = () => {
   return (
-    <section className="hero" id="home">
+    <section className="hero" id="home" aria-labelledby="hero-heading">
       <div className="hero-container">
         {/* Left */}
         <div className="hero-left">
           <div className="avatar-wrapper">
-            <LazyImage src="me.png" alt="Momen Hesham" className="avatar" />
+            <LazyImage src="me.png" alt="Momen Hesham " className="avatar" />
             <span className="badge">
-              <MdVerifiedUser className="badge-icon" /> Certified Developer
+              <MdVerifiedUser className="badge-icon" aria-hidden="true" />
+              Certified Developer
             </span>
           </div>
 
-          <h1>
+          <h1 id="hero-heading">
             Hi, I’m <span>Momen</span>
           </h1>
 
@@ -32,9 +33,10 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               title="Download My CV"
+              aria-label="Download Momen Hesham CV as PDF"
             >
               Download CV
-              <FiDownload className="cv-icon" />
+              <FiDownload className="cv-icon" aria-label="Download icon" />
             </a>
           </div>
         </div>
@@ -44,7 +46,7 @@ const Hero = () => {
           <Lottie
             animationData={codingAnimation}
             loop={true}
-            // style={{ width: "80%", height: "80%" }}
+            aria-hidden="true"
           />
         </div>
       </div>

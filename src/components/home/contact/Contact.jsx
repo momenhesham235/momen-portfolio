@@ -8,51 +8,59 @@ import "./contact.css";
 
 const Contact = () => {
   return (
-    <section className="contact" id="contact">
-      <h2 className="section-title">Contact Me</h2>
+    <section className="contact" id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading" className="section-title">
+        Contact Me
+      </h2>
 
       <div className="contact-container">
         {/* Info */}
         <div className="contact-info">
           <div className="info-item">
-            <FaWhatsapp />
+            <FaWhatsapp aria-hidden="true" />
             <a
               href="https://wa.me/201062749282"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Contact via WhatsApp"
             >
               +20 106 274 9282
             </a>
           </div>
 
           <div className="info-item">
-            <FaEnvelope />
+            <FaEnvelope aria-hidden="true" />
             <a
               href="mailto:hmomen235@gmail.com?subject=Contact%20From%20Portfolio"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Send email to hmomen235@gmail.com"
             >
               hmomen235@gmail.com
             </a>
           </div>
 
           <div className="info-item">
-            <FaMapMarkerAlt />
+            <FaMapMarkerAlt aria-hidden="true" />
             <span>Egypt (Remote)</span>
           </div>
 
           <div className="info-item">
-            <FaClock />
+            <FaClock aria-hidden="true" />
             <span>Available for freelance & full-time</span>
           </div>
 
           <div className="info-item">
-            <FaLanguage />
+            <FaLanguage aria-hidden="true" />
             <span>Arabic (Native), English (Good)</span>
           </div>
 
           <div className="contact-animation">
-            <Lottie animationData={codingAnimation} loop={true} />
+            <Lottie
+              animationData={codingAnimation}
+              loop={true}
+              aria-hidden="true"
+            />
           </div>
         </div>
 

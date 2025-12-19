@@ -49,7 +49,12 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="projects">
+    <section
+      id="projects"
+      className="projects"
+      role="region"
+      aria-label="Projects"
+    >
       {/* Header */}
       <div className="projects-header">
         <h2>Projects</h2>
@@ -77,7 +82,7 @@ const Projects = () => {
               </button>
             </div>
           ) : (
-            visibleProjects.map((project, index) => (
+            visibleProjects.map((project) => (
               <motion.article
                 key={project.id}
                 layout
@@ -95,7 +100,9 @@ const Projects = () => {
 
                 <div className="project-content">
                   <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
+                  <p className="project-description">
+                    {project.description.substring(0, 100) + "..."}
+                  </p>
 
                   <div className="project-links">
                     <div>
@@ -104,8 +111,9 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-link"
+                        aria-label={`GitHub repository of ${project.title}`}
                       >
-                        <FaGithub />
+                        <FaGithub aria-hidden="true" />
                       </a>
 
                       <a
@@ -114,15 +122,21 @@ const Projects = () => {
                         rel="noopener noreferrer"
                         className="project-link"
                       >
-                        <IoIosLink />
+                        <IoIosLink
+                          aria-label={`Live demo of ${project.title}`}
+                        />
                       </a>
                     </div>
 
                     <Link
                       to={`/momen-portfolio/details/${project.id}`}
                       className="project-more"
+                      title={`More details about ${project.title}`}
                     >
-                      More <IoIosArrowRoundForward />
+                      More
+                      <IoIosArrowRoundForward
+                        aria-label={`More details about ${project.title}`}
+                      />
                     </Link>
                   </div>
                 </div>
@@ -134,7 +148,11 @@ const Projects = () => {
 
       {/* Pagination / Slider */}
       <div className="pagination">
-        <button disabled={startIndex === 0} onClick={handlePrev}>
+        <button
+          disabled={startIndex === 0}
+          onClick={handlePrev}
+          aria-label="Previous projects"
+        >
           Prev
         </button>
         <span>
@@ -144,6 +162,7 @@ const Projects = () => {
         <button
           disabled={startIndex + VISIBLE_COUNT >= total}
           onClick={handleNext}
+          aria-label="Next projects"
         >
           Next
         </button>

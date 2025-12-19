@@ -18,6 +18,8 @@ const ScrollTop = () => {
   return (
     <button
       className={`scroll-top ${showScroll ? "show" : ""}`}
+      aria-label="Scroll to top"
+      title="Scroll to top"
       onClick={() =>
         window.scrollTo({
           top: 0,
@@ -25,7 +27,7 @@ const ScrollTop = () => {
         })
       }
     >
-      <IoIosArrowUp />
+      <IoIosArrowUp aria-hidden="true" />
     </button>
   );
 };

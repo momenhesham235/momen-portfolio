@@ -24,20 +24,44 @@ const ContactForm = () => {
   return (
     <form className="contact-form" onSubmit={handleSubmit} ref={formRef}>
       <input type="text" name="name" placeholder="Your Name" required />
-      <ValidationError prefix="Name" field="name" errors={state.errors} />
+      <ValidationError
+        prefix="Name"
+        field="name"
+        errors={state.errors}
+        as="div"
+        role="alert"
+      />
 
       <input type="email" name="email" placeholder="Your Email" required />
-      <ValidationError prefix="Email" field="email" errors={state.errors} />
+      <ValidationError
+        prefix="Email"
+        field="email"
+        errors={state.errors}
+        as="div"
+        role="alert"
+      />
 
       <textarea
         name="message"
         placeholder="Your Message"
         rows="5"
         required
+        minLength={3}
+        maxLength={280}
       ></textarea>
-      <ValidationError prefix="Message" field="message" errors={state.errors} />
+      <ValidationError
+        prefix="Message"
+        field="message"
+        errors={state.errors}
+        as="div"
+        role="alert"
+      />
 
-      <button type="submit" disabled={state.submitting}>
+      <button
+        type="submit"
+        disabled={state.submitting}
+        aria-busy={state.submitting}
+      >
         {state.submitting ? (
           "Sending..."
         ) : (

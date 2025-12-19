@@ -3,8 +3,14 @@ import { experienceData } from "../../../constant/data/experience";
 
 const Experience = () => {
   return (
-    <section className="experience" id="experience">
-      <h2 className="section-title">Experience</h2>
+    <section
+      className="experience"
+      id="experience"
+      aria-labelledby="experience-heading"
+    >
+      <h2 id="experience-heading" className="section-title">
+        Experience
+      </h2>
 
       <div className="timeline">
         {experienceData.map((item, index) => {
@@ -18,13 +24,13 @@ const Experience = () => {
                 <h3>{item.title}</h3>
                 <p className="company">{item.company}</p>
 
-                <p className="description">
+                <ul className="description">
                   {item.description
                     .split(". ")
                     .map((desc, i) =>
                       desc ? <li key={i}>{desc.trim()}</li> : null
                     )}
-                </p>
+                </ul>
 
                 <div className="tech-stack">
                   {item.tech.map((techItem, i) => (

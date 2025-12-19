@@ -26,14 +26,14 @@ const Header = () => {
   };
 
   return (
-    <header className="flex">
+    <header className="flex" id="header">
       <div className="menu">
         <button className="icons" onClick={() => setShowModel(true)}>
-          <IoIosMenu />
+          <IoIosMenu aria-label="Open navigation menu" />
         </button>
       </div>
 
-      <nav>
+      <nav aria-label="Main Navigation">
         <ul className="flex">
           {navbarData.map((item) => (
             <li key={item.id}>
@@ -44,17 +44,28 @@ const Header = () => {
       </nav>
 
       <button className="icons" onClick={changeTheme}>
-        {theme === "dark" ? <LuSunMoon /> : <IoMoonOutline />}
+        {theme === "dark" ? (
+          <LuSunMoon aria-label="Change to light mode" />
+        ) : (
+          <IoMoonOutline aria-label="Change to dark mode" />
+        )}
       </button>
 
       {/* responsive header */}
       {showModel && (
-        <div className="fixed">
+        <div
+          className="fixed"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-menu-title"
+          id="mobile-menu"
+        >
           <ul className="model">
             <li>
               <IoClose
                 className="close-icon"
                 onClick={() => setShowModel(false)}
+                aria-label="Close navigation menu"
               />
             </li>
             {navbarData.map((item) => (

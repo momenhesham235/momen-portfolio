@@ -23,51 +23,60 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer">
+    <footer className="footer" id="footer">
       <div className="footer-container">
         <p>
           Made with{" "}
-          <span
+          <button
             className="heart"
             onClick={handleHeartClick}
-            title="Click me! ❤️"
+            aria-label="Give a heart ❤️"
+            type="button"
           >
             ❤️
-          </span>{" "}
+          </button>{" "}
           by <strong style={{ color: "darkgoldenrod" }}>Momen Hesham</strong> —
           Thank you for visiting!
         </p>
 
         <div className="social-icons">
-          {socialLinks.map((social) => {
-            return (
-              <a
-                key={social.id}
-                href={social.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                title={social.title}
-              >
-                {social.icon === "FaFacebook" && <FaFacebook />}
-                {social.icon === "FaXTwitter" && <FaXTwitter />}
-                {social.icon === "FaLinkedin" && <FaLinkedin />}
-                {social.icon === "FaGithub" && <FaGithub />}
-                {social.icon === "TbBrandLeetcode" && <TbBrandLeetcode />}
-              </a>
-            );
-          })}
+          {socialLinks.map((social) => (
+            <a
+              key={social.id}
+              href={social.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              aria-label={social.title}
+            >
+              {social.icon === "FaFacebook" && (
+                <FaFacebook aria-hidden="true" />
+              )}
+              {social.icon === "FaXTwitter" && (
+                <FaXTwitter aria-hidden="true" />
+              )}
+              {social.icon === "FaLinkedin" && (
+                <FaLinkedin aria-hidden="true" />
+              )}
+              {social.icon === "FaGithub" && <FaGithub aria-hidden="true" />}
+              {social.icon === "TbBrandLeetcode" && (
+                <TbBrandLeetcode aria-hidden="true" />
+              )}
+            </a>
+          ))}
         </div>
+
         <p className="footer-copy">
           &copy; {new Date().getFullYear()} All rights reserved.
         </p>
 
-        {/* Render hearts */}
+        {/* Render floating hearts */}
         {hearts.map((heart) => (
           <span
             key={heart.id}
             className="floating-heart"
             style={{ left: heart.x, top: heart.y }}
+            aria-hidden="true"
           >
             ❤️
           </span>

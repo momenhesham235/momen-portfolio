@@ -1,7 +1,7 @@
 import "./bio.css";
 const Bio = () => {
   return (
-    <section className="bio" id="bio">
+    <section className="bio" id="bio" aria-labelledby="bio-heading">
       <div className="bio-container">
         <h2>Professional Bio</h2>
 

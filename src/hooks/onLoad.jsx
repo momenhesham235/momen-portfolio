@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const LazyImage = ({ src, alt, className }) => {
+const LazyImage = ({ src = "", alt = "", className = "" }) => {
   const [isVisible, setIsVisible] = useState(false);
   const imgRef = useRef(null);
 
@@ -24,7 +24,7 @@ const LazyImage = ({ src, alt, className }) => {
     <img
       ref={imgRef}
       src={src}
-      alt={alt}
+      alt={alt || "Image alternate text"}
       className={`${className} lazy-image ${isVisible ? "show" : ""}`}
       loading="lazy"
     />

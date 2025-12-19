@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect, useLayoutEffect } from "react";
 
 const Hero = lazy(() => import("../../components/home/hero/Hero.jsx"));
 const Bio = lazy(() => import("../../components/home/bio/Bio.jsx"));
@@ -16,6 +16,10 @@ import SkillsSkeleton from "../../components/skeleton/SkillsSkeleton.jsx";
 import ProjectsSkeleton from "../../components/skeleton/ProjectsSkeleton.jsx";
 
 const Home = () => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   useEffect(() => {
     document.title = "Momen Hesham - Software Engineer | MERN Stack";
   }, []);

@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <main className="container">
+      <main className="container" id="main">
         <Header />
         <Routes>
           <Route path={baseUrl} element={<Home />} />

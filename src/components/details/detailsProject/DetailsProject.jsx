@@ -4,11 +4,20 @@ import { FaGithub } from "react-icons/fa";
 import { IoIosLink } from "react-icons/io";
 import "./detailsProject.css";
 import FeaturesColumns from "../featuresColumns/FeaturesColumns.jsx";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 const DetailsProject = () => {
-  useEffect(() => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
     document.title = "Project Details | Momen Hesham Portfolio";
+
+    const meta = document.querySelector("meta[name='description']");
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        "Project Details, About Momen Hesham Portfolio"
+      );
+    }
   }, []);
 
   const { id } = useParams();
@@ -21,7 +30,11 @@ const DetailsProject = () => {
   return (
     <section className="project-details">
       {/* Back */}
-      <Link to="/momen-portfolio/" className="back-btn">
+      <Link
+        to="/momen-portfolio/"
+        className="back-btn"
+        aria-label="Back to projects"
+      >
         ← Back to projects
       </Link>
 
@@ -99,11 +112,21 @@ const DetailsProject = () => {
         <div className="detail-item">
           <h3 className="detail-label">Links</h3>
           <div className="details-links">
-            <a href={project.githubLink} target="_blank" rel="noreferrer">
-              <FaGithub /> GitHub
+            <a
+              href={project.githubLink}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`View ${project.title} on GitHub`}
+            >
+              <FaGithub aria-hidden="true" /> GitHub
             </a>
-            <a href={project.liveLink} target="_blank" rel="noreferrer">
-              <IoIosLink /> Live Demo
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`View ${project.title} live demo`}
+            >
+              <IoIosLink aria-hidden="true" /> Live Demo
             </a>
           </div>
         </div>
