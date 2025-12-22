@@ -17,4 +17,6 @@ export const experienceData = [
     description: `Completed a summer training program at Mansoura University, gaining hands-on experience in full-stack web development. Built and maintained applications using modern web technologies, with a focus on clean code, problem-solving, and real-world development practices.`,
     tech: ["HTML", "CSS", "JavaScript", "React"],
   },
+
+  
 ];

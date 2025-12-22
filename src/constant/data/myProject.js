@@ -1,4 +1,10 @@
-import { leno, productSystemJS, airbnb, twitter } from "../../assets";
+import {
+  leno,
+  productSystemJS,
+  airbnb,
+  twitter,
+  eCommerce,
+} from "../../assets";
 
 export const optionsSelect = [
   { label: "All", value: "all" },
@@ -63,6 +69,7 @@ export const projectsData = [
     tech: ["HTML", "CSS", "JavaScript"],
     performance: ["Instant UI updates", "Optimized DOM rendering"],
   },
+
   {
     id: 3,
     title: "Airbnb Project",
@@ -118,6 +125,33 @@ export const projectsData = [
     performance: [
       "Optimized database queries",
       "Efficient API caching with React Query",
+    ],
+  },
+  {
+    id: 5,
+    title: "E-Commerce With JavaScript",
+    description: `A fully responsive e-commerce website built with React Components,
+  featuring a dynamic cart and checkout process.`,
+    year: 2025,
+    role: "Frontend Developer",
+    status: "Just Started",
+    duration: "Starting soon",
+    image: eCommerce,
+    githubLink:
+      "https://github.com/momenhesham235/React-E-Commerce-With-Javascript",
+    liveLink:
+      "https://momenhesham235.github.io/React-E-Commerce-With-Javascript/",
+    category: "react",
+    features: [
+      "Dynamic cart and checkout process",
+      "Responsive design",
+      "Clean and maintainable code",
+    ],
+    tech: ["HTML", "CSS", "JavaScript", "React"], // ضفت React بما إنه React Project
+    performance: [
+      "Fast page loading",
+      "Optimized images",
+      "Cross-browser compatibility",
     ],
   },
 ];

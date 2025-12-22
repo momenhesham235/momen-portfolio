@@ -3,6 +3,7 @@ import leno from "./projects/leno.jpg";
 import productSystemJS from "./projects/product.jpg";
 import airbnb from "./projects/airbnb.jpg";
 import twitter from "./projects/twitter.jpg";
+import eCommerce from "./projects/e-commerce-js.jpg";
 
 // skills assets
 import html from "./skills/html.png";
@@ -28,6 +29,7 @@ export {
   productSystemJS,
   airbnb,
   twitter,
+  eCommerce,
   html,
   css,
   tailwind,
