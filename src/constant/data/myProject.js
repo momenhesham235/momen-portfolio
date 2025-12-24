@@ -134,8 +134,8 @@ export const projectsData = [
   featuring a dynamic cart and checkout process.`,
     year: 2025,
     role: "Frontend Developer",
-    status: "Just Started",
-    duration: "Starting soon",
+    status: "in progress",
+    duration: "Starting from 2 days",
     image: eCommerce,
     githubLink:
       "https://github.com/momenhesham235/React-E-Commerce-With-Javascript",
