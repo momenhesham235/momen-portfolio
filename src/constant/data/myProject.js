@@ -130,27 +130,32 @@ export const projectsData = [
   {
     id: 5,
     title: "E-Commerce With JavaScript",
-    description: `A fully responsive e-commerce website built with React Components,
-  featuring a dynamic cart and checkout process.`,
+    description:
+      "A fully responsive e-commerce application built with React, featuring product listing, dynamic cart management, and responsive design for all devices.",
     year: 2025,
     role: "Frontend Developer",
-    status: "in progress",
-    duration: "Starting from 2 days",
+    status: "Completed",
+    duration: "5 days",
     image: eCommerce,
     githubLink:
       "https://github.com/momenhesham235/React-E-Commerce-With-Javascript",
     liveLink:
       "https://momenhesham235.github.io/React-E-Commerce-With-Javascript/",
     category: "react",
+
     features: [
-      "Dynamic cart and checkout process",
-      "Responsive design",
-      "Clean and maintainable code",
+      "Product listing with dynamic UI",
+      "Add to cart & remove from cart functionality",
+      "Cart total calculation",
+      "Responsive design for all devices",
+      "Search functionality",
     ],
-    tech: ["HTML", "CSS", "JavaScript", "React"], // ضفت React بما إنه React Project
+
+    tech: ["React", "JavaScript", "HTML", "CSS"],
+
     performance: [
       "Fast page loading",
-      "Optimized images",
+      "Optimized component rendering",
       "Cross-browser compatibility",
     ],
   },
