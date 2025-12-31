@@ -4,6 +4,7 @@ import productSystemJS from "./projects/product.jpg";
 import airbnb from "./projects/airbnb.jpg";
 import twitter from "./projects/twitter.jpg";
 import eCommerce from "./projects/e-commerce-js.jpg";
+import eCommerceTs from "./projects/e-commerce-ts.jpg";
 
 // skills assets
 import html from "./skills/html.png";
@@ -30,6 +31,7 @@ export {
   airbnb,
   twitter,
   eCommerce,
+  eCommerceTs,
   html,
   css,
   tailwind,

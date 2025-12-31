@@ -4,6 +4,7 @@ import {
   airbnb,
   twitter,
   eCommerce,
+  eCommerceTs,
 } from "../../assets";
 
 export const optionsSelect = [
@@ -144,15 +145,52 @@ export const projectsData = [
     category: "react",
 
     features: [
+      "Folder structure",
       "Product listing with dynamic UI",
       "Add to cart & remove from cart functionality",
-      "Cart total calculation",
+      "Add to favorites & remove from favorites functionality",
       "Responsive design for all devices",
       "Search functionality",
     ],
 
-    tech: ["React", "JavaScript", "HTML", "CSS"],
+    tech: [
+      "React",
+      "Zustand",
+      "Axios",
+      "Framer Motion",
+      "Swiper",
+      "React hot toast",
+      "React icons",
+    ],
 
+    performance: [
+      "Fast page loading",
+      "Optimized component rendering",
+      "Cross-browser compatibility",
+    ],
+  },
+  {
+    id: 6,
+    title: "E-Commerce With TypeScript",
+    description:
+      "A fully responsive e-commerce application built with React, featuring product listing, dynamic cart management, and responsive design for all devices.",
+    year: 2026,
+    role: "Frontend Developer",
+    status: "in progress",
+    duration: "Two days left",
+    image: eCommerceTs,
+    githubLink: "https://github.com/momenhesham235/ecommerce-typescript",
+    liveLink: "https://momenhesham235.github.io/ecommerce-typescript/",
+    category: "react",
+    features: [
+      "Folder structure",
+      "Design patterns",
+      "Product listing with dynamic UI",
+      "Add to cart & remove from cart functionality",
+      "Cart total calculation",
+      "Responsive design for all devices",
+    ],
+    tech: ["React", "Redux", "Axios", "React Hook Form", "React Bootstrap"],
     performance: [
       "Fast page loading",
       "Optimized component rendering",
