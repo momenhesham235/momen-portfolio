@@ -1,18 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { projectsData } from "../../../constant/data/myProject.js";
 import FilterDropdown from "./FilterDropdown.jsx";
 import { FaGithub } from "react-icons/fa6";
 import { IoIosLink, IoIosArrowRoundForward } from "react-icons/io";
+// eslint-disable-next-line
 import { motion, AnimatePresence } from "motion/react";
 import "./projects.css";
 import LazyImage from "../../../hooks/onLoad.jsx";
 
-const VISIBLE_COUNT = 6; // عدد المشاريع المعروضة
+const VISIBLE_COUNT = 6; // number of projects to show
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [startIndex, setStartIndex] = useState(0); // pointer for pagination
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_COUNT);
 
   // filtered projects
   const filteredProjects =
@@ -20,32 +21,46 @@ const Projects = () => {
       ? projectsData
       : projectsData.filter((project) => project.category === activeFilter);
 
-  // projects length
+  const visibleProjects = filteredProjects.slice(0, visibleCount);
+
   const total = filteredProjects.length;
 
-  // projects to show
-  const visibleProjects = filteredProjects.slice(
-    startIndex,
-    startIndex + VISIBLE_COUNT
-  );
-
-  // update startIndex when activeFilter changes
-  useEffect(() => {
-    setStartIndex(0);
-  }, [activeFilter]);
-
-  // Next handler
-  const handleNext = () => {
-    if (startIndex + VISIBLE_COUNT < total) {
-      setStartIndex((prev) => prev + 1);
-    }
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + VISIBLE_COUNT);
   };
 
-  // Prev handler
-  const handlePrev = () => {
-    if (startIndex > 0) {
-      setStartIndex((prev) => prev - 1);
-    }
+  const handleFilterChange = (value) => {
+    setActiveFilter(value);
+    setVisibleCount(VISIBLE_COUNT);
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 18,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -30,
+      scale: 0.95,
+      transition: { duration: 0.2 },
+    },
+  };
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
   };
 
   return (
@@ -58,12 +73,17 @@ const Projects = () => {
       {/* Header */}
       <div className="projects-header">
         <h2>Projects</h2>
-        <FilterDropdown value={activeFilter} onChange={setActiveFilter} />
+
+        <FilterDropdown value={activeFilter} onChange={handleFilterChange} />
       </div>
 
       {/* Projects Grid */}
-      <div className="projects-grid">
-        <AnimatePresence>
+      <motion.div
+        className="projects-grid"
+        variants={containerVariants}
+        initial="hidden"
+      >
+        <AnimatePresence mode="wait">
           {visibleProjects.length === 0 ? (
             <div className="no-projects">
               <p>
@@ -85,11 +105,11 @@ const Projects = () => {
             visibleProjects.map((project) => (
               <motion.article
                 key={project.id}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
                 layout
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="project-card"
               >
                 <LazyImage
@@ -144,29 +164,16 @@ const Projects = () => {
             ))
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
 
       {/* Pagination / Slider */}
-      <div className="pagination">
-        <button
-          disabled={startIndex === 0}
-          onClick={handlePrev}
-          aria-label="Previous projects"
-        >
-          Prev
-        </button>
-        <span>
-          {startIndex + 1} - {Math.min(startIndex + VISIBLE_COUNT, total)} of{" "}
-          {total}
-        </span>
-        <button
-          disabled={startIndex + VISIBLE_COUNT >= total}
-          onClick={handleNext}
-          aria-label="Next projects"
-        >
-          Next
-        </button>
-      </div>
+      {visibleCount < total && (
+        <div className="load-more-wrapper">
+          <button onClick={handleLoadMore} className="load-more-btn">
+            Show More
+          </button>
+        </div>
+      )}
     </section>
   );
 };
