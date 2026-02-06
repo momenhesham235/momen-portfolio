@@ -1,19 +1,17 @@
 import { Suspense, lazy, useEffect, useLayoutEffect } from "react";
 
-const Hero = lazy(() => import("../../components/home/hero/Hero.jsx"));
-const Bio = lazy(() => import("../../components/home/bio/Bio.jsx"));
-const Experience = lazy(() =>
-  import("../../components/home/experience/Experience.jsx")
+const Hero = lazy(() => import("@components/home/hero/Hero.jsx"));
+const Bio = lazy(() => import("@components/home/bio/Bio.jsx"));
+const Experience = lazy(
+  () => import("@components/home/experience/Experience.jsx"),
 );
-const Projects = lazy(() =>
-  import("../../components/home/projects/Projects.jsx")
-);
-const Skills = lazy(() => import("../../components/home/skills/Skills.jsx"));
-const Contact = lazy(() => import("../../components/home/contact/Contact.jsx"));
+const Projects = lazy(() => import("@components/home/projects/Projects.jsx"));
+const Skills = lazy(() => import("@components/home/skills/Skills.jsx"));
+const Contact = lazy(() => import("@components/home/contact/Contact.jsx"));
 
-import HeroSkeleton from "../../components/skeleton/HeroSkeleton.jsx";
-import SkillsSkeleton from "../../components/skeleton/SkillsSkeleton.jsx";
-import ProjectsSkeleton from "../../components/skeleton/ProjectsSkeleton.jsx";
+import HeroSkeleton from "@components/skeleton/HeroSkeleton.jsx";
+import SkillsSkeleton from "@components/skeleton/SkillsSkeleton.jsx";
+import ProjectsSkeleton from "@components/skeleton/ProjectsSkeleton.jsx";
 
 const Home = () => {
   useLayoutEffect(() => {

@@ -25,13 +25,20 @@ import git from "./skills/git.png";
 import github from "./skills/github.png";
 import docker from "./skills/docker.png";
 
+// animations
+import codingAnimation from "./animations/Coding.json";
+import contactAnimation from "./animations/contactUs.json";
+
 export {
+  // projects
   leno,
   productSystemJS,
   airbnb,
   twitter,
   eCommerce,
   eCommerceTs,
+
+  // skills
   html,
   css,
   tailwind,
@@ -49,4 +56,8 @@ export {
   git,
   github,
   docker,
+
+  // animations
+  codingAnimation,
+  contactAnimation,
 };

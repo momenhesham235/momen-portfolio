@@ -1,4 +1,4 @@
-import { navbarData } from "../../constant/data/navbar";
+import { navbarData } from "../../../constant/data/navbar";
 import { useEffect, useState } from "react";
 
 import { LuSunMoon } from "react-icons/lu";

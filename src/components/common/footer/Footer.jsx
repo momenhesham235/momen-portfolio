@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./footer.css";
-import { socialLinks } from "../../constant/data/heroData";
+import { socialLinks } from "../../../constant/data/heroData";
 import { FaFacebook, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { TbBrandLeetcode } from "react-icons/tb";
 

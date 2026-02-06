@@ -5,7 +5,7 @@ import {
   twitter,
   eCommerce,
   eCommerceTs,
-} from "../../assets";
+} from "@assets";
 
 export const optionsSelect = [
   { label: "All", value: "all" },

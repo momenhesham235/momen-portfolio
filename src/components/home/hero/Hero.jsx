@@ -1,6 +1,6 @@
 import { MdVerifiedUser } from "react-icons/md";
 import Lottie from "lottie-react";
-import codingAnimation from "../../../assets/animations/Coding.json";
+import { codingAnimation } from "@assets";
 import "./hero.css";
 import LazyImage from "../../../hooks/onLoad.jsx";
 import { FiDownload } from "react-icons/fi";

@@ -44,10 +44,10 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.4px;
+  scroll-behavior: smooth;
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: darkgoldenrod #00000083;
 }
@@ -117,10 +117,37 @@ button:active {
   align-items: center;
 }
 
-.border {
-  border: 1px solid red;
+/* Skeleton */
+.skeleton-box,
+.skeleton-text {
+  background: linear-gradient(90deg, #222, #333, #222);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
 }
 
+.skeleton-text {
+  height: 16px;
+  margin: 8px 0;
+}
+
+.skeleton-text.short {
+  width: 60%;
+}
+.skeleton-text.long {
+  width: 90%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .container {
     padding: 0 var(--md-container-padding);

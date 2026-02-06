@@ -2,10 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import { Toaster } from "react-hot-toast";
 
-import Header from "./components/header/Header.jsx";
 import NotFound from "./pages/notFound/NotFound.jsx";
-import Footer from "./components/footer/Footer.jsx";
-import ScrollTop from "./components/common/scrollTop/ScrollTop.jsx";
+import { ScrollTop, Header, Footer } from "@components/common";
 
 const Home = lazy(() => import("./pages/home/Home.jsx"));
 const Details = lazy(() => import("./pages/details/Details.jsx"));
