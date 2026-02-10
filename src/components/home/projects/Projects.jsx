@@ -1,67 +1,29 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { projectsData } from "../../../constant/data/myProject.js";
+import useProjects from "./hooks/useProjects.js";
+
+import LazyImage from "@hooks/onLoad.jsx";
 import FilterDropdown from "./FilterDropdown.jsx";
+
 import { FaGithub } from "react-icons/fa6";
 import { IoIosLink, IoIosArrowRoundForward } from "react-icons/io";
+
 // eslint-disable-next-line
 import { motion, AnimatePresence } from "motion/react";
-import "./projects.css";
-import LazyImage from "../../../hooks/onLoad.jsx";
 
-const VISIBLE_COUNT = 6; // number of projects to show
+import "./projects.css";
 
 const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState("all");
-  const [visibleCount, setVisibleCount] = useState(VISIBLE_COUNT);
-
-  // filtered projects
-  const filteredProjects =
-    activeFilter === "all"
-      ? projectsData
-      : projectsData.filter((project) => project.category === activeFilter);
-
-  const visibleProjects = filteredProjects.slice(0, visibleCount);
-
-  const total = filteredProjects.length;
-
-  const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + VISIBLE_COUNT);
-  };
-
-  const handleFilterChange = (value) => {
-    setActiveFilter(value);
-    setVisibleCount(VISIBLE_COUNT);
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 18,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -30,
-      scale: 0.95,
-      transition: { duration: 0.2 },
-    },
-  };
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
+  const {
+    activeFilter,
+    setActiveFilter,
+    visibleCount,
+    visibleProjects,
+    total,
+    handleLoadMore,
+    handleFilterChange,
+    cardVariants,
+    containerVariants,
+  } = useProjects();
 
   return (
     <section
@@ -83,7 +45,7 @@ const Projects = () => {
         variants={containerVariants}
         initial="hidden"
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           {visibleProjects.length === 0 ? (
             <div className="no-projects">
               <p>
@@ -149,7 +111,7 @@ const Projects = () => {
                     </div>
 
                     <Link
-                      to={`/momen-portfolio/details/${project.id}`}
+                      to={`details/${project.id}`}
                       className="project-more"
                       title={`More details about ${project.title}`}
                     >

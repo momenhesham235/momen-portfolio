@@ -12,10 +12,14 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@assets": path.resolve(__dirname, "./src/assets/index.js"),
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@pages": path.resolve(__dirname, "./src/pages"),
-      "@hooks": path.resolve(__dirname, "./src/hooks"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@layouts": path.resolve(__dirname, "src/layouts"),
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@routes": path.resolve(__dirname, "src/routes"),
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@constant": path.resolve(__dirname, "src/constant"),
     },
   },
 });

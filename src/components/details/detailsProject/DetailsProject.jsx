@@ -15,7 +15,7 @@ const DetailsProject = () => {
     if (meta) {
       meta.setAttribute(
         "content",
-        "Project Details, About Momen Hesham Portfolio"
+        "Project Details, About Momen Hesham Portfolio",
       );
     }
   }, []);
@@ -30,11 +30,7 @@ const DetailsProject = () => {
   return (
     <section className="project-details">
       {/* Back */}
-      <Link
-        to="/momen-portfolio/"
-        className="back-btn"
-        aria-label="Back to projects"
-      >
+      <Link to="/" className="back-btn" aria-label="Back to projects">
         ← Back to projects
       </Link>
 
