@@ -45,7 +45,7 @@ const Projects = () => {
         variants={containerVariants}
         initial="hidden"
       >
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {visibleProjects.length === 0 ? (
             <div className="no-projects">
               <p>

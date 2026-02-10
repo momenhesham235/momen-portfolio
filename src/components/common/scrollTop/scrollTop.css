@@ -32,8 +32,8 @@
 
 @media (max-width: 768px) {
   .scroll-top {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     right: 10px;
     bottom: 10px;
     font-size: 0.8rem;
