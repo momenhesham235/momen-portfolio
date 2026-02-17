@@ -1,29 +1,29 @@
 //  projects assets
-import leno from "./projects/leno.jpg";
-import productSystemJS from "./projects/product.jpg";
-import airbnb from "./projects/airbnb.jpg";
-import twitter from "./projects/twitter.jpg";
-import eCommerce from "./projects/e-commerce-js.jpg";
-import eCommerceTs from "./projects/e-commerce-ts.jpg";
+import leno from "./projects/leno.webp";
+import productSystemJS from "./projects/product.webp";
+import airbnb from "./projects/airbnb.webp";
+import twitter from "./projects/twitter.webp";
+import eCommerce from "./projects/e-commerce-js.webp";
+import eCommerceTs from "./projects/e-commerce-ts.webp";
 
 // skills assets
-import html from "./skills/html.png";
-import css from "./skills/css3.png";
-import tailwind from "./skills/tailwindcss.png";
-import js from "./skills/javascript.png";
-import typescript from "./skills/typescript.png";
-import react from "./skills/react.png";
-import zustand from "./skills/zustand.png";
-import tanstack from "./skills/tanstack.png";
-import next from "./skills/nextjs.png";
-import nodejs from "./skills/nodejs.png";
-import express from "./skills/express-js.png";
-import graphql from "./skills/graphql.png";
-import mongodb from "./skills/mongodb.png";
-import postgresql from "./skills/postgreesql.png";
-import git from "./skills/git.png";
-import github from "./skills/github.png";
-import docker from "./skills/docker.png";
+import html from "./skills/html.webp";
+import css from "./skills/css3.webp";
+import tailwind from "./skills/tailwindcss.webp";
+import js from "./skills/javascript.webp";
+import typescript from "./skills/typescript.webp";
+import react from "./skills/react.webp";
+import zustand from "./skills/zustand.webp";
+import tanstack from "./skills/tanstack.webp";
+import next from "./skills/nextjs.webp";
+import nodejs from "./skills/nodejs.webp";
+import express from "./skills/express-js.webp";
+import graphql from "./skills/graphql.webp";
+import mongodb from "./skills/mongodb.webp";
+import postgresql from "./skills/postgreesql.webp";
+import git from "./skills/git.webp";
+import github from "./skills/github.webp";
+import docker from "./skills/docker.webp";
 
 // animations
 import codingAnimation from "./animations/Coding.json";

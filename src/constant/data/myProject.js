@@ -70,7 +70,6 @@ export const projectsData = [
     tech: ["HTML", "CSS", "JavaScript"],
     performance: ["Instant UI updates", "Optimized DOM rendering"],
   },
-
   {
     id: 3,
     title: "Airbnb Project",

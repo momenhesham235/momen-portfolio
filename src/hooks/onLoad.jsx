@@ -12,7 +12,7 @@ const LazyImage = ({ src = "", alt = "", className = "" }) => {
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     if (imgRef.current) observer.observe(imgRef.current);
@@ -26,7 +26,6 @@ const LazyImage = ({ src = "", alt = "", className = "" }) => {
       src={src}
       alt={alt || "Image alternate text"}
       className={`${className} lazy-image ${isVisible ? "show" : ""}`}
-      loading="lazy"
     />
   );
 };

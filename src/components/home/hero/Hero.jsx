@@ -12,7 +12,15 @@ const Hero = () => {
         {/* Left */}
         <div className="hero-left">
           <div className="avatar-wrapper">
-            <LazyImage src="me.png" alt="Momen Hesham " className="avatar" />
+            {/* <LazyImage src="me.png" alt="Momen Hesham " className="avatar" /> */}
+            <img
+              src="me.png"
+              alt="Momen Hesham"
+              className="avatar"
+              loading="eager"
+              fetchpriority="high"
+            />
+
             <span className="badge">
               <MdVerifiedUser className="badge-icon" aria-hidden="true" />
               Certified Developer
