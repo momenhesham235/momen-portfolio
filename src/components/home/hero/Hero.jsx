@@ -18,7 +18,7 @@ const Hero = () => {
               alt="Momen Hesham"
               className="avatar"
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
             />
 
             <span className="badge">

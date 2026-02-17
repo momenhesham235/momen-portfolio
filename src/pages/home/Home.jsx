@@ -28,7 +28,9 @@ const Home = () => {
         <Hero />
       </Suspense>
       <div className="divider" />
-      <Bio />
+      <Suspense fallback={null}>
+        <Bio />
+      </Suspense>
       <div className="divider" />
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />
