@@ -20,7 +20,7 @@ const Skills = () => {
           <ul className="skills-grid" role="list">
             {group.skills.map((skill) => (
               <li key={skill.name} className="skill-card" role="listitem">
-                <LazyImage 
+                <img 
                   src={skill.img} 
                   alt={`${skill.name} logo`}
                   aria-hidden="true" 

@@ -76,7 +76,7 @@ const Projects = () => {
                 layout
                 className="project-card"
               >
-                <LazyImage
+                <img
                   src={project.image}
                   alt={`${project.title} project screenshot`}
                   className="project-image"

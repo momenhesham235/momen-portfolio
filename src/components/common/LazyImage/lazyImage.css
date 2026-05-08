@@ -3,7 +3,7 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.lazy-image--loaded {
+.lazy-image-loaded {
   opacity: 1;
 }
 

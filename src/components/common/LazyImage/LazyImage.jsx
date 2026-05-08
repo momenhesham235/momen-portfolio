@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { LAZY_IMAGE_THRESHOLD } from "@/config/constants";
-import "./lazy-image.css";
+import "./lazyImage.css";
 
 /**
  * Lazy Image Component
@@ -55,7 +55,7 @@ const LazyImage = ({
       ref={imgRef}
       src={src}
       alt={alt}
-      className={`lazy-image ${isVisible ? "lazy-image--loaded" : ""} ${className}`}
+      className={`lazy-image ${isVisible ? "lazy-image-loaded" : ""} ${className}`}
       loading={loading}
       fetchpriority={fetchPriority}
       {...props}
