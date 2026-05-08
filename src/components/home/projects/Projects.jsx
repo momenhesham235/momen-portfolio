@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 
 import useProjects from "./hooks/useProjects.js";
-import { LazyImage } from "@components/common";
 import FilterDropdown from "./FilterDropdown.jsx";
 
 import { fadeInUp, staggerContainer } from "@/config/animation-variants";

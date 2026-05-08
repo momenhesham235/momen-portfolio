@@ -33,7 +33,9 @@ const Hero = () => {
             Hi, I'm <span>Momen</span>
           </h1>
 
-          <p className="typing-text">Frontend & Backend Developer</p>
+          <div className="typing-wrapper">
+            <p className="typing-text">Frontend & Backend Developer</p>
+          </div>
 
           <div className="cv-btn-wrapper">
             <a

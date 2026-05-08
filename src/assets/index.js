@@ -13,6 +13,7 @@ import tailwind from "./skills/tailwindcss.webp";
 import js from "./skills/javascript.webp";
 import typescript from "./skills/typescript.webp";
 import react from "./skills/react.webp";
+import reactNative from "./skills/react-native.webp"
 import zustand from "./skills/zustand.webp";
 import tanstack from "./skills/tanstack.webp";
 import next from "./skills/nextjs.webp";
@@ -24,6 +25,7 @@ import postgresql from "./skills/postgreesql.webp";
 import git from "./skills/git.webp";
 import github from "./skills/github.webp";
 import docker from "./skills/docker.webp";
+import figma from "./skills/figma.webp"
 
 // animations
 import codingAnimation from "./animations/Coding.json";
@@ -45,6 +47,7 @@ export {
   js,
   typescript,
   react,
+  reactNative,
   zustand,
   tanstack,
   next,
@@ -56,6 +59,7 @@ export {
   git,
   github,
   docker,
+  figma,
 
   // animations
   codingAnimation,

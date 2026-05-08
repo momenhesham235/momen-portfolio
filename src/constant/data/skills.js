@@ -5,6 +5,7 @@ import {
   js,
   typescript,
   react,
+  reactNative,
   zustand,
   tanstack,
   next,
@@ -16,7 +17,8 @@ import {
   git,
   github,
   docker,
-} from "../../assets";
+  figma
+} from "@assets";
 
 export const skills = [
   {
@@ -46,6 +48,11 @@ export const skills = [
       {
         name: "React",
         img: react,
+      },
+      {
+        
+        name: "React Native",
+        img: reactNative,
       },
       {
         name: "Zustand",
@@ -100,6 +107,10 @@ export const skills = [
       {
         name: "Docker",
         img: docker,
+      },
+      {
+        name: "Figma",
+        img: figma,
       },
     ],
   },

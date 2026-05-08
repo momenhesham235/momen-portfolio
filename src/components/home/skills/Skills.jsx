@@ -1,5 +1,4 @@
-import { skills } from "../../../constant/data/skills.js";
-import { LazyImage } from "@components/common";
+import { skills } from "@constant/data/skills.js";
 import "./skills.css";
 
 /**
