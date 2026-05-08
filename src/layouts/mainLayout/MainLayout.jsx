@@ -1,19 +1,23 @@
 import { Outlet } from "react-router-dom";
-
-import { Header, Footer, ScrollTop } from "@components/common";
-
 import { Toaster } from "react-hot-toast";
 
+import { Header, Footer, SkipLink } from "@components/common";
+
+/**
+ * Main Layout Component
+ * Wraps all pages with common header, footer, and utilities
+ */
 const MainLayout = () => {
   return (
     <div className="container" id="main">
+      <SkipLink />
       <Header />
 
-      <Outlet />
+      <main className="main-content" id="main-content">
+        <Outlet />
+      </main>
 
-      <ScrollTop />
       <Toaster />
-
       <Footer />
     </div>
   );

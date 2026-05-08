@@ -2,28 +2,47 @@ import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { useForm, ValidationError } from "@formspree/react";
 import { IoMail } from "react-icons/io5";
-// import "./contact.css";
+import {
+  FORMSPREE_FORM_ID,
+  MESSAGE_MIN_LENGTH,
+  MESSAGE_MAX_LENGTH,
+  TOAST_DURATION,
+  TOAST_POSITION,
+} from "@/config/constants";
 
+/**
+ * Contact Form Component
+ * Handles form submission via Formspree
+ */
 const ContactForm = () => {
-  const [state, handleSubmit] = useForm("mdkqrlvy");
-
+  const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
   const formRef = useRef();
 
   useEffect(() => {
     if (state.succeeded) {
       toast.success("Message sent successfully! 👌", {
-        position: "top-right",
-        duration: 5000,
-        theme: "dark",
+        position: TOAST_POSITION,
+        duration: TOAST_DURATION,
       });
 
-      formRef.current.reset();
+      formRef.current?.reset();
     }
   }, [state.succeeded]);
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit} ref={formRef}>
-      <input type="text" name="name" placeholder="Your Name" required />
+    <form 
+      className="contact-form" 
+      onSubmit={handleSubmit} 
+      ref={formRef}
+      noValidate
+    >
+      <input 
+        type="text" 
+        name="name" 
+        placeholder="Your Name" 
+        required 
+        aria-label="Your name"
+      />
       <ValidationError
         prefix="Name"
         field="name"
@@ -32,7 +51,13 @@ const ContactForm = () => {
         role="alert"
       />
 
-      <input type="email" name="email" placeholder="Your Email" required />
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Your Email" 
+        required 
+        aria-label="Your email address"
+      />
       <ValidationError
         prefix="Email"
         field="email"
@@ -46,9 +71,10 @@ const ContactForm = () => {
         placeholder="Your Message"
         rows="5"
         required
-        minLength={3}
-        maxLength={280}
-      ></textarea>
+        minLength={MESSAGE_MIN_LENGTH}
+        maxLength={MESSAGE_MAX_LENGTH}
+        aria-label="Your message"
+      />
       <ValidationError
         prefix="Message"
         field="message"
@@ -66,7 +92,7 @@ const ContactForm = () => {
           "Sending..."
         ) : (
           <>
-            <IoMail />
+            <IoMail aria-hidden="true" />
             <span>Send Message</span>
           </>
         )}

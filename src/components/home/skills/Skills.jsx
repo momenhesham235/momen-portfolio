@@ -1,7 +1,11 @@
 import { skills } from "../../../constant/data/skills.js";
-import LazyImage from "../../../hooks/onLoad.jsx";
+import { LazyImage } from "@components/common";
 import "./skills.css";
 
+/**
+ * Skills Section Component
+ * Displays technical skills grouped by category
+ */
 const Skills = () => {
   return (
     <section className="skills" id="skills" aria-labelledby="skills-heading">
@@ -16,7 +20,11 @@ const Skills = () => {
           <ul className="skills-grid" role="list">
             {group.skills.map((skill) => (
               <li key={skill.name} className="skill-card" role="listitem">
-                <LazyImage src={skill.img} aria-hidden="true" />
+                <LazyImage 
+                  src={skill.img} 
+                  alt={`${skill.name} logo`}
+                  aria-hidden="true" 
+                />
                 <span>{skill.name}</span>
               </li>
             ))}

@@ -2,53 +2,55 @@ import { useParams, Link } from "react-router-dom";
 import { projectsData } from "../../../constant/data/myProject.js";
 import { FaGithub } from "react-icons/fa";
 import { IoIosLink } from "react-icons/io";
-import "./detailsProject.css";
 import FeaturesColumns from "../featuresColumns/FeaturesColumns.jsx";
-import { useLayoutEffect } from "react";
+import { SITE_URL } from "@/config/constants";
+import "./detailsProject.css";
 
+/**
+ * Project Details Component
+ * Displays comprehensive information about a single project
+ */
 const DetailsProject = () => {
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-    document.title = "Project Details | Momen Hesham Portfolio";
-
-    const meta = document.querySelector("meta[name='description']");
-    if (meta) {
-      meta.setAttribute(
-        "content",
-        "Project Details, About Momen Hesham Portfolio",
-      );
-    }
-  }, []);
-
   const { id } = useParams();
   const project = projectsData.find((p) => p.id === Number(id));
 
   if (!project) {
-    return <p style={{ textAlign: "center" }}>Project not found 🚫</p>;
+    return (
+      <div className="project-not-found">
+        <p>🚫 Project not found</p>
+        <Link to="/" className="back-btn">
+          ← Back to home
+        </Link>
+      </div>
+    );
   }
 
   return (
     <section className="project-details">
-      {/* Back */}
-      <Link to="/" className="back-btn" aria-label="Back to projects">
+      {/* Back Button */}
+      <Link to="/" className="back-btn" aria-label="Back to home page">
         ← Back to projects
       </Link>
 
-      {/* Hero */}
+      {/* Hero Image */}
       <div className="details-hero">
-        <img src={project.image} alt={project.title} />
+        <img 
+          src={project.image} 
+          alt={`${project.title} project screenshot`}
+          loading="eager"
+        />
       </div>
 
       {/* Content */}
       <div className="details-content">
         {/* Project Name & Description */}
         <div className="detail-item">
-          <h3 className="detail-label">Project Name</h3>
+          <h1 className="detail-label">Project Name</h1>
           <p className="detail-value">{project.title}</p>
         </div>
 
         <div className="detail-item">
-          <h3 className="detail-label">Description</h3>
+          <h2 className="detail-label">Description</h2>
           <p className="detail-value">{project.description}</p>
         </div>
 
@@ -75,7 +77,7 @@ const DetailsProject = () => {
         {/* Features */}
         {project.features && project.features.length > 0 && (
           <div className="detail-item">
-            <h3 className="detail-label">Features</h3>
+            <h2 className="detail-label">Features</h2>
             <FeaturesColumns features={project.features} />
           </div>
         )}
@@ -83,7 +85,7 @@ const DetailsProject = () => {
         {/* Tech Stack */}
         {project.tech && project.tech.length > 0 && (
           <div className="detail-item">
-            <h3 className="detail-label">Tech Stack</h3>
+            <h2 className="detail-label">Tech Stack</h2>
             <div className="tech-list">
               {project.tech.map((t, i) => (
                 <span key={i}>{t}</span>
@@ -95,7 +97,7 @@ const DetailsProject = () => {
         {/* Performance */}
         {project.performance && project.performance.length > 0 && (
           <div className="detail-item">
-            <h3 className="detail-label">Performance</h3>
+            <h2 className="detail-label">Performance</h2>
             <ul className="performance-list">
               {project.performance.map((p, i) => (
                 <li key={i}>{p}</li>
@@ -106,20 +108,20 @@ const DetailsProject = () => {
 
         {/* Links */}
         <div className="detail-item">
-          <h3 className="detail-label">Links</h3>
+          <h2 className="detail-label">Links</h2>
           <div className="details-links">
             <a
               href={project.githubLink}
               target="_blank"
-              rel="noreferrer"
-              aria-label={`View ${project.title} on GitHub`}
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} source code on GitHub`}
             >
               <FaGithub aria-hidden="true" /> GitHub
             </a>
             <a
               href={project.liveLink}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label={`View ${project.title} live demo`}
             >
               <IoIosLink aria-hidden="true" /> Live Demo

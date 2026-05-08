@@ -1,5 +1,7 @@
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
-import ScrollTop from "./scrollTop/ScrollTop";
+import LazyImage from "./LazyImage/LazyImage";
+import SEO from "./seo/SEO";
+import SkipLink from "./skip-link/SkipLink";
 
-export { Footer, Header, ScrollTop };
+export { Footer, Header, LazyImage, SEO, SkipLink };

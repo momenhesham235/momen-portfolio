@@ -1,60 +1,37 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { projectsData } from "@constant/data/myProject.js";
+import { PROJECTS_PER_PAGE, PROJECTS_LOAD_MORE_INCREMENT } from "@/config/constants";
 
-const VISIBLE_COUNT = 6; // number of projects to show
-
+/**
+ * Custom hook for managing projects filtering and pagination
+ * @returns {Object} Projects state and handlers
+ */
 const useProjects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [visibleCount, setVisibleCount] = useState(VISIBLE_COUNT);
+  const [visibleCount, setVisibleCount] = useState(PROJECTS_PER_PAGE);
 
-  // filtered projects
-  const filteredProjects =
-    activeFilter === "all"
+  // Memoize filtered projects to avoid recalculation on every render
+  const filteredProjects = useMemo(() => {
+    return activeFilter === "all"
       ? projectsData
       : projectsData.filter((project) => project.category === activeFilter);
+  }, [activeFilter]);
 
-  const visibleProjects = [...filteredProjects]
-    .reverse()
-    .slice(0, visibleCount);
+  // Memoize visible projects
+  const visibleProjects = useMemo(() => {
+    return [...filteredProjects].reverse().slice(0, visibleCount);
+  }, [filteredProjects, visibleCount]);
 
   const total = filteredProjects.length;
+  const hasMore = visibleCount < total;
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + VISIBLE_COUNT);
+    setVisibleCount((prev) => prev + PROJECTS_LOAD_MORE_INCREMENT);
   };
 
   const handleFilterChange = (value) => {
     setActiveFilter(value);
-    setVisibleCount(VISIBLE_COUNT);
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 18,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -30,
-      scale: 0.95,
-      transition: { duration: 0.2 },
-    },
-  };
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
+    setVisibleCount(PROJECTS_PER_PAGE);
   };
 
   return {
@@ -63,10 +40,9 @@ const useProjects = () => {
     visibleCount,
     visibleProjects,
     total,
+    hasMore,
     handleLoadMore,
     handleFilterChange,
-    cardVariants,
-    containerVariants,
   };
 };
 

@@ -1,35 +1,50 @@
+import { useState } from "react";
 import { navbarData } from "../../../constant/data/navbar";
-import { useEffect, useState } from "react";
+import { useTheme } from "@hooks/use-theme";
+import { useFocusTrap } from "@hooks/use-focus-trap";
+import { useLockBodyScroll } from "@hooks/use-lock-body-scroll";
 
 import { LuSunMoon } from "react-icons/lu";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose, IoMoonOutline } from "react-icons/io5";
 
 import "./header.css";
+
+/**
+ * Header Component
+ * Main navigation with theme toggle and mobile menu
+ */
 const Header = () => {
-  const [showModel, setShowModel] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  
+  // Accessibility hooks
+  const menuRef = useFocusTrap(showMenu);
+  useLockBodyScroll(showMenu);
 
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const handleMenuToggle = () => {
+    setShowMenu((prev) => !prev);
+  };
 
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
+  const handleMenuClose = () => {
+    setShowMenu(false);
+  };
 
-  const changeTheme = () => {
-    if (theme === "dark") {
-      localStorage.setItem("theme", "light");
-      setTheme(localStorage.getItem("theme"));
-    } else {
-      localStorage.setItem("theme", "dark");
-      setTheme(localStorage.getItem("theme"));
-    }
+  const handleLinkClick = () => {
+    setShowMenu(false);
   };
 
   return (
     <header className="flex" id="header">
       <div className="menu">
-        <button className="icons" onClick={() => setShowModel(true)}>
-          <IoIosMenu aria-label="Open navigation menu" />
+        <button 
+          className="icons" 
+          onClick={handleMenuToggle}
+          aria-label="Open navigation menu"
+          aria-expanded={showMenu}
+          aria-controls="mobile-menu"
+        >
+          <IoIosMenu aria-hidden="true" />
         </button>
       </div>
 
@@ -43,34 +58,41 @@ const Header = () => {
         </ul>
       </nav>
 
-      <button className="icons" onClick={changeTheme}>
+      <button 
+        className="icons" 
+        onClick={toggleTheme}
+        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      >
         {theme === "dark" ? (
-          <LuSunMoon aria-label="Change to light mode" />
+          <LuSunMoon aria-hidden="true" />
         ) : (
-          <IoMoonOutline aria-label="Change to dark mode" />
+          <IoMoonOutline aria-hidden="true" />
         )}
       </button>
 
-      {/* responsive header */}
-      {showModel && (
+      {/* Mobile Menu */}
+      {showMenu && (
         <div
           className="fixed"
           role="dialog"
           aria-modal="true"
           aria-labelledby="mobile-menu-title"
           id="mobile-menu"
+          ref={menuRef}
         >
           <ul className="model">
             <li>
-              <IoClose
+              <button
                 className="close-icon"
-                onClick={() => setShowModel(false)}
+                onClick={handleMenuClose}
                 aria-label="Close navigation menu"
-              />
+              >
+                <IoClose aria-hidden="true" />
+              </button>
             </li>
             {navbarData.map((item) => (
               <li key={item.id}>
-                <a href={item.link} onClick={() => setShowModel(false)}>
+                <a href={item.link} onClick={handleLinkClick}>
                   {item.title}
                 </a>
               </li>

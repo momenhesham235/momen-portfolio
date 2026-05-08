@@ -1,10 +1,13 @@
 import { MdVerifiedUser } from "react-icons/md";
+import { FiDownload } from "react-icons/fi";
 import Lottie from "lottie-react";
 import { codingAnimation } from "@assets";
 import "./hero.css";
-import LazyImage from "../../../hooks/onLoad.jsx";
-import { FiDownload } from "react-icons/fi";
 
+/**
+ * Hero Section Component
+ * Main landing section with introduction and CTA
+ */
 const Hero = () => {
   return (
     <section className="hero" id="home" aria-labelledby="hero-heading">
@@ -12,13 +15,12 @@ const Hero = () => {
         {/* Left */}
         <div className="hero-left">
           <div className="avatar-wrapper">
-            {/* <LazyImage src="me.png" alt="Momen Hesham " className="avatar" /> */}
             <img
               src="me.png"
-              alt="Momen Hesham"
+              alt="Momen Hesham - Software Engineer"
               className="avatar"
               loading="eager"
-              fetchPriority="high"
+              fetchpriority="high"
             />
 
             <span className="badge">
@@ -28,7 +30,7 @@ const Hero = () => {
           </div>
 
           <h1 id="hero-heading">
-            Hi, I’m <span>Momen</span>
+            Hi, I'm <span>Momen</span>
           </h1>
 
           <p className="typing-text">Frontend & Backend Developer</p>
@@ -40,11 +42,10 @@ const Hero = () => {
               download
               target="_blank"
               rel="noopener noreferrer"
-              title="Download My CV"
               aria-label="Download Momen Hesham CV as PDF"
             >
               Download CV
-              <FiDownload className="cv-icon" aria-label="Download icon" />
+              <FiDownload className="cv-icon" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -55,6 +56,8 @@ const Hero = () => {
             animationData={codingAnimation}
             loop={true}
             aria-hidden="true"
+            role="img"
+            aria-label="Coding animation"
           />
         </div>
       </div>

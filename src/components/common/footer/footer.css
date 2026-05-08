@@ -3,8 +3,9 @@
   color: #aaa;
   padding: 2rem 1rem;
   text-align: center;
-  position: relative;
-  overflow: visible; /* قلب يظهر خارج Footer */
+  /* position: relative; */
+  margin-top: auto;
+  overflow: visible;
 }
 
 .footer-container {
@@ -27,7 +28,9 @@
 .heart {
   display: inline-block;
   cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .heart:hover {
@@ -47,7 +50,7 @@
 }
 
 .floating-heart {
-  position: fixed; /* يظهر فوق كل العناصر */
+  position: fixed; 
   font-size: 1.2rem;
   animation: floatUp 1s forwards;
   pointer-events: none;

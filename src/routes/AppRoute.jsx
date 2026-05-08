@@ -1,6 +1,9 @@
 import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// Context
+import { ThemeProvider } from "@/contexts/theme-context";
+
 // Layouts
 import MainLayout from "@layouts/mainLayout/MainLayout";
 
@@ -22,10 +25,17 @@ const router = createBrowserRouter(
       ],
     },
   ],
-
-  { basename: "/momen-portfolio/" },
+  { basename: "/momen-portfolio/" }
 );
 
+/**
+ * App Router Component
+ * Provides routing and global context providers
+ */
 export default function AppRoute() {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }

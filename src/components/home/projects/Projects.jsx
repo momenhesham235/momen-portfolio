@@ -1,28 +1,31 @@
 import { Link } from "react-router-dom";
-import useProjects from "./hooks/useProjects.js";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "motion/react";
 
-import LazyImage from "@hooks/onLoad.jsx";
+import useProjects from "./hooks/useProjects.js";
+import { LazyImage } from "@components/common";
 import FilterDropdown from "./FilterDropdown.jsx";
+
+import { fadeInUp, staggerContainer } from "@/config/animation-variants";
+import { truncateText } from "@/utils/helpers";
 
 import { FaGithub } from "react-icons/fa6";
 import { IoIosLink, IoIosArrowRoundForward } from "react-icons/io";
 
-// eslint-disable-next-line
-import { motion, AnimatePresence } from "motion/react";
-
 import "./projects.css";
 
+/**
+ * Projects Section Component
+ * Displays filterable and paginated project portfolio
+ */
 const Projects = () => {
   const {
     activeFilter,
     setActiveFilter,
-    visibleCount,
     visibleProjects,
-    total,
+    hasMore,
     handleLoadMore,
     handleFilterChange,
-    cardVariants,
-    containerVariants,
   } = useProjects();
 
   return (
@@ -35,14 +38,13 @@ const Projects = () => {
       {/* Header */}
       <div className="projects-header">
         <h2>Projects</h2>
-
         <FilterDropdown value={activeFilter} onChange={handleFilterChange} />
       </div>
 
       {/* Projects Grid */}
       <motion.div
         className="projects-grid"
-        variants={containerVariants}
+        variants={staggerContainer}
         initial="hidden"
       >
         <AnimatePresence mode="popLayout">
@@ -67,7 +69,7 @@ const Projects = () => {
             visibleProjects.map((project) => (
               <motion.article
                 key={project.id}
-                variants={cardVariants}
+                variants={fadeInUp}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -76,14 +78,14 @@ const Projects = () => {
               >
                 <LazyImage
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} project screenshot`}
                   className="project-image"
                 />
 
                 <div className="project-content">
                   <h3 className="project-title">{project.title}</h3>
                   <p className="project-description">
-                    {project.description.substring(0, 100) + "..."}
+                    {truncateText(project.description, 100)}
                   </p>
 
                   <div className="project-links">
@@ -93,7 +95,7 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-link"
-                        aria-label={`GitHub repository of ${project.title}`}
+                        aria-label={`View ${project.title} on GitHub`}
                       >
                         <FaGithub aria-hidden="true" />
                       </a>
@@ -103,22 +105,19 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-link"
+                        aria-label={`View ${project.title} live demo`}
                       >
-                        <IoIosLink
-                          aria-label={`Live demo of ${project.title}`}
-                        />
+                        <IoIosLink aria-hidden="true" />
                       </a>
                     </div>
 
                     <Link
                       to={`details/${project.id}`}
                       className="project-more"
-                      title={`More details about ${project.title}`}
+                      aria-label={`View more details about ${project.title}`}
                     >
                       More
-                      <IoIosArrowRoundForward
-                        aria-label={`More details about ${project.title}`}
-                      />
+                      <IoIosArrowRoundForward aria-hidden="true" />
                     </Link>
                   </div>
                 </div>
@@ -128,8 +127,8 @@ const Projects = () => {
         </AnimatePresence>
       </motion.div>
 
-      {/* Pagination / Slider */}
-      {visibleCount < total && (
+      {/* Load More Button */}
+      {hasMore && (
         <div className="load-more-wrapper">
           <button onClick={handleLoadMore} className="load-more-btn">
             Show More

@@ -2,7 +2,7 @@ import "./skeleton.css";
 
 const HeroSkeleton = () => {
   return (
-    <section className="hero skeleton-hero">
+    <section className="hero skeleton-hero" style={{ minHeight: "100vh" }}>
       <div className="hero-container">
         <div className="hero-left">
           <div
