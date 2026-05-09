@@ -1,258 +1,416 @@
-/* =========================
-  HERO SECTION
-=========================== */
+/* ============================================================
+   HERO SECTION
+   Table of contents
+   1. Section & container
+   2. Avatar column (left)
+   3. Glow ring & floating animation
+   4. Lottie background decoration
+   5. Avatar image
+   6. Certified badge
+   7. Content column (right)
+   8. Heading & accent
+   9. Typing animation
+   10. Bio paragraph
+   11. Social links
+   12. CTA buttons
+   13. Responsive breakpoints
+   ============================================================ */
 
+/* ── 1. Section & container ── */
 .hero {
-  margin-top: 1.5rem;
-  padding: 4rem 1rem;
+  padding: 4.5rem 0 3rem;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Hero Container */
+/* Ambient background radial gradient */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 55%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at 30% 40%,
+    rgba(184, 134, 11, 0.07) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hero-container {
-  max-width: 1200px;
-  margin: auto;
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 3rem;
 }
 
-/* -------------------------
-   Hero Left Side
--------------------------- */
-.hero-left {
-  flex: 1;
-}
-
-/* Avatar Wrapper */
-.avatar-wrapper {
+/* ── 2. Avatar column ── */
+.hero-avatar-col {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   position: relative;
-  width: fit-content;
-  margin-bottom: 1.5rem;
 }
 
-/* Avatar Image */
-.avatar {
-  width: clamp(180px, 40vw, 300px);
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--accent-color);
-  padding: 2px;
-  box-shadow: inset 0 0 30px rgba(203, 200, 200, 0.3);
-}
-
-.lazy-image {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  will-change: opacity, transform;
-}
-
-.lazy-image.show {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Badge */
-.badge {
+/* ── 3. Glow ring & floating animation ── */
+.hero-avatar-glow {
   position: absolute;
-  bottom: -12px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--card-bg); 
-  color: var(--title-color);
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(184, 134, 11, 0.28) 0%,
+    rgba(184, 134, 11, 0.06) 50%,
+    transparent 70%
+  );
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-avatar-frame {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
+  /* Floating animation */
+  animation: heroFloat 4.8s ease-in-out infinite;
 }
 
-.badge-icon {
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── 4. Lottie background decoration ── */
+.hero-lottie-bg {
+  position: absolute;
+  inset: -18%;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* ── 5. Avatar image ── */
+.hero-avatar {
+  position: relative;
+  z-index: 1;
+  width: clamp(200px, 32vw, 290px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+
+  /* Premium double-ring border */
+  border: 3px solid var(--accent-color);
+  outline: 6px solid rgba(184, 134, 11, 0.18);
+  outline-offset: 2px;
+
+  box-shadow:
+    0 0 0 1px rgba(184, 134, 11, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 0 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ── 6. Certified badge ── */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+
+  color: var(--title-color);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+
+  white-space: nowrap;
+}
+
+.hero-badge__icon {
   color: var(--blue-color);
   font-size: 1rem;
+  flex-shrink: 0;
 }
 
-/* Hero Title */
-.hero-left h1 {
-  color: var(--title-color);
-  font-size: 2.5rem;
+/* ── 7. Content column ── */
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 560px;
 }
 
-.hero-left h1 span {
-  color: var(--accent-color);
-}
-
-/* Typing Wrapper - Isolates animation from flex layout */
-.typing-wrapper {
-  display: block;
-  width: 100%;
-  min-height: 1.8rem; /* Prevents layout shift */
-  margin: 0.5rem 0;
-}
-
-/* Typing Effect Text */
-.typing-text {
-  color: var(--subtitle-color);
-  font-size: 1.2rem;
-  
-  /* Critical: Isolate from flex layout */
+/* ── 8. Heading & accent ── */
+.hero-greeting {
   display: inline-block;
-  position: relative;
-  
-  /* Animation properties */
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--subtitle-color);
+  letter-spacing: 0.04em;
+}
+
+.hero-heading {
+  color: var(--title-color);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.hero-heading__accent {
+  color: var(--accent-color);
+  /* Subtle text glow */
+  text-shadow: 0 0 32px rgba(184, 134, 11, 0.35);
+}
+
+/* ── 9. Typing animation ── */
+.hero-typing-wrapper {
+  display: block;
+  min-height: 1.8rem;
+}
+
+.hero-typing-text {
+  color: var(--subtitle-color);
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 400;
+
+  display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   border-right: 2px solid var(--accent-color);
-  
-  /* Use max-width instead of width for better browser compatibility */
   max-width: 0;
-  
-  /* Prevent flex shrinking from interfering */
-  flex-shrink: 0;
-  
-  /* Smooth rendering across browsers */
   will-change: max-width;
-  
-  animation: typing 8s steps(30, end) infinite, blink 0.7s step-end infinite;
+
+  animation:
+    heroTyping 8s steps(32, end) infinite,
+    heroBlink 0.75s step-end infinite;
 }
 
-@keyframes typing {
-  0%, 10% {
-    max-width: 0;
-  }
-  45%, 55% {
-    max-width: 100%;
-  }
-  90%, 100% {
-    max-width: 0;
-  }
+@keyframes heroTyping {
+  0%, 8%   { max-width: 0; }
+  42%, 58% { max-width: 100%; }
+  92%, 100%{ max-width: 0; }
 }
 
-@keyframes blink {
-  0%, 49% {
-    border-color: var(--accent-color);
-  }
-  50%, 100% {
-    border-color: transparent;
-  }
+@keyframes heroBlink {
+  0%, 49%  { border-color: var(--accent-color); }
+  50%, 100%{ border-color: transparent; }
 }
 
-/* -------------------------
-   CV Button
--------------------------- */
-.cv-btn-wrapper {
-  margin-top: 2rem;
+/* ── 10. Bio paragraph ── */
+.hero-bio {
+  color: var(--subtitle-color);
+  font-size: clamp(0.88rem, 1.6vw, 0.97rem);
+  line-height: 1.7;
+  max-width: 440px;
+  margin: 0;
+}
+
+/* ── 11. Social links ── */
+.hero-socials {
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
-/* Button Base */
-.cv-btn {
+.hero-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-header-color);
+  color: var(--subtitle-color);
+  font-size: 1rem;
+  text-decoration: none;
+  transition:
+    color 0.22s ease,
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.hero-social-link:hover {
+  color: var(--accent-color);
+  border-color: rgba(184, 134, 11, 0.5);
+  background-color: rgba(184, 134, 11, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ── 12. CTA buttons ── */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+/* Primary CTA */
+.hero-cta__primary {
   position: relative;
   z-index: 1;
-
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-
-  padding: 0.55rem 1.2rem;
-  border-radius: 999px;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 600;
-
-  background: transparent;
-  color: var(--accent-color);
-  border: 2px solid var(--accent-color);
-
+  letter-spacing: 0.01em;
+  text-decoration: none;
   overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-/* Fill Animation */
-.cv-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
   background: var(--accent-color);
-
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s ease;
-
-  z-index: -1;
+  color: #000;
+  border: 2px solid var(--accent-color);
+  transition: box-shadow 0.28s ease, transform 0.22s ease;
 }
 
-/* Hover State */
-.cv-btn:hover::before {
-  transform: scaleX(1);
+.hero-cta__primary:hover {
+  box-shadow: 0 4px 20px rgba(184, 134, 11, 0.4);
+  transform: translateY(-1px);
 }
 
-.cv-btn:hover {
-  color: var(--bg-primary-color);
+.hero-cta__primary:active {
+  transform: translateY(0);
 }
 
-/* Icon inside Button */
-.cv-icon {
+.hero-cta__arrow {
   font-size: 1rem;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
-.cv-btn:hover .cv-icon {
-  transform: translateY(2px);
+.hero-cta__primary:hover .hero-cta__arrow {
+  transform: translateX(3px);
 }
 
-/* -------------------------
-   Hero Right Side
--------------------------- */
-.hero-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+/* Secondary CTA */
+.hero-cta__secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--title-color);
+  border: 2px solid var(--border-color);
+  background: transparent;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.22s ease;
 }
 
-/* =========================
-  RESPONSIVE DESIGN
-=========================== */
+.hero-cta__secondary:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+/* ── 13. Responsive ── */
 @media (max-width: 900px) {
   .hero-container {
     flex-direction: column;
     text-align: center;
+    gap: 2.5rem;
   }
 
-  .avatar-wrapper {
-    margin: auto;
+  .hero-content {
+    align-items: center;
+    max-width: 100%;
   }
-  
-  .typing-wrapper {
+
+  .hero-heading {
+    line-height: 1.15;
+  }
+
+  .hero-bio {
+    text-align: center;
+    max-width: 480px;
+  }
+
+  .hero-typing-wrapper {
     display: flex;
     justify-content: center;
   }
-}
 
-@media (max-width: 768px) {
-  .cv-btn-wrapper {
+  .hero-cta {
     justify-content: center;
   }
+
+  .hero-socials {
+    justify-content: center;
+  }
+
+  /* Shrink glow on tablet */
+  .hero-avatar-glow {
+    width: 90%;
+  }
 }
 
-@media (max-width: 480px) {
-  .avatar {
-    width: 160px;
+@media (max-width: 600px) {
+  .hero {
+    padding: 3rem 0 2rem;
   }
 
-  .hero-left h1 {
+  .hero-avatar {
+    width: clamp(160px, 55vw, 210px);
+  }
+
+  .hero-heading {
     font-size: 2rem;
-    margin-top: 0.9rem;
   }
 
-  .typing-text {
-    font-size: 0.9rem;
+  .hero-badge {
+    font-size: 0.74rem;
+    padding: 0.3rem 0.75rem;
   }
-  
-  .typing-wrapper {
-    min-height: 1.5rem;
+
+  .hero-lottie-bg {
+    /* Reduce noise on small screens */
+    opacity: 0.12;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta__primary,
+  .hero-cta__secondary {
+    width: 100%;
+    justify-content: center;
   }
 }

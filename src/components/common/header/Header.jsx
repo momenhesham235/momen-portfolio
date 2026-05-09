@@ -1,105 +1,263 @@
 import { useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "motion/react";
+
 import { navbarData } from "../../../constant/data/navbar";
 import { useTheme } from "@hooks/use-theme";
 import { useFocusTrap } from "@hooks/use-focus-trap";
 import { useLockBodyScroll } from "@hooks/use-lock-body-scroll";
+import { useScrollEffect } from "@hooks/use-scroll-effect";
+import { useActiveSection } from "@hooks/use-active-section";
 
 import { LuSunMoon } from "react-icons/lu";
-import { IoIosMenu } from "react-icons/io";
 import { IoClose, IoMoonOutline } from "react-icons/io5";
+import { IoIosMenu } from "react-icons/io";
+import { FiDownload } from "react-icons/fi";
+import { MdLanguage } from "react-icons/md";
 
 import "./header.css";
 
-/**
- * Header Component
- * Main navigation with theme toggle and mobile menu
- */
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [lang, setLang] = useState("EN");
+
   const { theme, toggleTheme } = useTheme();
-  
-  // Accessibility hooks
+  const { scrolled } = useScrollEffect(20);
+  const activeSection = useActiveSection();
+
   const menuRef = useFocusTrap(showMenu);
   useLockBodyScroll(showMenu);
 
-  const handleMenuToggle = () => {
-    setShowMenu((prev) => !prev);
-  };
-
-  const handleMenuClose = () => {
-    setShowMenu(false);
-  };
-
-  const handleLinkClick = () => {
-    setShowMenu(false);
-  };
+  const closeMenu = () => setShowMenu(false);
+  const toggleLang = () => setLang((l) => (l === "EN" ? "AR" : "EN"));
 
   return (
-    <header className="flex" id="header">
-      <div className="menu">
-        <button 
-          className="icons" 
-          onClick={handleMenuToggle}
-          aria-label="Open navigation menu"
-          aria-expanded={showMenu}
-          aria-controls="mobile-menu"
+    <header
+      className={`header${scrolled ? " header--scrolled" : ""}`}
+      id="header"
+    >
+      <div className="header__inner">
+        {/* ── Brand ── */}
+        <a
+          href="#home"
+          className="header__brand"
+          aria-label="Momen Hesham — back to top"
         >
-          <IoIosMenu aria-hidden="true" />
-        </button>
+          <span className="header__monogram" aria-hidden="true">
+            MH
+          </span>
+          <span className="header__brand-name">Momen</span>
+        </a>
+
+        {/* ── Desktop Navigation ── */}
+        <nav className="header__nav" aria-label="Main Navigation">
+          <ul className="header__nav-list">
+            {navbarData.map((item) => {
+              const sectionId = item.link.replace("#", "");
+              const isActive = activeSection === sectionId;
+              return (
+                <li key={item.id}>
+                  <a
+                    href={item.link}
+                    className={`header__nav-link${isActive ? " header__nav-link--active" : ""}`}
+                    aria-current={isActive ? "location" : undefined}
+                  >
+                    {item.title}
+                    {isActive && (
+                      <span
+                        className="header__nav-dot"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        {/* ── Actions ── */}
+        <div className="header__actions">
+          {/* Language toggle */}
+          <button
+            className="header__lang-btn"
+            onClick={toggleLang}
+            aria-label={`Switch to ${lang === "EN" ? "Arabic" : "English"}`}
+            title="Toggle language"
+          >
+            <MdLanguage aria-hidden="true" />
+            <span aria-live="polite">{lang}</span>
+          </button>
+
+          {/* Theme toggle */}
+          <button
+            className="header__icon-btn"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            {theme === "dark" ? (
+              <LuSunMoon aria-hidden="true" />
+            ) : (
+              <IoMoonOutline aria-hidden="true" />
+            )}
+          </button>
+
+          {/* Resume download — desktop only */}
+          <a
+            href="Momen-Hesham-CV.pdf"
+            className="header__resume-btn"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download Momen Hesham resume"
+          >
+            <FiDownload aria-hidden="true" />
+            <span>Resume</span>
+          </a>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className="header__hamburger"
+            onClick={() => setShowMenu(true)}
+            aria-label="Open navigation menu"
+            aria-expanded={showMenu}
+            aria-controls="mobile-drawer"
+          >
+            <IoIosMenu aria-hidden="true" />
+          </button>
+        </div>
       </div>
 
-      <nav aria-label="Main Navigation">
-        <ul className="flex">
-          {navbarData.map((item) => (
-            <li key={item.id}>
-              <a href={item.link}>{item.title}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {/* ── Mobile Drawer ── */}
+      <AnimatePresence>
+        {showMenu && (
+          <motion.div
+            className="mobile-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
+          >
+            {/* Backdrop */}
+            <motion.div
+              className="mobile-overlay__backdrop"
+              onClick={closeMenu}
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
 
-      <button 
-        className="icons" 
-        onClick={toggleTheme}
-        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      >
-        {theme === "dark" ? (
-          <LuSunMoon aria-hidden="true" />
-        ) : (
-          <IoMoonOutline aria-hidden="true" />
-        )}
-      </button>
-
-      {/* Mobile Menu */}
-      {showMenu && (
-        <div
-          className="fixed"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="mobile-menu-title"
-          id="mobile-menu"
-          ref={menuRef}
-        >
-          <ul className="model">
-            <li>
-              <button
-                className="close-icon"
-                onClick={handleMenuClose}
-                aria-label="Close navigation menu"
-              >
-                <IoClose aria-hidden="true" />
-              </button>
-            </li>
-            {navbarData.map((item) => (
-              <li key={item.id}>
-                <a href={item.link} onClick={handleLinkClick}>
-                  {item.title}
+            {/* Drawer panel */}
+            <motion.div
+              className="mobile-drawer"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+              id="mobile-drawer"
+              ref={menuRef}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 320, damping: 32 }}
+            >
+              {/* Panel header */}
+              <div className="mobile-drawer__header">
+                <a
+                  href="#home"
+                  className="header__brand"
+                  onClick={closeMenu}
+                  aria-label="Home"
+                >
+                  <span className="header__monogram" aria-hidden="true">
+                    MH
+                  </span>
+                  <span className="header__brand-name">Momen</span>
                 </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                <button
+                  className="mobile-drawer__close"
+                  onClick={closeMenu}
+                  aria-label="Close navigation menu"
+                >
+                  <IoClose aria-hidden="true" />
+                </button>
+              </div>
+
+              {/* Nav links */}
+              <nav aria-label="Mobile Navigation">
+                <ul className="mobile-drawer__nav">
+                  {navbarData.map((item, index) => {
+                    const sectionId = item.link.replace("#", "");
+                    const isActive = activeSection === sectionId;
+                    return (
+                      <motion.li
+                        key={item.id}
+                        initial={{ opacity: 0, x: 24 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: 0.05 + index * 0.055,
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 24,
+                        }}
+                      >
+                        <a
+                          href={item.link}
+                          className={`mobile-drawer__link${isActive ? " mobile-drawer__link--active" : ""}`}
+                          onClick={closeMenu}
+                          aria-current={isActive ? "location" : undefined}
+                        >
+                          <span
+                            className="mobile-drawer__index"
+                            aria-hidden="true"
+                          >
+                            0{index + 1}
+                          </span>
+                          {item.title}
+                        </a>
+                      </motion.li>
+                    );
+                  })}
+                </ul>
+              </nav>
+
+              {/* Panel footer */}
+              <div className="mobile-drawer__footer">
+                <button
+                  className="header__lang-btn"
+                  onClick={toggleLang}
+                  aria-label={`Switch to ${lang === "EN" ? "Arabic" : "English"}`}
+                >
+                  <MdLanguage aria-hidden="true" />
+                  <span>{lang}</span>
+                </button>
+                <button
+                  className="header__icon-btn"
+                  onClick={toggleTheme}
+                  aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+                >
+                  {theme === "dark" ? (
+                    <LuSunMoon aria-hidden="true" />
+                  ) : (
+                    <IoMoonOutline aria-hidden="true" />
+                  )}
+                </button>
+                <a
+                  href="Momen-Hesham-CV.pdf"
+                  className="header__resume-btn header__resume-btn--full"
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download resume"
+                >
+                  <FiDownload aria-hidden="true" />
+                  <span>Download Resume</span>
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

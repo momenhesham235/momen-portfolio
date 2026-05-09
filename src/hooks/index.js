@@ -7,3 +7,5 @@ export { useScrollToTop } from "./use-scroll-to-top";
 export { useFocusTrap } from "./use-focus-trap";
 export { useLockBodyScroll } from "./use-lock-body-scroll";
 export { useTheme } from "./use-theme";
+export { useScrollEffect } from "./use-scroll-effect";
+export { useActiveSection } from "./use-active-section";

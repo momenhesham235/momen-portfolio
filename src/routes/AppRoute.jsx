@@ -1,9 +1,6 @@
 import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-// Context
-import { ThemeProvider } from "@/contexts/theme-context";
-
 // Layouts
 import MainLayout from "@layouts/mainLayout/MainLayout";
 
@@ -30,12 +27,9 @@ const router = createBrowserRouter(
 
 /**
  * App Router Component
- * Provides routing and global context providers
+ * Provides routing configuration
+ * Theme is now managed by Zustand store (no provider needed)
  */
 export default function AppRoute() {
-  return (
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  );
+  return <RouterProvider router={router} />;
 }
