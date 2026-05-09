@@ -11,32 +11,61 @@
    ============================================================ */
 
 /* ── 1. Base header ── */
+/*
+ * IMPORTANT — why backdrop-filter is on ::before, not on .header:
+ *
+ * The CSS spec mandates that any element with backdrop-filter != none
+ * becomes a containing block for position:fixed descendants.
+ * Placing backdrop-filter directly on .header (which is position:sticky)
+ * would therefore intercept the mobile overlay's `position:fixed; inset:0`
+ * and constrain it to the header's own bounding box — collapsing the
+ * full-screen overlay into the ~60 px header strip.
+ *
+ * Moving backdrop-filter to ::before is the correct fix: pseudo-elements
+ * can have backdrop-filter without acting as a containing block for
+ * real DOM children, so position:fixed children remain viewport-relative.
+ */
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
 
-  background-color: var(--bg-secondary-color);
+  /* No background-color here — lives on ::before to avoid the
+     backdrop-filter containing-block side-effect described above. */
   border-bottom: 1px solid transparent;
 
   transition:
-    background-color 0.3s ease,
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 
-  /* Prevent header from being wider than the container */
   width: 100%;
 }
 
-/* Scrolled state — glass elevation */
+/* Background layer — pseudo-element holds the fill so that the real
+   element never carries backdrop-filter and never hijacks fixed children. */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--bg-secondary-color);
+  transition: background-color 0.3s ease;
+  pointer-events: none;
+}
+
+/* Scrolled state — elevation on the real element (no backdrop-filter) */
 .header--scrolled {
-  background-color: var(--header-scrolled-bg, rgba(24, 24, 27, 0.88));
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   border-bottom-color: rgba(184, 134, 11, 0.18);
   box-shadow:
     0 1px 0 rgba(184, 134, 11, 0.08),
     0 4px 24px rgba(0, 0, 0, 0.28);
+}
+
+/* Glass blur lives safely on the pseudo-element */
+.header--scrolled::before {
+  background-color: var(--header-scrolled-bg, rgba(24, 24, 27, 0.88));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .header__inner {
