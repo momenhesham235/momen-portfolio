@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, SITE_IMAGE } from "@/config/constants";
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, SITE_IMAGE } from "@app/config/constants";
 
 /**
  * SEO Component

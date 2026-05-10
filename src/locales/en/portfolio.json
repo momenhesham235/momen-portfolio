@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "greeting":    "Hello, World 👋",
+    "firstName":   "Momen",
+    "lastName":    "Hesham",
+    "role":        "Frontend & Backend Developer",
+    "bio":         "Building performant, accessible web experiences with React, TypeScript & Node.js.",
+    "ctaPrimary":  "View My Work",
+    "ctaSecondary":"Get In Touch",
+    "badge":       "Certified Developer"
+  },
+  "about": {
+    "heading": "Professional Bio",
+    "body":    "Software Engineer specializing in building modern, scalable web applications using JavaScript, React, and Node.js. Passionate about clean code, performance optimization, and delivering high-quality user experiences."
+  },
+  "projects": {
+    "heading":       "Projects",
+    "loadMore":      "Show More",
+    "noProjects":    "No projects found",
+    "noProjectsFor": "for",
+    "showAll":       "Show all projects",
+    "moreDetails":   "More",
+    "github":        "View on GitHub",
+    "liveDemo":      "View live demo"
+  },
+  "skills": {
+    "heading": "Skills"
+  },
+  "experience": {
+    "heading": "Experience"
+  },
+  "contact": {
+    "heading":      "Contact Me",
+    "phone":        "+20 106 274 9282",
+    "location":     "Egypt (Remote)",
+    "availability": "Available for freelance & full-time",
+    "languages":    "Arabic (Native), English (Good)",
+    "form": {
+      "namePlaceholder":    "Your Name",
+      "emailPlaceholder":   "Your Email",
+      "messagePlaceholder": "Your Message",
+      "submit":             "Send Message",
+      "sending":            "Sending...",
+      "success":            "Message sent successfully! 👌"
+    }
+  },
+  "projectDetails": {
+    "backToProjects": "← Back to projects",
+    "projectName":    "Project Name",
+    "description":    "Description",
+    "year":           "Year",
+    "role":           "Role",
+    "status":         "Status",
+    "duration":       "Duration",
+    "features":       "Features",
+    "techStack":      "Tech Stack",
+    "performance":    "Performance",
+    "links":          "Links",
+    "notFound":       "🚫 Project not found",
+    "backToHome":     "← Back to home"
+  }
+}

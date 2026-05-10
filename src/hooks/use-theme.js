@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useThemeStore from "@/stores/theme-store";
+import useThemeStore from "@app/stores/theme-store";
 
 /**
  * Custom hook to use theme from Zustand store

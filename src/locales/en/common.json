@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home":     "Home",
+    "bio":      "Bio",
+    "projects": "Projects",
+    "skills":   "Skills",
+    "contact":  "Contact"
+  },
+  "header": {
+    "brand":           "Momen",
+    "resume":          "Resume",
+    "downloadResume":  "Download Resume",
+    "toggleLanguage":  "Toggle language",
+    "openMenu":        "Open navigation menu",
+    "closeMenu":       "Close navigation menu",
+    "backToTop":       "Momen Hesham — back to top"
+  },
+  "footer": {
+    "tagline":    "Made with ❤️ by Momen Hesham — Thank you for visiting!",
+    "copyright":  "© {{year}} All rights reserved."
+  },
+  "theme": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark":  "Switch to dark mode"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content"
+  }
+}

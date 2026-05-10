@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "greeting":    "مرحباً بالعالم 👋",
+    "firstName":   "مؤمن",
+    "lastName":    "هشام",
+    "role":        "مطور واجهة أمامية وخلفية",
+    "bio":         "بناء تجارب ويب عالية الأداء وقابلة للوصول باستخدام React و TypeScript و Node.js.",
+    "ctaPrimary":  "عرض أعمالي",
+    "ctaSecondary":"تواصل معي",
+    "badge":       "مطور معتمد"
+  },
+  "about": {
+    "heading": "نبذة مهنية",
+    "body":    "مهندس برمجيات متخصص في بناء تطبيقات ويب حديثة وقابلة للتوسع باستخدام JavaScript و React و Node.js. شغوف بالكود النظيف وتحسين الأداء وتقديم تجارب مستخدم عالية الجودة."
+  },
+  "projects": {
+    "heading":       "المشاريع",
+    "loadMore":      "عرض المزيد",
+    "noProjects":    "لا توجد مشاريع",
+    "noProjectsFor": "لـ",
+    "showAll":       "عرض جميع المشاريع",
+    "moreDetails":   "المزيد",
+    "github":        "عرض على GitHub",
+    "liveDemo":      "عرض الموقع"
+  },
+  "skills": {
+    "heading": "المهارات"
+  },
+  "experience": {
+    "heading": "الخبرة"
+  },
+  "contact": {
+    "heading":      "تواصل معي",
+    "phone":        "+20 106 274 9282",
+    "location":     "مصر (عن بُعد)",
+    "availability": "متاح للعمل الحر وبدوام كامل",
+    "languages":    "العربية (لغة أم)، الإنجليزية (جيد)",
+    "form": {
+      "namePlaceholder":    "اسمك",
+      "emailPlaceholder":   "بريدك الإلكتروني",
+      "messagePlaceholder": "رسالتك",
+      "submit":             "إرسال الرسالة",
+      "sending":            "جارٍ الإرسال...",
+      "success":            "تم إرسال الرسالة بنجاح! 👌"
+    }
+  },
+  "projectDetails": {
+    "backToProjects": "← العودة إلى المشاريع",
+    "projectName":    "اسم المشروع",
+    "description":    "الوصف",
+    "year":           "السنة",
+    "role":           "الدور",
+    "status":         "الحالة",
+    "duration":       "المدة",
+    "features":       "الميزات",
+    "techStack":      "التقنيات المستخدمة",
+    "performance":    "الأداء",
+    "links":          "الروابط",
+    "notFound":       "🚫 المشروع غير موجود",
+    "backToHome":     "← العودة للرئيسية"
+  }
+}

@@ -1,0 +1,26 @@
+.ds-section {
+  padding: 3rem 0;
+}
+
+.ds-section__heading {
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  position: relative;
+  color: var(--title-color);
+}
+
+.ds-section__heading::after {
+  content: "";
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  display: block;
+  margin: 0.6rem auto 0;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .ds-section { padding: 2rem 0; }
+}

@@ -2,7 +2,7 @@ import { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "motion/react";
 
-import { navbarData } from "../../../constant/data/navbar";
+import { navbarData } from "@constants/navbar";
 import { useTheme } from "@hooks/use-theme";
 import { useFocusTrap } from "@hooks/use-focus-trap";
 import { useLockBodyScroll } from "@hooks/use-lock-body-scroll";

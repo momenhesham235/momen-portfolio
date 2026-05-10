@@ -1,5 +1,5 @@
-import { useTheme } from "@/hooks/use-theme";
-import { THEME_DARK, THEME_LIGHT } from "@/config/constants";
+import { useTheme } from "@hooks/use-theme";
+import { THEME_DARK, THEME_LIGHT } from "@app/config/constants";
 
 /**
  * Theme Toggle Component

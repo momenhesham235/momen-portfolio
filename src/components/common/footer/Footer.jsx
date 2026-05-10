@@ -1,4 +1,4 @@
-import { socialLinks } from "../../../constant/data/heroData";
+import { socialLinks } from "@constants/heroData";
 import { getIcon } from "./icon-map";
 import { getCurrentYear } from "@/utils/helpers";
 import "./footer.css";
