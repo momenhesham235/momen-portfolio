@@ -1,1 +1,0 @@
-import{j as t}from"./index-BVNh_sCr.js";const d=({id:s,heading:e,headingId:c,className:i="",children:n,...a})=>{const o=c||(s?`${s}-heading`:void 0);return t.jsxs("section",{id:s,className:`ds-section ${i}`,"aria-labelledby":e?o:void 0,...a,children:[e&&t.jsx("h2",{id:o,className:"ds-section__heading",children:e}),n]})};export{d as S};

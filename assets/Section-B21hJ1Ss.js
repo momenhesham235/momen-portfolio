@@ -1,0 +1,1 @@
+import{j as t}from"./index-Dw20hfmJ.js";/* empty css               */const l=({id:s,heading:e,headingId:i,className:c="",children:n,...r})=>{const o=i||(s?`${s}-heading`:void 0);return t.jsxs("section",{id:s,className:`ds-section ${c}`,"aria-labelledby":e?o:void 0,...r,children:[e&&t.jsx("h2",{id:o,className:"ds-section__heading",children:e}),n]})};export{l as S};
