@@ -1,7 +1,7 @@
 export const navbarData = [
-  { id: 1, title: "Home",     link: "#home"     },
-  { id: 2, title: "Bio",      link: "#bio"      },
-  { id: 3, title: "Projects", link: "#projects" },
-  { id: 4, title: "Skills",   link: "#skills"   },
-  { id: 5, title: "Contact",  link: "#contact"  },
+  { id: 1, key: "home",     link: "#home"     },
+  { id: 2, key: "bio",      link: "#bio"      },
+  { id: 3, key: "projects", link: "#projects" },
+  { id: 4, key: "skills",   link: "#skills"   },
+  { id: 5, key: "contact",  link: "#contact"  },
 ];

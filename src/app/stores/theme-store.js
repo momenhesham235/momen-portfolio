@@ -47,15 +47,4 @@ function applyThemeToDOM(theme) {
   }
 }
 
-export function initializeTheme() {
-  if (typeof window === "undefined") return;
-  try {
-    const stored = localStorage.getItem(THEME_STORAGE_KEY);
-    const theme = stored ? JSON.parse(stored).state.theme : THEME_DARK;
-    applyThemeToDOM(theme);
-  } catch {
-    applyThemeToDOM(THEME_DARK);
-  }
-}
-
 export default useThemeStore;

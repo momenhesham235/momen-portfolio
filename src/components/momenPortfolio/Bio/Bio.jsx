@@ -1,19 +1,24 @@
+import { Trans, useTranslation } from "react-i18next";
+import { Section } from "@design-system";
 import "./bio.css";
 
 const Bio = () => {
+  const { t } = useTranslation("portfolio");
+
   return (
-    <section className="bio" id="bio" aria-labelledby="bio-heading">
+    <Section id="bio" className="bio" aria-labelledby="bio-heading">
       <div className="bio-container">
-        <h2>Professional Bio</h2>
+        <h2 id="bio-heading">{t("about.heading")}</h2>
 
         <article className="bio-text">
-          Software Engineer specializing in building modern, scalable web
-          applications using <strong>JavaScript, React, and Node.js</strong>.
-          Passionate about clean code, performance optimization, and delivering
-          high-quality user experiences.
+          <Trans
+            i18nKey="about.body"
+            ns="portfolio"
+            components={{ strong: <strong /> }}
+          />
         </article>
       </div>
-    </section>
+    </Section>
   );
 };
 

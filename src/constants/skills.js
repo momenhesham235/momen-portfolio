@@ -22,23 +22,23 @@ import {
 
 export const skills = [
   {
-    title: "Frontend",
-    skills: [
-      { name: "HTML",          img: html       },
-      { name: "CSS",           img: css        },
-      { name: "Tailwind CSS",  img: tailwind   },
-      { name: "JavaScript",    img: js         },
-      { name: "TypeScript",    img: typescript },
-      { name: "React",         img: react      },
-      { name: "React Native",  img: reactNative },
-      { name: "Zustand",       img: zustand    },
-      { name: "Tanstack Query",img: tanstack   },
-      { name: "Next.js",       img: next       },
+    key: "frontend",
+    items: [
+      { name: "HTML",           img: html       },
+      { name: "CSS",            img: css        },
+      { name: "Tailwind CSS",   img: tailwind   },
+      { name: "JavaScript",     img: js         },
+      { name: "TypeScript",     img: typescript },
+      { name: "React",          img: react      },
+      { name: "React Native",   img: reactNative },
+      { name: "Zustand",        img: zustand    },
+      { name: "Tanstack Query", img: tanstack   },
+      { name: "Next.js",        img: next       },
     ],
   },
   {
-    title: "Backend",
-    skills: [
+    key: "backend",
+    items: [
       { name: "Node.js",    img: nodejs     },
       { name: "Express.js", img: express    },
       { name: "GraphQL",    img: graphql    },
@@ -47,8 +47,8 @@ export const skills = [
     ],
   },
   {
-    title: "Tools",
-    skills: [
+    key: "tools",
+    items: [
       { name: "Git",    img: git    },
       { name: "GitHub", img: github },
       { name: "Docker", img: docker },

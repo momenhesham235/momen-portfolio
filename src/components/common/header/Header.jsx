@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "motion/react";
 
 import { navbarData } from "@constants/navbar";
 import { useTheme } from "@hooks/use-theme";
+import { useLanguage } from "@hooks/use-language";
 import { useFocusTrap } from "@hooks/use-focus-trap";
 import { useLockBodyScroll } from "@hooks/use-lock-body-scroll";
 import { useScrollEffect } from "@hooks/use-scroll-effect";
@@ -18,10 +20,11 @@ import { MdLanguage } from "react-icons/md";
 import "./header.css";
 
 const Header = () => {
+  const { t } = useTranslation("common");
   const [showMenu, setShowMenu] = useState(false);
-  const [lang, setLang] = useState("EN");
 
   const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
   const { scrolled } = useScrollEffect(20);
   const activeSection = useActiveSection();
 
@@ -29,7 +32,9 @@ const Header = () => {
   useLockBodyScroll(showMenu);
 
   const closeMenu = () => setShowMenu(false);
-  const toggleLang = () => setLang((l) => (l === "EN" ? "AR" : "EN"));
+  const langLabel = language.toUpperCase();
+  const themeAriaLabel =
+    theme === "dark" ? t("theme.switchToLight") : t("theme.switchToDark");
 
   return (
     <header
@@ -41,12 +46,12 @@ const Header = () => {
         <a
           href="#home"
           className="header__brand"
-          aria-label="Momen Hesham — back to top"
+          aria-label={t("header.backToTop")}
         >
           <span className="header__monogram" aria-hidden="true">
             MH
           </span>
-          <span className="header__brand-name">Momen</span>
+          <span className="header__brand-name">{t("header.brand")}</span>
         </a>
 
         {/* ── Desktop Navigation ── */}
@@ -62,7 +67,7 @@ const Header = () => {
                     className={`header__nav-link${isActive ? " header__nav-link--active" : ""}`}
                     aria-current={isActive ? "location" : undefined}
                   >
-                    {item.title}
+                    {t(`nav.${item.key}`)}
                     {isActive && (
                       <span
                         className="header__nav-dot"
@@ -81,19 +86,19 @@ const Header = () => {
           {/* Language toggle */}
           <button
             className="header__lang-btn"
-            onClick={toggleLang}
-            aria-label={`Switch to ${lang === "EN" ? "Arabic" : "English"}`}
-            title="Toggle language"
+            onClick={toggleLanguage}
+            aria-label={t("header.toggleLanguage")}
+            title={t("header.toggleLanguage")}
           >
             <MdLanguage aria-hidden="true" />
-            <span aria-live="polite">{lang}</span>
+            <span aria-live="polite">{langLabel}</span>
           </button>
 
           {/* Theme toggle */}
           <button
             className="header__icon-btn"
             onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            aria-label={themeAriaLabel}
           >
             {theme === "dark" ? (
               <LuSunMoon aria-hidden="true" />
@@ -109,17 +114,17 @@ const Header = () => {
             download
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Download Momen Hesham resume"
+            aria-label={t("header.downloadResume")}
           >
             <FiDownload aria-hidden="true" />
-            <span>Resume</span>
+            <span>{t("header.resume")}</span>
           </a>
 
           {/* Hamburger — mobile only */}
           <button
             className="header__hamburger"
             onClick={() => setShowMenu(true)}
-            aria-label="Open navigation menu"
+            aria-label={t("header.openMenu")}
             aria-expanded={showMenu}
             aria-controls="mobile-drawer"
           >
@@ -167,17 +172,17 @@ const Header = () => {
                   href="#home"
                   className="header__brand"
                   onClick={closeMenu}
-                  aria-label="Home"
+                  aria-label={t("nav.home")}
                 >
                   <span className="header__monogram" aria-hidden="true">
                     MH
                   </span>
-                  <span className="header__brand-name">Momen</span>
+                  <span className="header__brand-name">{t("header.brand")}</span>
                 </a>
                 <button
                   className="mobile-drawer__close"
                   onClick={closeMenu}
-                  aria-label="Close navigation menu"
+                  aria-label={t("header.closeMenu")}
                 >
                   <IoClose aria-hidden="true" />
                 </button>
@@ -213,7 +218,7 @@ const Header = () => {
                           >
                             0{index + 1}
                           </span>
-                          {item.title}
+                          {t(`nav.${item.key}`)}
                         </a>
                       </motion.li>
                     );
@@ -225,16 +230,16 @@ const Header = () => {
               <div className="mobile-drawer__footer">
                 <button
                   className="header__lang-btn"
-                  onClick={toggleLang}
-                  aria-label={`Switch to ${lang === "EN" ? "Arabic" : "English"}`}
+                  onClick={toggleLanguage}
+                  aria-label={t("header.toggleLanguage")}
                 >
                   <MdLanguage aria-hidden="true" />
-                  <span>{lang}</span>
+                  <span>{langLabel}</span>
                 </button>
                 <button
                   className="header__icon-btn"
                   onClick={toggleTheme}
-                  aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+                  aria-label={themeAriaLabel}
                 >
                   {theme === "dark" ? (
                     <LuSunMoon aria-hidden="true" />
@@ -248,10 +253,10 @@ const Header = () => {
                   download
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Download resume"
+                  aria-label={t("header.downloadResume")}
                 >
                   <FiDownload aria-hidden="true" />
-                  <span>Download Resume</span>
+                  <span>{t("header.downloadResume")}</span>
                 </a>
               </div>
             </motion.div>

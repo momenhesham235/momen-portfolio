@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import "./featuresColumns.css";
 
 const FeaturesColumns = ({ features }) => {
+  const { t } = useTranslation("portfolio");
   const mid = Math.ceil(features.length / 2);
 
   return (
@@ -8,14 +10,14 @@ const FeaturesColumns = ({ features }) => {
       <ul>
         {features.slice(0, mid).map((f, i) => (
           <li key={i}>
-            <strong>Feature {i + 1}:</strong> {f}
+            <strong>{t("projectDetails.featureLabel", { number: i + 1 })}:</strong> {f}
           </li>
         ))}
       </ul>
       <ul>
         {features.slice(mid).map((f, i) => (
           <li key={i}>
-            <strong>Feature {i + 1 + mid}:</strong> {f}
+            <strong>{t("projectDetails.featureLabel", { number: i + 1 + mid })}:</strong> {f}
           </li>
         ))}
       </ul>

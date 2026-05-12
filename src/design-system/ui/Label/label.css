@@ -1,0 +1,14 @@
+.ds-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--subtitle-color);
+  margin-bottom: 0.375rem;
+  letter-spacing: var(--letter-spacing);
+  cursor: default;
+}
+
+.ds-label__required {
+  color: var(--color-error);
+  font-weight: 600;
+}

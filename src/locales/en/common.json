@@ -16,7 +16,7 @@
     "backToTop":       "Momen Hesham — back to top"
   },
   "footer": {
-    "tagline":    "Made with ❤️ by Momen Hesham — Thank you for visiting!",
+    "tagline":    "Made with ❤️ by <strong>Momen Hesham</strong> — Thank you for visiting!",
     "copyright":  "© {{year}} All rights reserved."
   },
   "theme": {

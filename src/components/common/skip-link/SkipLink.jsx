@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import "./skip-link.css";
 
 /**
@@ -6,9 +7,10 @@ import "./skip-link.css";
  * Allows users to skip directly to main content
  */
 const SkipLink = () => {
+  const { t } = useTranslation("common");
   return (
     <a href="#main-content" className="skip-link">
-      Skip to main content
+      {t("a11y.skipToContent")}
     </a>
   );
 };

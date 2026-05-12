@@ -1,21 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
 import Lottie from "lottie-react";
+import { useTranslation } from "react-i18next";
 import { MdVerifiedUser } from "react-icons/md";
-import { FaGithub, FaLinkedin, FaXTwitter, FaFacebook } from "react-icons/fa6";
-import { TbBrandLeetcode } from "react-icons/tb";
 import { HiArrowRight } from "react-icons/hi2";
 import { codingAnimation } from "@assets";
 import { socialLinks } from "@constants/heroData";
 import "./hero.css";
-
-const ICON_MAP = {
-  FaFacebook,
-  FaXTwitter,
-  FaGithub,
-  FaLinkedin,
-  TbBrandLeetcode,
-};
 
 const containerVariants = {
   hidden: {},
@@ -43,6 +34,11 @@ const slideLeft = {
 };
 
 const Hero = () => {
+  const { t } = useTranslation("portfolio");
+  const firstName = t("hero.firstName");
+  const lastName = t("hero.lastName");
+  const role = t("hero.role");
+
   return (
     <section className="hero" id="home" aria-labelledby="hero-heading">
       <div className="hero-container">
@@ -62,7 +58,7 @@ const Hero = () => {
 
             <img
               src="me.png"
-              alt="Momen Hesham — Software Engineer"
+              alt={`${firstName} ${lastName} — ${role}`}
               className="hero-avatar"
               loading="eager"
               fetchpriority="high"
@@ -71,9 +67,9 @@ const Hero = () => {
             />
           </div>
 
-          <div className="hero-badge" role="img" aria-label="Certified Developer">
+          <div className="hero-badge" role="img" aria-label={t("hero.badge")}>
             <MdVerifiedUser className="hero-badge__icon" aria-hidden="true" />
-            <span>Certified Developer</span>
+            <span>{t("hero.badge")}</span>
           </div>
         </motion.div>
 
@@ -84,24 +80,23 @@ const Hero = () => {
           animate="visible"
         >
           <motion.span className="hero-greeting" variants={fadeUp}>
-            Hello, World 👋
+            {t("hero.greeting")}
           </motion.span>
 
           <motion.h1 id="hero-heading" className="hero-heading" variants={fadeUp}>
-            I&apos;m <span className="hero-heading__accent">Momen</span>
+            I&apos;m <span className="hero-heading__accent">{firstName}</span>
             <br />
-            Hesham
+            {lastName}
           </motion.h1>
 
           <motion.div className="hero-typing-wrapper" variants={fadeUp}>
-            <p className="hero-typing-text" aria-label="Frontend & Backend Developer">
-              Frontend &amp; Backend Developer
+            <p className="hero-typing-text" aria-label={role}>
+              {role}
             </p>
           </motion.div>
 
           <motion.p className="hero-bio" variants={fadeUp}>
-            Building performant, accessible web experiences with React,
-            TypeScript &amp; Node.js.
+            {t("hero.bio")}
           </motion.p>
 
           <motion.div
@@ -110,32 +105,36 @@ const Hero = () => {
             role="list"
             aria-label="Social profiles"
           >
-            {socialLinks.map((item) => {
-              const Icon = ICON_MAP[item.icon];
-              if (!Icon) return null;
-              return (
-                <a
-                  key={item.id}
-                  href={item.link}
-                  className="hero-social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={item.title}
-                  role="listitem"
-                >
-                  <Icon aria-hidden="true" />
-                </a>
-              );
-            })}
+            {socialLinks.map(({ id, Icon, link, title }) => (
+              <a
+                key={id}
+                href={link}
+                className="hero-social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={title}
+                role="listitem"
+              >
+                <Icon aria-hidden="true" />
+              </a>
+            ))}
           </motion.div>
 
           <motion.div className="hero-cta" variants={fadeUp}>
-            <a href="#projects" className="hero-cta__primary" aria-label="View my projects">
-              View My Work
+            <a
+              href="#projects"
+              className="hero-cta__primary"
+              aria-label={t("hero.ctaPrimary")}
+            >
+              {t("hero.ctaPrimary")}
               <HiArrowRight className="hero-cta__arrow" aria-hidden="true" />
             </a>
-            <a href="#contact" className="hero-cta__secondary" aria-label="Go to contact section">
-              Get In Touch
+            <a
+              href="#contact"
+              className="hero-cta__secondary"
+              aria-label={t("hero.ctaSecondary")}
+            >
+              {t("hero.ctaSecondary")}
             </a>
           </motion.div>
         </motion.div>

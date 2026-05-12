@@ -9,3 +9,4 @@ export { useLockBodyScroll } from "./use-lock-body-scroll";
 export { useTheme } from "./use-theme";
 export { useScrollEffect } from "./use-scroll-effect";
 export { useActiveSection } from "./use-active-section";
+export { useLanguage } from "./use-language";

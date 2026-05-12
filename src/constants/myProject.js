@@ -8,12 +8,12 @@ import {
 } from "@assets";
 
 export const optionsSelect = [
-  { label: "All",        value: "all"       },
-  { label: "HTML & CSS", value: "html"      },
-  { label: "JavaScript", value: "js"        },
-  { label: "React",      value: "react"     },
-  { label: "Next",       value: "next"      },
-  { label: "Full Stack", value: "fullstack" },
+  { value: "all" },
+  { value: "html" },
+  { value: "js" },
+  { value: "react" },
+  { value: "next" },
+  { value: "fullstack" },
 ];
 
 export const projectsData = [

@@ -19,7 +19,7 @@
 .back-btn {
   display: inline-block;
   margin-bottom: 1.5rem;
-  color: darkgoldenrod;
+  color: var(--accent-color);
   transition: transform 0.3s ease;
 }
 .back-btn:hover {
@@ -94,7 +94,7 @@
 
 .detail-label {
   font-weight: 600;
-  color: darkgoldenrod;
+  color: var(--accent-color);
   margin-bottom: 0.5rem;
 }
 .detail-value {
@@ -131,7 +131,7 @@
   margin-bottom: 0.5rem;
   padding: 0.3rem 0.6rem;
   background: rgba(184, 134, 11, 0.15);
-  color: darkgoldenrod;
+  color: var(--accent-color);
   border-radius: 8px;
 }
 
@@ -151,7 +151,7 @@
   transition: 0.3s;
 }
 .details-links a:hover {
-  background: darkgoldenrod;
+  background: var(--accent-color);
   color: #111;
 }
 

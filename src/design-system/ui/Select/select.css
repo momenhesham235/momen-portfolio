@@ -1,0 +1,90 @@
+.ds-select {
+  position: relative;
+  width: 100%;
+}
+
+.ds-select__button {
+  width: 100%;
+  height: 44px;
+  padding: 0 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-family: var(--font-family);
+  font-size: 0.9375rem;
+
+  background-color: var(--card-bg);
+  color: var(--subtitle-color);
+  border: 1px solid var(--border-color);
+
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ds-select__button.is-open,
+.ds-select__button:focus-visible {
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 25px rgba(184, 134, 11, 0.25);
+  outline: none;
+}
+
+.ds-select__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-select__arrow {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.ds-select__button.is-open .ds-select__arrow {
+  transform: rotate(180deg);
+}
+
+.ds-select__menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  inset-inline-start: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 0.4rem 0;
+  margin: 0;
+  list-style: none;
+
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  animation: dsSelectFade 0.2s ease forwards;
+}
+
+.ds-select__option {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  color: var(--subtitle-color);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.ds-select__option:hover,
+.ds-select__option.is-selected {
+  background: rgba(184, 134, 11, 0.15);
+  color: var(--accent-color);
+}
+
+@keyframes dsSelectFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

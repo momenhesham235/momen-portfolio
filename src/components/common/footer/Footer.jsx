@@ -1,43 +1,40 @@
+import { Trans, useTranslation } from "react-i18next";
 import { socialLinks } from "@constants/heroData";
-import { getIcon } from "./icon-map";
 import { getCurrentYear } from "@/utils/helpers";
 import "./footer.css";
 
-/**
- * Footer Component
- * Displays social links and copyright information
- */
 const Footer = () => {
+  const { t } = useTranslation("common");
+
   return (
     <footer className="footer" id="footer">
       <div className="footer-container">
-        <p>
-          Made with ❤️ by{" "}
-          <strong style={{ color: "darkgoldenrod" }}>Momen Hesham</strong> —
-          Thank you for visiting!
+        <p className="footer__tagline">
+          <Trans
+            i18nKey="footer.tagline"
+            ns="common"
+            components={{ strong: <strong /> }}
+          />
         </p>
 
-        <div className="social-icons">
-          {socialLinks.map((social) => {
-            const IconComponent = getIcon(social.icon);
-            
-            return (
+        <ul className="social-icons" aria-label="Social profiles">
+          {socialLinks.map(({ id, Icon, link, title }) => (
+            <li key={id}>
               <a
-                key={social.id}
-                href={social.link}
+                href={link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon"
-                aria-label={`Visit ${social.title}`}
+                aria-label={`Visit ${title}`}
               >
-                {IconComponent && <IconComponent aria-hidden="true" />}
+                <Icon aria-hidden="true" />
               </a>
-            );
-          })}
-        </div>
+            </li>
+          ))}
+        </ul>
 
         <p className="footer-copy">
-          &copy; {getCurrentYear()} All rights reserved.
+          {t("footer.copyright", { year: getCurrentYear() })}
         </p>
       </div>
     </footer>

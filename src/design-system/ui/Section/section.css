@@ -1,6 +1,4 @@
-.ds-section {
-  padding: 3rem 0;
-}
+/* Section is a semantic wrapper — spacing is owned by each consumer. */
 
 .ds-section__heading {
   text-align: center;
@@ -19,8 +17,4 @@
   display: block;
   margin: 0.6rem auto 0;
   border-radius: 2px;
-}
-
-@media (max-width: 768px) {
-  .ds-section { padding: 2rem 0; }
 }

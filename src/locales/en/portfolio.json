@@ -11,7 +11,7 @@
   },
   "about": {
     "heading": "Professional Bio",
-    "body":    "Software Engineer specializing in building modern, scalable web applications using JavaScript, React, and Node.js. Passionate about clean code, performance optimization, and delivering high-quality user experiences."
+    "body":    "Software Engineer specializing in building modern, scalable web applications using <strong>JavaScript, React, and Node.js</strong>. Passionate about clean code, performance optimization, and delivering high-quality user experiences."
   },
   "projects": {
     "heading":       "Projects",
@@ -21,13 +21,67 @@
     "showAll":       "Show all projects",
     "moreDetails":   "More",
     "github":        "View on GitHub",
-    "liveDemo":      "View live demo"
+    "liveDemo":      "View live demo",
+    "filters": {
+      "all":       "All",
+      "html":      "HTML & CSS",
+      "js":        "JavaScript",
+      "react":     "React",
+      "next":      "Next",
+      "fullstack": "Full Stack"
+    }
   },
   "skills": {
-    "heading": "Skills"
+    "heading": "Skills",
+    "groups": {
+      "frontend": "Frontend",
+      "backend":  "Backend",
+      "tools":    "Tools"
+    }
   },
   "experience": {
-    "heading": "Experience"
+    "heading": "Experience",
+    "present": "Present",
+    "currentLabel": "Current",
+    "items": [
+      {
+        "id": 1,
+        "title": "Front-end Developer",
+        "company": "Training Course",
+        "startDate": "Sep 2022",
+        "endDate": "Dec 2023",
+        "description": [
+          "Completed a summer training program at Mansoura University, gaining hands-on experience in full-stack web development.",
+          "Built and maintained applications using modern web technologies, with a focus on clean code, problem-solving, and real-world development practices."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Front-end Developer",
+        "company": "Sustainable Waste Management — Graduation Project",
+        "startDate": "Sep 2023",
+        "endDate": "Dec 2024",
+        "description": [
+          "Built a complete web platform including a public website and an admin dashboard.",
+          "Worked in an Agile team environment, collaborating on planning, implementation, and iteration cycles.",
+          "Focused on building responsive UI components, managing application state, and integrating dynamic data."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Frontend Developer Trainee",
+        "company": "Madkhol Capital | مدخول المالية",
+        "startDate": "Feb 2026",
+        "endDate": "Present",
+        "description": [
+          "Contributing to the development of fintech solutions across mobile and web applications within the React ecosystem.",
+          "Assisting in building and refining features for the company's mobile application using React Native.",
+          "Collaborating on two core web platforms using React.js, ensuring high performance and scalable architecture.",
+          "Writing clean, maintainable code with TypeScript and participating in code reviews to align with industry best practices.",
+          "Integrating APIs, resolving Sentry-reported issues, and ensuring smooth feature deployments."
+        ]
+      }
+    ]
   },
   "contact": {
     "heading":      "Contact Me",
@@ -53,6 +107,7 @@
     "status":         "Status",
     "duration":       "Duration",
     "features":       "Features",
+    "featureLabel":   "Feature {{number}}",
     "techStack":      "Tech Stack",
     "performance":    "Performance",
     "links":          "Links",

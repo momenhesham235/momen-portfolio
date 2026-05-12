@@ -1,20 +1,26 @@
-import { Link } from "react-router-dom";
-
-// import { LottieHandler } from "@components/feedback";
+import { Link, useRouteError } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import "./error-boundary.css";
 
 const ErrorBoundary = () => {
+  const { t } = useTranslation("portfolio");
+  const error = useRouteError();
+
+  const status = error?.status ?? 500;
+  const message =
+    error?.statusText ||
+    error?.message ||
+    t("projectDetails.notFound");
+
   return (
-    <div>
-      <div className="" style={{ height: "100vh" }}>
-        {/* <LottieHandler type="notFound" /> */}
-        <Link to="/" replace={true}>
-          How about going back to safety?
-        </Link>
-      </div>
+    <div className="error-boundary" role="alert" aria-live="polite">
+      <p className="error-boundary__status">{status}</p>
+      <p className="error-boundary__message">{message}</p>
+      <Link to="/" replace className="error-boundary__link">
+        {t("projectDetails.backToHome")}
+      </Link>
     </div>
   );
 };
 
 export default ErrorBoundary;
-
-// d-flex flex-column justify-content-center align-items-center

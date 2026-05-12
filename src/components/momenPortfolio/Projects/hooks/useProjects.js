@@ -1,6 +1,9 @@
-import { useState, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { projectsData } from "@constants/myProject";
-import { PROJECTS_PER_PAGE, PROJECTS_LOAD_MORE_INCREMENT } from "@app/config/constants";
+import {
+  PROJECTS_PER_PAGE,
+  PROJECTS_LOAD_MORE_INCREMENT,
+} from "@app/config/constants";
 
 const useProjects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -16,24 +19,20 @@ const useProjects = () => {
     return [...filteredProjects].reverse().slice(0, visibleCount);
   }, [filteredProjects, visibleCount]);
 
-  const total = filteredProjects.length;
-  const hasMore = visibleCount < total;
+  const hasMore = visibleCount < filteredProjects.length;
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     setVisibleCount((prev) => prev + PROJECTS_LOAD_MORE_INCREMENT);
-  };
+  }, []);
 
-  const handleFilterChange = (value) => {
+  const handleFilterChange = useCallback((value) => {
     setActiveFilter(value);
     setVisibleCount(PROJECTS_PER_PAGE);
-  };
+  }, []);
 
   return {
     activeFilter,
-    setActiveFilter,
-    visibleCount,
     visibleProjects,
-    total,
     hasMore,
     handleLoadMore,
     handleFilterChange,

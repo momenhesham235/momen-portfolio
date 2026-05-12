@@ -60,6 +60,9 @@
   /* Transitions */
   --transition-fast:   0.15s ease;
   --transition-normal: 0.3s ease;
+
+  /* Semantic status */
+  --color-error: rgb(239, 68, 68);
 }
 
 /* ── Light theme overrides ─────────────────────────────────────────────────── */
@@ -100,7 +103,7 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: darkgoldenrod #00000083;
+  scrollbar-color: var(--accent-color) rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -174,8 +177,8 @@ button:active { scale: 0.9; }
 
 .divider {
   border-bottom: 1px solid var(--border-color);
-  width: calc(100% + var(--lg-container-padding) * 2);
-  margin: 2rem 0 2rem calc(-1 * var(--lg-container-padding));
+  margin-block: 2rem;
+  margin-inline: calc(-1 * var(--lg-container-padding));
 }
 
 .flex {
@@ -238,7 +241,7 @@ a:focus-visible {
   }
 
   .divider {
-    width: calc(100% + var(--md-container-padding) * 2);
-    margin: 1.5rem 0 1.5rem calc(-1 * var(--md-container-padding));
+    margin-block: 1.5rem;
+    margin-inline: calc(-1 * var(--md-container-padding));
   }
 }
