@@ -191,6 +191,11 @@
 .hero-typing-wrapper {
   display: block;
   min-height: 1.8rem;
+  /* Constrain the wrapper so the nowrap child below can never force
+     the parent (and ultimately the page) wider than the available space. */
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .hero-typing-text {
@@ -201,7 +206,9 @@
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 2px solid var(--accent-color);
+  /* Use logical property so the typing cursor sits on the trailing edge
+     in both LTR (right) and RTL (left). */
+  border-inline-end: 2px solid var(--accent-color);
   max-width: 0;
   will-change: max-width;
 
@@ -217,8 +224,8 @@
 }
 
 @keyframes heroBlink {
-  0%, 49%  { border-color: var(--accent-color); }
-  50%, 100%{ border-color: transparent; }
+  0%, 49%  { border-inline-end-color: var(--accent-color); }
+  50%, 100%{ border-inline-end-color: transparent; }
 }
 
 /* ── 10. Bio paragraph ── */

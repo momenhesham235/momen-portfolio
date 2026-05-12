@@ -1,13 +1,20 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import { Header, Footer, SkipLink } from "@components/common";
 
 const MainLayout = () => {
+  const { pathname } = useLocation();
+  const hideHeader = pathname.startsWith("/details");
+
   return (
     <div className="container" id="main">
-      <SkipLink />
-      <Header />
+      {!hideHeader && (
+        <>
+          <SkipLink />
+          <Header />
+        </>
+      )}
 
       <main className="main-content" id="main-content">
         <Outlet />

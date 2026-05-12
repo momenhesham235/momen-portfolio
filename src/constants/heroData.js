@@ -9,31 +9,31 @@ export const socialLinks = [
   {
     id: 1,
     Icon: FaFacebook,
-    title: "Facebook",
+    key: "facebook",
     link: "https://www.facebook.com/momen.hesham.5264/",
   },
   {
     id: 2,
     Icon: FaXTwitter,
-    title: "X",
+    key: "x",
     link: "https://x.com/m0menHeshamel",
   },
   {
     id: 3,
     Icon: FaGithub,
-    title: "Github",
+    key: "github",
     link: "https://github.com/momenhesham235",
   },
   {
     id: 4,
     Icon: FaLinkedin,
-    title: "Linkedin",
+    key: "linkedin",
     link: "https://www.linkedin.com/in/momen-hesham/",
   },
   {
     id: 5,
     Icon: TbBrandLeetcode,
-    title: "Leetcode",
+    key: "leetcode",
     link: "https://leetcode.com/u/hmomen235/",
   },
 ];

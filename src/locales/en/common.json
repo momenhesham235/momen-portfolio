@@ -8,6 +8,7 @@
   },
   "header": {
     "brand":           "Momen",
+    "fullName":        "Momen Hesham",
     "resume":          "Resume",
     "downloadResume":  "Download Resume",
     "toggleLanguage":  "Toggle language",
@@ -17,7 +18,20 @@
   },
   "footer": {
     "tagline":    "Made with ❤️ by <strong>Momen Hesham</strong> — Thank you for visiting!",
-    "copyright":  "© {{year}} All rights reserved."
+    "copyright":  "© {{year}} All rights reserved.",
+    "role":       "Frontend Engineer",
+    "navigate":   "Navigate",
+    "connect":    "Connect",
+    "backToTop":  "Back to top"
+  },
+  "socials": {
+    "ariaList":  "Social profiles",
+    "visit":     "Visit {{name}}",
+    "facebook":  "Facebook",
+    "x":         "X",
+    "github":    "Github",
+    "linkedin":  "Linkedin",
+    "leetcode":  "Leetcode"
   },
   "theme": {
     "switchToLight": "Switch to light mode",

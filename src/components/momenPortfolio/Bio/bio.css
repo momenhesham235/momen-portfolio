@@ -6,12 +6,11 @@
   text-align: center;
 }
 
-/* Bio Text */
 .bio-text {
   color: var(--title-color);
   font-size: 1.1rem;
   line-height: 1.9;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .bio-text strong {
@@ -19,16 +18,78 @@
   font-weight: 600;
 }
 
+/* ================= Stats ================= */
+
+.bio-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.bio-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.25rem;
+  position: relative;
+}
+
+.bio-stat + .bio-stat {
+  border-inline-start: 1px solid var(--border-color);
+}
+
+.bio-stat__value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+.bio-stat__label {
+  font-size: 0.875rem;
+  color: var(--subtitle-color);
+  text-align: center;
+}
+
 /* ================= Responsive ================= */
+
 @media (max-width: 768px) {
   .bio-text {
     font-size: 1rem;
     line-height: 1.7;
   }
+
+  .bio-stats {
+    margin-top: 2rem;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .bio-stat__value { font-size: 1.65rem; }
+  .bio-stat__label { font-size: 0.8rem; }
 }
 
 @media (max-width: 480px) {
-  .bio {
-    padding: 3rem 1rem;
+  .bio { padding: 3rem 1rem; }
+
+  .bio-stats {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .bio-stat {
+    padding: 0.9rem 0;
+  }
+
+  .bio-stat + .bio-stat {
+    border-inline-start: none;
+    border-top: 1px solid var(--border-color);
   }
 }

@@ -115,6 +115,12 @@ body {
   transition: background-color var(--transition-normal), color var(--transition-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Guard against any element causing horizontal scroll (notably in RTL,
+     where the page scrolls to the right by default and a centered container
+     visually shifts off-axis). `clip` is preferred over `hidden` because it
+     doesn't create a new scroll context and won't break sticky descendants. */
+  overflow-x: clip;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -237,7 +243,11 @@ a:focus-visible {
 
 @media (max-width: 768px) {
   .container {
+    /* Use full viewport width on mobile — 90% leaves cosmetic side gutters
+       that waste real estate and exaggerate any horizontal-overflow shift. */
+    max-width: 100%;
     padding: 0 var(--md-container-padding);
+    border-radius: 0;
   }
 
   .divider {

@@ -84,7 +84,7 @@ const Hero = () => {
           </motion.span>
 
           <motion.h1 id="hero-heading" className="hero-heading" variants={fadeUp}>
-            I&apos;m <span className="hero-heading__accent">{firstName}</span>
+            {t("hero.intro")} <span className="hero-heading__accent">{firstName}</span>
             <br />
             {lastName}
           </motion.h1>
@@ -103,16 +103,16 @@ const Hero = () => {
             className="hero-socials"
             variants={fadeUp}
             role="list"
-            aria-label="Social profiles"
+            aria-label={t("socials.ariaList", { ns: "common" })}
           >
-            {socialLinks.map(({ id, Icon, link, title }) => (
+            {socialLinks.map(({ id, Icon, link, key }) => (
               <a
                 key={id}
                 href={link}
                 className="hero-social-link"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={title}
+                aria-label={t(`socials.${key}`, { ns: "common" })}
                 role="listitem"
               >
                 <Icon aria-hidden="true" />

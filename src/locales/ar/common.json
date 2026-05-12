@@ -8,6 +8,7 @@
   },
   "header": {
     "brand":           "مؤمن",
+    "fullName":        "مؤمن هشام",
     "resume":          "السيرة الذاتية",
     "downloadResume":  "تحميل السيرة الذاتية",
     "toggleLanguage":  "تبديل اللغة",
@@ -17,7 +18,20 @@
   },
   "footer": {
     "tagline":   "صُنع بـ ❤️ بواسطة <strong>مؤمن هشام</strong> — شكراً لزيارتك!",
-    "copyright": "© {{year}} جميع الحقوق محفوظة."
+    "copyright": "© {{year}} جميع الحقوق محفوظة.",
+    "role":      "مهندس واجهات أمامية",
+    "navigate":  "تصفّح",
+    "connect":   "تواصل",
+    "backToTop": "العودة إلى الأعلى"
+  },
+  "socials": {
+    "ariaList":  "حسابات التواصل الاجتماعي",
+    "visit":     "زيارة {{name}}",
+    "facebook":  "فيسبوك",
+    "x":         "إكس",
+    "github":    "جيت هاب",
+    "linkedin":  "لينكدإن",
+    "leetcode":  "ليتكود"
   },
   "theme": {
     "switchToLight": "التبديل إلى الوضع الفاتح",

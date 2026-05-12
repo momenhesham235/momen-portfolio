@@ -1,6 +1,7 @@
 {
   "hero": {
     "greeting":    "Hello, World 👋",
+    "intro":       "I'm",
     "firstName":   "Momen",
     "lastName":    "Hesham",
     "role":        "Frontend & Backend Developer",
@@ -11,7 +12,12 @@
   },
   "about": {
     "heading": "Professional Bio",
-    "body":    "Software Engineer specializing in building modern, scalable web applications using <strong>JavaScript, React, and Node.js</strong>. Passionate about clean code, performance optimization, and delivering high-quality user experiences."
+    "body":    "Software Engineer specializing in building modern, scalable web applications using <strong>JavaScript, React, and Node.js</strong>. Passionate about clean code, performance optimization, and delivering high-quality user experiences.",
+    "stats": [
+      { "value": "3+",  "label": "Years coding" },
+      { "value": "6+",  "label": "Projects shipped" },
+      { "value": "3",   "label": "Companies worked with" }
+    ]
   },
   "projects": {
     "heading":       "Projects",
@@ -107,7 +113,6 @@
     "status":         "Status",
     "duration":       "Duration",
     "features":       "Features",
-    "featureLabel":   "Feature {{number}}",
     "techStack":      "Tech Stack",
     "performance":    "Performance",
     "links":          "Links",

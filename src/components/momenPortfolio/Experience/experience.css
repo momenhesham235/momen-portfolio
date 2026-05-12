@@ -296,11 +296,19 @@
 
   .experience-item,
   .experience-item--left,
-  .experience-item--right {
+  .experience-item--right,
+  [dir="rtl"] .experience-item,
+  [dir="rtl"] .experience-item--left,
+  [dir="rtl"] .experience-item--right {
     width: 100%;
     margin: 0;
-    padding: 1rem 1rem 1rem 3.25rem;
     text-align: start;
+  }
+
+  .experience-item,
+  .experience-item--left,
+  .experience-item--right {
+    padding: 1rem 1rem 1rem 3.25rem;
   }
 
   [dir="rtl"] .experience-item,
