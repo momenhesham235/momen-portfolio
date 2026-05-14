@@ -15,6 +15,5 @@ export const experienceData = [
   {
     id: 3,
     tech: ["React", "React Native", "TypeScript", "API Integration", "Sentry"],
-    current: true,
   },
 ];

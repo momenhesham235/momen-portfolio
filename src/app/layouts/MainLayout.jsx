@@ -2,13 +2,14 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import { Header, Footer, SkipLink } from "@components/common";
+import LanguageTransitionLayer from "./LanguageTransitionLayer";
 
 const MainLayout = () => {
   const { pathname } = useLocation();
   const hideHeader = pathname.startsWith("/details");
 
   return (
-    <div className="container" id="main">
+    <LanguageTransitionLayer className="container" id="main">
       {!hideHeader && (
         <>
           <SkipLink />
@@ -22,7 +23,7 @@ const MainLayout = () => {
 
       <Toaster />
       <Footer />
-    </div>
+    </LanguageTransitionLayer>
   );
 };
 

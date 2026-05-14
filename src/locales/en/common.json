@@ -1,10 +1,11 @@
 {
   "nav": {
-    "home":     "Home",
-    "bio":      "Bio",
-    "projects": "Projects",
-    "skills":   "Skills",
-    "contact":  "Contact"
+    "home":       "Home",
+    "bio":        "Bio",
+    "projects":   "Projects",
+    "experience": "Experience",
+    "skills":     "Skills",
+    "contact":    "Contact"
   },
   "header": {
     "brand":           "Momen",

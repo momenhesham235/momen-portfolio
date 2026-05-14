@@ -11,6 +11,7 @@
 }
 
 .contact-form__submit {
+  align-self: center;
   margin-top: 0.25rem;
   padding: 0.9rem;
   border-radius: var(--radius-lg);

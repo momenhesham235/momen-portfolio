@@ -109,7 +109,7 @@ const Header = () => {
 
           {/* Resume download — desktop only */}
           <a
-            href="Momen-Hesham-CV.pdf"
+            href="Momen_Hesham_CV.pdf"
             className="header__resume-btn"
             download
             target="_blank"
@@ -248,7 +248,7 @@ const Header = () => {
                   )}
                 </button>
                 <a
-                  href="Momen-Hesham-CV.pdf"
+                  href="Momen_Hesham_CV.pdf"
                   className="header__resume-btn header__resume-btn--full"
                   download
                   target="_blank"

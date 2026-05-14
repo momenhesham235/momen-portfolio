@@ -38,7 +38,7 @@ export const SITE_NAME = "Momen Hesham | Software Engineer";
 export const SITE_DESCRIPTION =
   "Portfolio of Momen Hesham, showcasing projects built with React, Next.js, and MERN stack.";
 export const SITE_URL = "https://momenhesham235.github.io/momen-portfolio/";
-export const SITE_IMAGE = `${SITE_URL}me.png`;
+export const SITE_IMAGE = `${SITE_URL}Momen_Hesham.png`;
 
 // Social Links
 export const SOCIAL_LINKS = {

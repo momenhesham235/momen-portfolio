@@ -57,7 +57,7 @@ const Hero = () => {
             </div>
 
             <img
-              src="me.png"
+              src="Momen_Hesham.png"
               alt={`${firstName} ${lastName} — ${role}`}
               className="hero-avatar"
               loading="eager"

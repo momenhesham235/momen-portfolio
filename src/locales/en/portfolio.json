@@ -12,7 +12,7 @@
   },
   "about": {
     "heading": "Professional Bio",
-    "body":    "Software Engineer specializing in building modern, scalable web applications using <strong>JavaScript, React, and Node.js</strong>. Passionate about clean code, performance optimization, and delivering high-quality user experiences.",
+    "body":    "Software Engineer specializing in building scalable, production-ready web and mobile applications using <strong>React, Next.js, React Native, and Node.js</strong>. Experienced in developing high-performance, API-driven systems with a focus on clean architecture, performance optimization, and user experience.",
     "stats": [
       { "value": "3+",  "label": "Years coding" },
       { "value": "6+",  "label": "Projects shipped" },
@@ -78,7 +78,7 @@
         "title": "Frontend Developer Trainee",
         "company": "Madkhol Capital | مدخول المالية",
         "startDate": "Feb 2026",
-        "endDate": "Present",
+        "endDate": "May 2026",
         "description": [
           "Contributing to the development of fintech solutions across mobile and web applications within the React ecosystem.",
           "Assisting in building and refining features for the company's mobile application using React Native.",

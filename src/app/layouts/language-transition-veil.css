@@ -1,0 +1,37 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   LANGUAGE TRANSITION VEIL
+   Fixed full-viewport overlay shown briefly while i18n swaps `dir`/`lang`.
+   - No transform/filter on the content tree, so sticky/fixed descendants
+     keep their viewport-relative anchoring.
+   - The blur lives here, on a sibling fixed element portaled to <body>.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.lang-transition-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+
+  /* Subtle wash tinted with the current surface so it never feels
+     like a separate element — just a soft veil. Transparency is baked
+     into the colour (not via `opacity`) because Motion drives the
+     element's own opacity from 0 → 1 → 0 around the swap. */
+  background-color: color-mix(
+    in srgb,
+    var(--bg-secondary-color) 55%,
+    transparent
+  );
+
+  /* Depth — only paints during the brief transition window. */
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+
+  /* Hint the compositor for the duration the veil is alive. */
+  will-change: opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-transition-veil {
+    display: none;
+  }
+}
