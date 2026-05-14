@@ -1,0 +1,1 @@
+import{j as c}from"./index-CP81OOvo.js";/* empty css               */const l=({hoverable:s=!1,as:a="div",className:r="",children:o,...e})=>{const t=["ds-card",s?"ds-card--hoverable":"",r].filter(Boolean).join(" ");return c.jsx(a,{className:t,...e,children:o})};export{l as C};
