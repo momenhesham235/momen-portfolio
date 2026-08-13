@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 
+import { RESUME_URL } from "@app/config/constants";
 import { navbarData } from "@constants/navbar";
 import { useTheme } from "@hooks/use-theme";
 import { useLanguage } from "@hooks/use-language";
@@ -144,7 +145,7 @@ const Header = () => {
 
           {/* Resume download — desktop only */}
           <a
-            href="Momen_Hesham_CV.pdf"
+            href={RESUME_URL}
             className="header__resume-btn"
             download
             target="_blank"
@@ -307,7 +308,7 @@ const Header = () => {
                   </button>
                 </div>
                 <a
-                  href="Momen_Hesham_CV.pdf"
+                  href={RESUME_URL}
                   className="header__resume-btn header__resume-btn--full"
                   download
                   target="_blank"

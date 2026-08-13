@@ -37,8 +37,13 @@ export const THEME_LIGHT = "light";
 export const SITE_NAME = "Momen Hesham | Software Engineer";
 export const SITE_DESCRIPTION =
   "Portfolio of Momen Hesham, showcasing projects built with React, Next.js, and MERN stack.";
-export const SITE_URL = "https://momenhesham235.github.io/momen-portfolio/";
+export const SITE_URL = "https://momen-portfolio-ten.vercel.app/";
 export const SITE_IMAGE = `${SITE_URL}Momen_Hesham.png`;
+
+// Files served from /public. Prefixed with the deploy base so they resolve the
+// same from any route depth — a relative href breaks on /details/:id.
+export const RESUME_URL = `${import.meta.env.BASE_URL}Momen_Hesham_CV.pdf`;
+export const AVATAR_URL = `${import.meta.env.BASE_URL}Momen_Hesham.png`;
 
 // Social Links
 export const SOCIAL_LINKS = {

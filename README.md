@@ -1,6 +1,6 @@
 # 🚀 Momen Hesham — Portfolio
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://momenhesham235.github.io/momen-portfolio/)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://momen-portfolio-ten.vercel.app/)
 [![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-7-purple)](https://vitejs.dev/)
 [![i18next](https://img.shields.io/badge/i18n-EN%20%7C%20AR-orange)](https://www.i18next.com/)
@@ -56,7 +56,7 @@
 | **Icons** | React Icons |
 | **Lottie** | lottie-react |
 | **Styling** | Plain CSS + CSS custom properties |
-| **Deployment** | GitHub Pages (`gh-pages`) |
+| **Deployment** | Vercel |
 
 ---
 
@@ -82,7 +82,7 @@ npm install
 npm run dev
 ```
 
-The app will be available at `http://localhost:3000/momen-portfolio/`.
+The app will be available at `http://localhost:3000/`.
 
 ---
 
@@ -93,7 +93,6 @@ npm run dev      # Start dev server (port 3000, auto-opens browser)
 npm run build    # Build for production into dist/
 npm run preview  # Preview the production build locally
 npm run lint     # Run ESLint
-npm run deploy   # Build and deploy to GitHub Pages
 ```
 
 ---
@@ -259,25 +258,20 @@ Edit `SOCIAL_LINKS` in [src/app/config/constants.js](src/app/config/constants.js
 
 ## 🚀 Deployment
 
-### **GitHub Pages**
+### **Vercel**
 
-```bash
-npm run deploy
-```
+Every push to `main` triggers a deployment automatically — no manual step.
 
-Deployed to: `https://momenhesham235.github.io/momen-portfolio/`
+Deployed to: `https://momen-portfolio-ten.vercel.app/`
 
-The `base` is set in [vite.config.js](vite.config.js) and the router uses a matching `basename`, so the app works correctly under the `/momen-portfolio/` subpath.
+Because this is a client-routed SPA, [vercel.json](vercel.json) rewrites every path to `index.html`; without it, refreshing a deep link such as `/details/5` would 404.
 
 ### **Other Platforms**
 
-The build output is in `dist/` and can be deployed to:
-- Vercel
-- Netlify
-- AWS S3 / CloudFront
-- Any static hosting service
+The build output is in `dist/` and can be deployed to any static host. Two things to carry over:
 
-When hosting at the root, remove the `base` from `vite.config.js` and the `basename` from `AppRoute.jsx`.
+- An SPA fallback (rewrite unknown paths to `index.html`, or ship a copy of it as `404.html` on hosts without rewrites, like GitHub Pages).
+- If the host serves from a subpath rather than the domain root, set `base` in [vite.config.js](vite.config.js) and pass a matching `basename` to `createBrowserRouter` in [AppRoute.jsx](src/app/routes/AppRoute.jsx).
 
 ---
 
@@ -325,7 +319,7 @@ This project is open source under the [MIT License](LICENSE).
 
 **Momen Hesham**
 
-- 🌐 Website: [momenhesham235.github.io/momen-portfolio](https://momenhesham235.github.io/momen-portfolio/)
+- 🌐 Website: [momen-portfolio-ten.vercel.app](https://momen-portfolio-ten.vercel.app/)
 - 💼 LinkedIn: [linkedin.com/in/momen-hesham](https://www.linkedin.com/in/momen-hesham/)
 - 🐙 GitHub: [@momenhesham235](https://github.com/momenhesham235)
 - 📧 Email: hmomen235@gmail.com
@@ -342,7 +336,7 @@ This project is open source under the [MIT License](LICENSE).
 
 ## 🔗 Links
 
-- **Live Demo:** https://momenhesham235.github.io/momen-portfolio/
+- **Live Demo:** https://momen-portfolio-ten.vercel.app/
 - **Repository:** https://github.com/momenhesham235/momen-portfolio
 - **Issues:** https://github.com/momenhesham235/momen-portfolio/issues
 

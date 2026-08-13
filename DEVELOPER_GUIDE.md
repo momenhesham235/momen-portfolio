@@ -26,7 +26,7 @@ This is a production-grade portfolio website built with React 19, showcasing mod
 - **Forms:** Formspree
 - **Notifications:** React Hot Toast
 - **Animations:** Lottie React
-- **Deployment:** GitHub Pages
+- **Deployment:** Vercel (auto-deploys on push to `main`)
 
 ---
 
@@ -96,7 +96,6 @@ npm run dev      # Start development server (port 3000)
 npm run build    # Build for production
 npm run preview  # Preview production build
 npm run lint     # Run ESLint
-npm run deploy   # Deploy to GitHub Pages
 ```
 
 ---

@@ -4,7 +4,9 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/momen-portfolio/",
+  // Served from the domain root on Vercel. Deep-link refreshes are handled by
+  // the SPA rewrite in vercel.json, not by a static 404 fallback.
+  base: "/",
   server: {
     open: true,
     port: 3000,

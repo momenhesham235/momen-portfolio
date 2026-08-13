@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://momenhesham235.github.io/momen-portfolio/sitemap.xml
+Sitemap: https://momen-portfolio-ten.vercel.app/sitemap.xml

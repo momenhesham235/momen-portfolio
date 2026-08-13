@@ -7,6 +7,7 @@ import { HiArrowRight, HiOutlineChevronDown } from "react-icons/hi2";
 import { FiDownload } from "react-icons/fi";
 
 import { codingAnimation } from "@assets";
+import { AVATAR_URL, RESUME_URL } from "@app/config/constants";
 import { socialLinks, heroStack, heroOrbitBadges } from "@constants/heroData";
 import "./hero.css";
 
@@ -161,7 +162,7 @@ const Hero = () => {
               {t("hero.ctaSecondary")}
             </a>
             <a
-              href="Momen_Hesham_CV.pdf"
+              href={RESUME_URL}
               className="hero-cta__ghost"
               download
               target="_blank"
@@ -213,7 +214,7 @@ const Hero = () => {
             </div>
 
             <img
-              src="Momen_Hesham.png"
+              src={AVATAR_URL}
               alt={`${firstName} ${lastName} — ${role}`}
               className="hero-avatar"
               loading="eager"
