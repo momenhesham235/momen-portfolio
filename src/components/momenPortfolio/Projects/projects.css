@@ -1,56 +1,128 @@
-/* Header */
-.projects-header {
-  max-width: 1100px;
-  margin: 0 auto 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* ────────────────────────────────────────────────────────────────────────────
+   Projects — filter rail, card grid, empty state, load-more
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.projects {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
 }
 
+/* ─── Filter rail ───────────────────────────────────────────────────────── */
 .projects-filter {
-  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto var(--space-6);
+  padding: 0.35rem;
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  background: var(--glass-bg);
+  box-shadow: var(--ring-inset);
 }
 
-/* Grid */
+.projects-filter__chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+
+  color: var(--subtitle-color);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.projects-filter__chip:hover:not(:disabled):not(.is-active) {
+  color: var(--title-color);
+  background: var(--glass-bg-strong);
+}
+
+.projects-filter__chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.projects-filter__chip.is-active {
+  color: var(--accent-on);
+  font-weight: 600;
+}
+
+/* The travelling selection pill — one node, moved by Motion's layoutId. */
+.projects-filter__pill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background: var(--accent-gradient);
+  box-shadow: 0 3px 12px rgb(var(--accent-rgb) / 0.3);
+}
+
+.projects-filter__label,
+.projects-filter__count {
+  position: relative;
+  z-index: 1;
+}
+
+.projects-filter__count {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+
+.projects-filter__chip.is-active .projects-filter__count { opacity: 0.75; }
+
+/* Cancel the global button:active squash — it fights the layout animation. */
+.projects-filter__chip:active { scale: 1; }
+
+/* ─── Grid ──────────────────────────────────────────────────────────────── */
 .projects-grid {
-  max-width: 1100px;
-  margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  gap: var(--space-5);
+  align-items: stretch;
 }
 
-/* Empty state */
+/* ─── Empty state ───────────────────────────────────────────────────────── */
 .projects-empty {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 3rem 1.5rem;
+  padding: var(--space-7) var(--space-5);
   border-radius: var(--radius-xl);
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: 1px dashed var(--border-strong);
   color: var(--subtitle-color);
-  font-size: 1.1rem;
+  font-size: var(--fs-md);
   animation: projectsEmptyFade 0.4s ease;
 }
 
-.projects-empty__message strong {
-  color: var(--accent-color);
-}
+.projects-empty__message strong { color: var(--accent-color); }
 
 .projects-empty__reset {
-  margin-top: 1.2rem;
+  margin-top: var(--space-4);
   padding: 0.6rem 1.4rem;
-  border-radius: 10px;
-  background-color: var(--accent-color);
-  color: var(--bg-primary-color);
+  border-radius: var(--radius-md);
+  background: var(--accent-gradient);
+  color: var(--accent-on);
   border: none;
   cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  transition: box-shadow 0.3s ease, transform 0.25s ease;
 }
 
 .projects-empty__reset:hover {
-  opacity: 0.85;
+  box-shadow: 0 8px 24px rgb(var(--accent-rgb) / 0.35);
   transform: translateY(-2px);
 }
 
@@ -59,35 +131,79 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Load more */
+/* ─── Load more ─────────────────────────────────────────────────────────── */
 .projects-load-more {
-  margin-top: 3rem;
+  margin-top: var(--space-6);
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .projects-load-more__btn {
-  padding: 0.7rem 1.6rem;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s ease;
-  background-color: var(--card-bg);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-strong);
+  background: var(--glass-bg);
   color: var(--title-color);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.28s ease,
+    border-color 0.28s ease,
+    background-color 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.projects-load-more__btn svg {
+  font-size: 1.15rem;
+  transition: transform 0.28s var(--ease-spring);
 }
 
 .projects-load-more__btn:hover {
-  background: var(--accent-color);
-  color: #000;
-  transform: translateY(-3px);
+  color: var(--accent-color);
+  border-color: rgb(var(--accent-rgb) / 0.5);
+  background: rgb(var(--accent-rgb) / 0.08);
+  box-shadow: var(--shadow-glow-soft);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .projects-header {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+.projects-load-more__btn:hover svg { transform: rotate(90deg); }
+
+.projects-load-more__count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding-inline: 0.3rem;
+  border-radius: var(--radius-full);
+  background: rgb(var(--accent-rgb) / 0.16);
+  color: var(--accent-color);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .projects-filter {
+    /* Keep the rail on one line and let it scroll — wrapping six chips into
+       three ragged rows costs more vertical space than it's worth here. */
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-radius: var(--radius-lg);
+  }
+
+  .projects-filter::-webkit-scrollbar { display: none; }
+
+  .projects-filter__chip { padding: 0.45rem 0.8rem; }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 }

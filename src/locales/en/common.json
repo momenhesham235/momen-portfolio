@@ -38,6 +38,9 @@
     "switchToLight": "Switch to light mode",
     "switchToDark":  "Switch to dark mode"
   },
+  "splash": {
+    "loading": "Loading portfolio"
+  },
   "a11y": {
     "skipToContent": "Skip to main content"
   }

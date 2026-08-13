@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 // eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 
 import { navbarData } from "@constants/navbar";
 import { useTheme } from "@hooks/use-theme";
@@ -19,6 +19,9 @@ import { MdLanguage } from "react-icons/md";
 
 import "./header.css";
 
+/* Motion shared between the desktop pill and the mobile rail marker. */
+const INDICATOR_SPRING = { type: "spring", stiffness: 380, damping: 32 };
+
 const Header = () => {
   const { t } = useTranslation("common");
   const [showMenu, setShowMenu] = useState(false);
@@ -31,10 +34,20 @@ const Header = () => {
   const menuRef = useFocusTrap(showMenu);
   useLockBodyScroll(showMenu);
 
+  // Read-progress rail pinned to the header's bottom edge.
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 200,
+    damping: 40,
+    restDelta: 0.001,
+  });
+
   const closeMenu = () => setShowMenu(false);
   const langLabel = language.toUpperCase();
-  const themeAriaLabel =
-    theme === "dark" ? t("theme.switchToLight") : t("theme.switchToDark");
+  const isDark = theme === "dark";
+  const themeAriaLabel = isDark
+    ? t("theme.switchToLight")
+    : t("theme.switchToDark");
 
   return (
     <header
@@ -51,7 +64,10 @@ const Header = () => {
           <span className="header__monogram" aria-hidden="true">
             MH
           </span>
-          <span className="header__brand-name">{t("header.brand")}</span>
+          <span className="header__brand-text">
+            <span className="header__brand-name">{t("header.brand")}</span>
+            <span className="header__brand-role">{t("footer.role")}</span>
+          </span>
         </a>
 
         {/* ── Desktop Navigation ── */}
@@ -61,19 +77,26 @@ const Header = () => {
               const sectionId = item.link.replace("#", "");
               const isActive = activeSection === sectionId;
               return (
-                <li key={item.id}>
+                <li key={item.id} className="header__nav-item">
                   <a
                     href={item.link}
                     className={`header__nav-link${isActive ? " header__nav-link--active" : ""}`}
                     aria-current={isActive ? "location" : undefined}
                   >
-                    {t(`nav.${item.key}`)}
+                    {/* Shared layoutId: the pill physically travels between
+                        links instead of cross-fading, which is what makes the
+                        nav read as one continuous control. */}
                     {isActive && (
-                      <span
-                        className="header__nav-dot"
+                      <motion.span
+                        className="header__nav-pill"
+                        layoutId="header-nav-pill"
+                        transition={INDICATOR_SPRING}
                         aria-hidden="true"
                       />
                     )}
+                    <span className="header__nav-label">
+                      {t(`nav.${item.key}`)}
+                    </span>
                   </a>
                 </li>
               );
@@ -96,15 +119,27 @@ const Header = () => {
 
           {/* Theme toggle */}
           <button
-            className="header__icon-btn"
+            className="header__icon-btn header__theme-btn"
             onClick={toggleTheme}
             aria-label={themeAriaLabel}
+            title={themeAriaLabel}
           >
-            {theme === "dark" ? (
-              <LuSunMoon aria-hidden="true" />
-            ) : (
-              <IoMoonOutline aria-hidden="true" />
-            )}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={theme}
+                className="header__theme-icon"
+                initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
+                transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {isDark ? (
+                  <LuSunMoon aria-hidden="true" />
+                ) : (
+                  <IoMoonOutline aria-hidden="true" />
+                )}
+              </motion.span>
+            </AnimatePresence>
           </button>
 
           {/* Resume download — desktop only */}
@@ -132,6 +167,13 @@ const Header = () => {
           </button>
         </div>
       </div>
+
+      {/* ── Read progress ── */}
+      <motion.div
+        className="header__progress"
+        style={{ scaleX: progress }}
+        aria-hidden="true"
+      />
 
       {/* ── Mobile Drawer ── */}
       <AnimatePresence>
@@ -166,6 +208,8 @@ const Header = () => {
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 320, damping: 32 }}
             >
+              <span className="mobile-drawer__glow" aria-hidden="true" />
+
               {/* Panel header */}
               <div className="mobile-drawer__header">
                 <a
@@ -177,7 +221,12 @@ const Header = () => {
                   <span className="header__monogram" aria-hidden="true">
                     MH
                   </span>
-                  <span className="header__brand-name">{t("header.brand")}</span>
+                  <span className="header__brand-text">
+                    <span className="header__brand-name">
+                      {t("header.brand")}
+                    </span>
+                    <span className="header__brand-role">{t("footer.role")}</span>
+                  </span>
                 </a>
                 <button
                   className="mobile-drawer__close"
@@ -212,6 +261,14 @@ const Header = () => {
                           onClick={closeMenu}
                           aria-current={isActive ? "location" : undefined}
                         >
+                          {isActive && (
+                            <motion.span
+                              className="mobile-drawer__marker"
+                              layoutId="drawer-nav-marker"
+                              transition={INDICATOR_SPRING}
+                              aria-hidden="true"
+                            />
+                          )}
                           <span
                             className="mobile-drawer__index"
                             aria-hidden="true"
@@ -228,25 +285,27 @@ const Header = () => {
 
               {/* Panel footer */}
               <div className="mobile-drawer__footer">
-                <button
-                  className="header__lang-btn"
-                  onClick={toggleLanguage}
-                  aria-label={t("header.toggleLanguage")}
-                >
-                  <MdLanguage aria-hidden="true" />
-                  <span>{langLabel}</span>
-                </button>
-                <button
-                  className="header__icon-btn"
-                  onClick={toggleTheme}
-                  aria-label={themeAriaLabel}
-                >
-                  {theme === "dark" ? (
-                    <LuSunMoon aria-hidden="true" />
-                  ) : (
-                    <IoMoonOutline aria-hidden="true" />
-                  )}
-                </button>
+                <div className="mobile-drawer__footer-row">
+                  <button
+                    className="header__lang-btn"
+                    onClick={toggleLanguage}
+                    aria-label={t("header.toggleLanguage")}
+                  >
+                    <MdLanguage aria-hidden="true" />
+                    <span>{langLabel}</span>
+                  </button>
+                  <button
+                    className="header__icon-btn"
+                    onClick={toggleTheme}
+                    aria-label={themeAriaLabel}
+                  >
+                    {isDark ? (
+                      <LuSunMoon aria-hidden="true" />
+                    ) : (
+                      <IoMoonOutline aria-hidden="true" />
+                    )}
+                  </button>
+                </div>
                 <a
                   href="Momen_Hesham_CV.pdf"
                   className="header__resume-btn header__resume-btn--full"

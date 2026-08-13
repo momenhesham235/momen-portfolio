@@ -1,259 +1,386 @@
 /* ============================================================
    HERO SECTION
    Table of contents
-   1. Section & container
-   2. Avatar column (left)
-   3. Glow ring & floating animation
-   4. Lottie background decoration
-   5. Avatar image
-   6. Certified badge
-   7. Content column (right)
-   8. Heading & accent
-   9. Typing animation
-   10. Bio paragraph
-   11. Social links
-   12. CTA buttons
-   13. Responsive breakpoints
+   1. Section, ambient backdrop & container
+   2. Content column — status, greeting, heading
+   3. Rotating role line
+   4. Bio & headline stack chips
+   5. CTA buttons
+   6. Social links
+   7. Portrait column — glow, ring, avatar, orbit badges
+   8. Scroll cue
+   9. Responsive breakpoints
    ============================================================ */
 
-/* ── 1. Section & container ── */
+/* ── 1. Section & ambient backdrop ── */
 .hero {
-  padding: 4.5rem 0 3rem;
   position: relative;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 6vw, 4rem);
   overflow: hidden;
 }
 
-/* Ambient background radial gradient */
-.hero::before {
-  content: "";
+.hero__ambient {
   position: absolute;
-  top: 0;
-  left: -10%;
-  width: 55%;
-  height: 80%;
-  background: radial-gradient(
-    ellipse at 30% 40%,
-    rgba(184, 134, 11, 0.07) 0%,
-    transparent 65%
-  );
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
+  pointer-events: none;
+}
+
+/* Two out-of-focus light sources drifting behind the content */
+.hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+}
+
+.hero__blob--gold {
+  top: -18%;
+  inset-inline-start: -12%;
+  width: 34rem;
+  height: 34rem;
+  background: radial-gradient(
+    circle,
+    rgb(var(--accent-rgb) / 0.4) 0%,
+    transparent 68%
+  );
+  animation: heroDrift 16s ease-in-out infinite;
+}
+
+.hero__blob--blue {
+  bottom: -22%;
+  inset-inline-end: -10%;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(
+    circle,
+    rgb(var(--blue-rgb) / 0.22) 0%,
+    transparent 68%
+  );
+  animation: heroDrift 20s ease-in-out infinite reverse;
+}
+
+@keyframes heroDrift {
+  0%, 100% { transform: translate3d(0, 0, 0)      scale(1);    }
+  33%      { transform: translate3d(4%, 6%, 0)    scale(1.08); }
+  66%      { transform: translate3d(-3%, -4%, 0)  scale(0.95); }
+}
+
+/* Faint engineering grid, masked to a soft ellipse */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right,  var(--border-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 10%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 10%, transparent 75%);
+  opacity: 0.55;
 }
 
 .hero-container {
   position: relative;
   z-index: 1;
-  max-width: 1100px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 3rem;
+  gap: clamp(2rem, 5vw, 4rem);
 }
 
-/* ── 2. Avatar column ── */
-.hero-avatar-col {
-  flex: 0 0 auto;
+/* ── 2. Content column ── */
+.hero-content {
+  flex: 1 1 32rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
-  position: relative;
+  min-width: 0;
+  max-width: 36rem;
 }
 
-/* ── 3. Glow ring & floating animation ── */
-.hero-avatar-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 110%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(184, 134, 11, 0.28) 0%,
-    rgba(184, 134, 11, 0.06) 50%,
-    transparent 70%
-  );
-  filter: blur(20px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-avatar-frame {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Floating animation */
-  animation: heroFloat 4.8s ease-in-out infinite;
-}
-
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-10px); }
-}
-
-/* ── 4. Lottie background decoration ── */
-.hero-lottie-bg {
-  position: absolute;
-  inset: -18%;
-  opacity: 0.18;
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-/* ── 5. Avatar image ── */
-.hero-avatar {
-  position: relative;
-  z-index: 1;
-  width: clamp(200px, 32vw, 290px);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: top center;
-
-  /* Premium double-ring border */
-  border: 3px solid var(--accent-color);
-  outline: 6px solid rgba(184, 134, 11, 0.18);
-  outline-offset: 2px;
-
-  box-shadow:
-    0 0 0 1px rgba(184, 134, 11, 0.25),
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    inset 0 0 24px rgba(0, 0, 0, 0.15);
-}
-
-/* ── 6. Certified badge ── */
-.hero-badge {
+/* Availability pill */
+.hero-status {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-
-  color: var(--title-color);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgb(var(--accent-rgb) / 0.3);
+  background: rgb(var(--accent-rgb) / 0.08);
+  color: var(--accent-strong);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
-.hero-badge__icon {
-  color: var(--blue-color);
-  font-size: 1rem;
+.hero-status__dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-success);
   flex-shrink: 0;
 }
 
-/* ── 7. Content column ── */
-.hero-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-  max-width: 560px;
+/* Expanding halo — the "live" signal on the availability pill */
+.hero-status__dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--color-success);
+  animation: heroPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* ── 8. Heading & accent ── */
+@keyframes heroPing {
+  0%        { transform: scale(1);   opacity: 0.75; }
+  75%, 100% { transform: scale(2.6); opacity: 0;    }
+}
+
 .hero-greeting {
-  display: inline-block;
-  font-size: 0.95rem;
+  font-size: var(--fs-md);
   font-weight: 500;
   color: var(--subtitle-color);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 
 .hero-heading {
-  color: var(--title-color);
-  font-size: clamp(2.4rem, 5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
   margin: 0;
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
 }
 
-.hero-heading__accent {
-  color: var(--accent-color);
-  /* Subtle text glow */
-  text-shadow: 0 0 32px rgba(184, 134, 11, 0.35);
+.hero-heading__intro {
+  color: var(--subtitle-color);
+  font-weight: 600;
 }
 
-/* ── 9. Typing animation ── */
-.hero-typing-wrapper {
-  display: block;
-  min-height: 1.8rem;
-  /* Constrain the wrapper so the nowrap child below can never force
-     the parent (and ultimately the page) wider than the available space. */
+.hero-heading__name {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Painted behind the clipped text so the glow isn't clipped away with it. */
+  filter: drop-shadow(0 4px 26px rgb(var(--accent-rgb) / 0.28));
+}
+
+/* ── 3. Rotating role ── */
+.hero-roles {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2rem;
   max-width: 100%;
   min-width: 0;
-  overflow: hidden;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 500;
+  color: var(--title-color);
 }
 
-.hero-typing-text {
-  color: var(--subtitle-color);
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
-  font-weight: 400;
+.hero-roles__prefix {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--accent-color);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
 
-  display: inline-block;
+/* Clipping window: the outgoing role slides up and out, the incoming one
+   rises in from below, and neither is visible outside this box. */
+.hero-roles__viewport {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 1.7em;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.hero-roles__item {
+  display: block;
   white-space: nowrap;
   overflow: hidden;
-  /* Use logical property so the typing cursor sits on the trailing edge
-     in both LTR (right) and RTL (left). */
-  border-inline-end: 2px solid var(--accent-color);
-  max-width: 0;
-  will-change: max-width;
-
-  animation:
-    heroTyping 8s steps(32, end) infinite,
-    heroBlink 0.75s step-end infinite;
+  text-overflow: ellipsis;
 }
 
-@keyframes heroTyping {
-  0%, 8%   { max-width: 0; }
-  42%, 58% { max-width: 100%; }
-  92%, 100%{ max-width: 0; }
+.hero-roles__caret {
+  width: 2px;
+  height: 1.15em;
+  flex-shrink: 0;
+  background: var(--accent-color);
+  border-radius: 1px;
+  animation: heroBlink 1.05s step-end infinite;
 }
 
 @keyframes heroBlink {
-  0%, 49%  { border-inline-end-color: var(--accent-color); }
-  50%, 100%{ border-inline-end-color: transparent; }
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
-/* ── 10. Bio paragraph ── */
+/* ── 4. Bio & stack chips ── */
 .hero-bio {
-  color: var(--subtitle-color);
-  font-size: clamp(0.88rem, 1.6vw, 0.97rem);
-  line-height: 1.7;
-  max-width: 440px;
   margin: 0;
+  max-width: 34rem;
+  color: var(--subtitle-color);
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  text-wrap: pretty;
 }
 
-/* ── 11. Social links ── */
+.hero-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-stack__chip {
+  padding: 0.28rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--glass-bg);
+  color: var(--subtitle-color);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.hero-stack__chip:hover {
+  color: var(--accent-color);
+  border-color: rgb(var(--accent-rgb) / 0.4);
+}
+
+/* ── 5. CTA buttons ── */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.hero-cta__primary,
+.hero-cta__secondary,
+.hero-cta__ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Primary — filled gradient with a sweeping specular highlight */
+.hero-cta__primary {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--accent-gradient);
+  color: var(--accent-on);
+  border: 1px solid transparent;
+  box-shadow: 0 6px 22px rgb(var(--accent-rgb) / 0.3);
+  transition: box-shadow 0.28s ease, transform 0.22s ease;
+}
+
+.hero-cta__primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease-out-expo);
+  z-index: -1;
+}
+
+.hero-cta__primary:hover {
+  box-shadow: 0 10px 32px rgb(var(--accent-rgb) / 0.45);
+  transform: translateY(-2px);
+}
+
+.hero-cta__primary:hover::after { transform: translateX(120%); }
+
+.hero-cta__primary:active { transform: translateY(0); }
+
+.hero-cta__arrow {
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+}
+
+.hero-cta__primary:hover .hero-cta__arrow { transform: translateX(3px); }
+
+[dir="rtl"] .hero-cta__arrow { transform: scaleX(-1); }
+[dir="rtl"] .hero-cta__primary:hover .hero-cta__arrow {
+  transform: scaleX(-1) translateX(3px);
+}
+
+/* Secondary — outlined */
+.hero-cta__secondary {
+  color: var(--title-color);
+  border: 1px solid var(--border-strong);
+  background: var(--glass-bg);
+  transition: border-color 0.25s ease, color 0.25s ease,
+    background-color 0.25s ease, transform 0.22s ease;
+}
+
+.hero-cta__secondary:hover {
+  border-color: rgb(var(--accent-rgb) / 0.55);
+  color: var(--accent-color);
+  background: rgb(var(--accent-rgb) / 0.07);
+  transform: translateY(-2px);
+}
+
+/* Ghost — tertiary weight for the résumé download */
+.hero-cta__ghost {
+  padding-inline: 0.9rem;
+  color: var(--subtitle-color);
+  border: 1px solid transparent;
+  background: transparent;
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.hero-cta__ghost:hover {
+  color: var(--accent-color);
+  background: rgb(var(--accent-rgb) / 0.07);
+}
+
+/* ── 6. Social links ── */
 .hero-socials {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
+  margin-top: 0.3rem;
 }
 
 .hero-social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 8px;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
-  background-color: var(--bg-header-color);
+  background: var(--glass-bg);
   color: var(--subtitle-color);
   font-size: 1rem;
   text-decoration: none;
@@ -266,158 +393,242 @@
 
 .hero-social-link:hover {
   color: var(--accent-color);
-  border-color: rgba(184, 134, 11, 0.5);
-  background-color: rgba(184, 134, 11, 0.08);
-  transform: translateY(-2px);
+  border-color: rgb(var(--accent-rgb) / 0.5);
+  background-color: rgb(var(--accent-rgb) / 0.09);
+  transform: translateY(-3px);
 }
 
-/* ── 12. CTA buttons ── */
-.hero-cta {
+/* ── 7. Portrait column ── */
+.hero-avatar-col {
+  flex: 0 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-avatar-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 118%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(var(--accent-rgb) / 0.3) 0%,
+    rgb(var(--accent-rgb) / 0.07) 48%,
+    transparent 70%
+  );
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-avatar-frame {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-  margin-top: 0.25rem;
+  justify-content: center;
+  animation: heroFloat 5.4s ease-in-out infinite;
 }
 
-/* Primary CTA */
-.hero-cta__primary {
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+/* Rotating conic rim around the portrait */
+.hero-avatar-ring {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgb(var(--accent-rgb) / 0.08) 90deg,
+    var(--accent-color) 250deg,
+    var(--accent-strong) 300deg,
+    transparent 360deg
+  );
+  /* Hollow out the centre so only a hairline rim remains. */
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  animation: heroSpin 9s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes heroSpin {
+  to { rotate: 360deg; }
+}
+
+.hero-lottie-bg {
+  position: absolute;
+  inset: -18%;
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.hero-avatar {
   position: relative;
   z-index: 1;
-  display: inline-flex;
+  width: clamp(200px, 30vw, 300px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+
+  border: 3px solid rgb(var(--accent-rgb) / 0.55);
+  background: var(--surface-raised);
+
+  box-shadow:
+    0 0 0 10px rgb(var(--accent-rgb) / 0.07),
+    0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Orbit badges — the slot positions, the chip decorates. */
+.hero-orbit-slot {
+  position: absolute;
+  z-index: 2;
+  display: block;
+}
+
+.hero-orbit-slot--top-start    { top: 4%;    inset-inline-start: -8%;  }
+.hero-orbit-slot--top-end      { top: 14%;   inset-inline-end: -12%;   }
+.hero-orbit-slot--bottom-start { bottom: 14%; inset-inline-start: -12%; }
+.hero-orbit-slot--bottom-end   { bottom: 2%;  inset-inline-end: -6%;    }
+
+.hero-orbit {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-lg);
+
+  background: var(--surface-raised);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md), var(--ring-inset);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  /* Hover uses the standalone `scale` property rather than `transform`,
+     because the idle bob below already owns `transform` — a running
+     animation would otherwise win and swallow the hover entirely. */
+  transition: scale 0.3s var(--ease-spring), border-color 0.3s ease;
+}
+
+.hero-orbit img {
+  width: 1.6rem;
+  height: 1.6rem;
+  object-fit: contain;
+}
+
+.hero-orbit:hover {
+  scale: 1.12;
+  border-color: rgb(var(--accent-rgb) / 0.5);
+}
+
+/* Small independent bob, staggered so the four badges never pulse in
+   lockstep. Amplitude is deliberately low — this compounds with the
+   frame's own float, and two large motions read as jitter. */
+@keyframes heroBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+.hero-orbit--top-start    { animation: heroBob 6.2s ease-in-out infinite; }
+.hero-orbit--top-end      { animation: heroBob 7.1s ease-in-out infinite 0.4s; }
+.hero-orbit--bottom-start { animation: heroBob 6.6s ease-in-out infinite 0.8s; }
+.hero-orbit--bottom-end   { animation: heroBob 7.6s ease-in-out infinite 0.2s; }
+
+/* ── 8. Scroll cue ── */
+.hero-scroll {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.65rem 1.4rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  gap: 0.3rem;
+  width: fit-content;
+  margin: clamp(2rem, 5vw, 3.5rem) auto 0;
+  color: var(--muted-color);
   text-decoration: none;
-  overflow: hidden;
-  background: var(--accent-color);
-  color: #000;
-  border: 2px solid var(--accent-color);
-  transition: box-shadow 0.28s ease, transform 0.22s ease;
+  transition: color 0.25s ease;
 }
 
-.hero-cta__primary:hover {
-  box-shadow: 0 4px 20px rgba(184, 134, 11, 0.4);
-  transform: translateY(-1px);
-}
+.hero-scroll:hover { color: var(--accent-color); }
 
-.hero-cta__primary:active {
-  transform: translateY(0);
-}
-
-.hero-cta__arrow {
-  font-size: 1rem;
-  transition: transform 0.25s ease;
-}
-
-.hero-cta__primary:hover .hero-cta__arrow {
-  transform: translateX(3px);
-}
-
-/* Secondary CTA */
-.hero-cta__secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.65rem 1.4rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
+.hero-scroll__label {
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  color: var(--title-color);
-  border: 2px solid var(--border-color);
-  background: transparent;
-  transition:
-    border-color 0.25s ease,
-    color 0.25s ease,
-    transform 0.22s ease;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-.hero-cta__secondary:hover {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-  transform: translateY(-1px);
+.hero-scroll__icon {
+  font-size: 1.15rem;
+  animation: heroNudge 1.9s ease-in-out infinite;
 }
 
-/* ── 13. Responsive ── */
-@media (max-width: 900px) {
+@keyframes heroNudge {
+  0%, 100% { transform: translateY(0);   opacity: 0.6; }
+  50%      { transform: translateY(5px); opacity: 1;   }
+}
+
+/* ── 9. Responsive ── */
+@media (max-width: 980px) {
   .hero-container {
     flex-direction: column;
     text-align: center;
     gap: 2.5rem;
   }
 
+  /* Lead with the portrait on narrow screens — it is the faster identity cue
+     when the headline can no longer sit beside it. */
+  .hero-avatar-col { order: -1; }
+
   .hero-content {
     align-items: center;
     max-width: 100%;
   }
 
-  .hero-heading {
-    line-height: 1.15;
-  }
+  .hero-bio { text-align: center; }
 
-  .hero-bio {
-    text-align: center;
-    max-width: 480px;
-  }
+  .hero-cta,
+  .hero-socials,
+  .hero-stack { justify-content: center; }
 
-  .hero-typing-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero-cta {
-    justify-content: center;
-  }
-
-  .hero-socials {
-    justify-content: center;
-  }
-
-  /* Shrink glow on tablet */
-  .hero-avatar-glow {
-    width: 90%;
-  }
+  .hero-roles { justify-content: center; }
 }
 
 @media (max-width: 600px) {
-  .hero {
-    padding: 3rem 0 2rem;
+  .hero { padding: 1.5rem 0 2.5rem; }
+
+  .hero-avatar { width: clamp(170px, 52vw, 220px); }
+
+  .hero-orbit {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: var(--radius-md);
   }
 
-  .hero-avatar {
-    width: clamp(160px, 55vw, 210px);
-  }
+  .hero-orbit img { width: 1.25rem; height: 1.25rem; }
 
-  .hero-heading {
-    font-size: 2rem;
-  }
+  .hero-lottie-bg { opacity: 0.1; }
 
-  .hero-badge {
-    font-size: 0.74rem;
-    padding: 0.3rem 0.75rem;
-  }
+  .hero__grid { background-size: 38px 38px; }
 
-  .hero-lottie-bg {
-    /* Reduce noise on small screens */
-    opacity: 0.12;
-  }
+  .hero-stack__chip { font-size: 0.68rem; padding: 0.25rem 0.55rem; }
 }
 
-@media (max-width: 380px) {
-  .hero-cta {
-    flex-direction: column;
-    width: 100%;
-  }
+@media (max-width: 400px) {
+  .hero-cta { width: 100%; flex-direction: column; }
 
   .hero-cta__primary,
-  .hero-cta__secondary {
-    width: 100%;
-    justify-content: center;
-  }
+  .hero-cta__secondary,
+  .hero-cta__ghost { width: 100%; }
 }

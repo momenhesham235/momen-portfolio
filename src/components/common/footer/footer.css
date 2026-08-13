@@ -276,18 +276,3 @@
   .footer__top-btn { align-self: center; }
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .footer__monogram,
-  .footer__nav-link,
-  .footer__social-link,
-  .footer__top-btn,
-  .footer__top-btn svg {
-    transition: none;
-  }
-  .footer__brand:hover .footer__monogram,
-  .footer__social-link:hover,
-  .footer__top-btn:hover svg {
-    transform: none;
-  }
-}

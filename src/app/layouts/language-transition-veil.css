@@ -29,9 +29,3 @@
   /* Hint the compositor for the duration the veil is alive. */
   will-change: opacity;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .lang-transition-veil {
-    display: none;
-  }
-}

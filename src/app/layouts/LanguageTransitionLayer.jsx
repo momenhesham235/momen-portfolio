@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import useLanguageTransitionStore from "@app/stores/language-transition-store";
 import LanguageTransitionVeil from "./LanguageTransitionVeil";
 
@@ -22,23 +22,17 @@ import LanguageTransitionVeil from "./LanguageTransitionVeil";
  */
 const LanguageTransitionLayer = ({ children, className, id }) => {
   const isTransitioning = useLanguageTransitionStore((s) => s.isTransitioning);
-  const reduced = useReducedMotion();
 
-  const variants = reduced
-    ? {
-        in: { opacity: 1, transition: { duration: 0 } },
-        out: { opacity: 1, transition: { duration: 0 } },
-      }
-    : {
-        in: {
-          opacity: 1,
-          transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] },
-        },
-        out: {
-          opacity: 0,
-          transition: { duration: 0.18, ease: [0.4, 0, 0.6, 1] },
-        },
-      };
+  const variants = {
+    in: {
+      opacity: 1,
+      transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] },
+    },
+    out: {
+      opacity: 0,
+      transition: { duration: 0.18, ease: [0.4, 0, 0.6, 1] },
+    },
+  };
 
   return (
     <>

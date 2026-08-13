@@ -12,80 +12,169 @@
 
 /* ─────────────────────────────────────────────────────────────────────────────
    DESIGN TOKENS — CSS CUSTOM PROPERTIES
+
+   Accent is authored as raw RGB *channels* (`--accent-rgb`) rather than a
+   finished color. Every glow, tint, ring and border in the app is then written
+   as `rgb(var(--accent-rgb) / <alpha>)`, so re-theming the whole site — light
+   mode included — is a single three-number edit instead of ~50 hardcoded rgba()
+   literals that silently drift out of sync with the theme.
+
    60-30-10 rule:
-     60% → primary dark backgrounds & surfaces (--bg-*)
-     30% → secondary neutral / supporting     (--border-*, --subtitle-*)
+     60% → primary dark backgrounds & surfaces (--bg-*, --surface-*)
+     30% → secondary neutral / supporting      (--border-*, --subtitle-*)
      10% → accent gold interactions            (--accent-*)
 ───────────────────────────────────────────────────────────────────────────── */
 
 :root {
-  /* 60% — Primary surfaces */
-  --bg-primary-color:    #000;
-  --bg-secondary-color:  rgb(24, 24, 27);
-  --card-bg:             #1b1b1b;
-  --input-bg:            #111;
-  --bg-header-color:     rgb(39, 39, 42);
-  --header-scrolled-bg:  rgba(24, 24, 27, 0.88);
+  color-scheme: dark;
 
-  /* 30% — Secondary / neutral */
-  --border-color:        rgba(63, 63, 70, 0.4);
-  --subtitle-color:      rgb(161, 161, 170);
-  --icons-hover-color:   #d4d4d8;
-  --blue-color:          rgb(93, 188, 252);
+  /* ── 10% — Accent (gold) ── */
+  --accent-rgb:          214, 168, 74;
+  --accent-color:        rgb(var(--accent-rgb));
+  --accent-strong:       #f0cd85;
+  --accent-muted:        rgb(var(--accent-rgb) / 0.16);
+  --accent-on:           #16130a;  /* readable text on a filled accent surface */
+  --accent-gradient:     linear-gradient(135deg, #f5da9d 0%, #d6a84a 48%, #a3761f 100%);
 
-  /* 10% — Accent / gold */
-  --accent-color:        darkgoldenrod;
+  --blue-rgb:            93, 188, 252;
+  --blue-color:          rgb(var(--blue-rgb));
 
-  /* Typography */
-  --title-color:         rgb(244, 244, 245);
-  --font-family:         "Roboto", sans-serif;
-  --letter-spacing:      0.4px;
+  /* ── 60% — Primary surfaces ── */
+  --bg-primary-color:    #08080a;
+  --bg-secondary-color:  #0d0d11;
+  --card-bg:             #141418;
+  --surface-raised:      #1a1a20;
+  --surface-sunken:      #0a0a0d;
+  --input-bg:            #101014;
+  --bg-header-color:     #16161b;
+  --header-scrolled-bg:  rgba(13, 13, 17, 0.72);
 
-  /* Layout */
+  /* Glass — translucent chrome layered over content */
+  --glass-bg:            rgba(255, 255, 255, 0.035);
+  --glass-bg-strong:     rgba(255, 255, 255, 0.06);
+  --glass-border:        rgba(255, 255, 255, 0.09);
+  --glass-highlight:     rgba(255, 255, 255, 0.14);
+
+  /* ── 30% — Secondary / neutral ── */
+  --border-color:        rgba(255, 255, 255, 0.08);
+  --border-strong:       rgba(255, 255, 255, 0.14);
+  --subtitle-color:      rgb(160, 160, 172);
+  --muted-color:         rgb(115, 115, 128);
+  --icons-hover-color:   #e4e4e8;
+
+  /* ── Typography ── */
+  --title-color:         rgb(245, 245, 247);
+  --font-family:         "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:           ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, monospace;
+  --letter-spacing:      0.2px;
+
+  --fs-xs:      0.75rem;
+  --fs-sm:      0.8125rem;
+  --fs-base:    0.9375rem;
+  --fs-md:      1rem;
+  --fs-lg:      1.125rem;
+  --fs-xl:      clamp(1.15rem, 1.6vw, 1.35rem);
+  --fs-2xl:     clamp(1.45rem, 2.4vw, 1.8rem);
+  --fs-3xl:     clamp(1.9rem, 4vw, 2.6rem);
+  --fs-display: clamp(2.5rem, 6.5vw, 4.25rem);
+
+  /* ── Spacing scale ── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  3rem;
+  --space-8:  4rem;
+
+  /* Vertical rhythm between page sections */
+  --section-gap: clamp(3.5rem, 8vw, 6rem);
+
+  /* ── Layout ── */
   --lg-container-padding: 4.8rem;
   --md-container-padding: 1rem;
   --container-max-width:  1200px;
+  --content-max-width:    1100px;
 
-  /* Radius */
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
-  --radius-xl:  16px;
+  /* ── Radius ── */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   18px;
+  --radius-2xl:  24px;
   --radius-full: 9999px;
 
-  /* Shadows */
+  /* ── Elevation ── */
+  --shadow-xs:        0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm:        0 2px 8px rgba(0, 0, 0, 0.28);
+  --shadow-md:        0 8px 24px rgba(0, 0, 0, 0.34);
+  --shadow-lg:        0 18px 48px rgba(0, 0, 0, 0.45);
+  --shadow-glow:      0 12px 40px rgb(var(--accent-rgb) / 0.28);
+  --shadow-glow-soft: 0 8px 26px rgb(var(--accent-rgb) / 0.16);
   --shadow-card:      0 4px 20px rgba(0, 0, 0, 0.3);
-  --shadow-container: 1px 1px 40px rgba(49, 49, 49, 0.292);
+  --shadow-container: 0 24px 80px rgba(0, 0, 0, 0.45);
 
-  /* Transitions */
+  /* Inner top highlight that reads as a light source on raised surfaces */
+  --ring-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* ── Motion ── */
   --transition-fast:   0.15s ease;
   --transition-normal: 0.3s ease;
+  --ease-out-expo:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:       cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Semantic status */
-  --color-error: rgb(239, 68, 68);
+  /* ── Semantic status ── */
+  --color-error:   rgb(239, 68, 68);
+  --color-success: rgb(52, 199, 123);
 }
 
 /* ── Light theme overrides ─────────────────────────────────────────────────── */
 .light {
-  /* 60% */
-  --bg-primary-color:    rgb(250, 250, 250);
-  --bg-secondary-color:  rgb(255, 255, 255);
-  --card-bg:             rgb(245, 245, 245);
-  --input-bg:            #fff;
-  --bg-header-color:     rgb(253, 253, 253);
-  --header-scrolled-bg:  rgba(255, 255, 255, 0.9);
-
-  /* 30% */
-  --border-color:        rgba(202, 202, 202, 0.518);
-  --subtitle-color:      rgb(82, 82, 91);
-  --icons-hover-color:   #333;
-  --blue-color:          rgb(0, 149, 246);
+  color-scheme: light;
 
   /* 10% */
-  --accent-color:        rgb(184, 134, 11);
+  --accent-rgb:      166, 118, 15;
+  --accent-strong:   #7d570a;
+  --accent-on:       #ffffff;
+  --accent-gradient: linear-gradient(135deg, #c99a2c 0%, #a6760f 50%, #7d570a 100%);
+
+  --blue-rgb:        0, 149, 246;
+
+  /* 60% */
+  --bg-primary-color:   #f2f2f5;
+  --bg-secondary-color: #ffffff;
+  --card-bg:            #fafafb;
+  --surface-raised:     #ffffff;
+  --surface-sunken:     #f4f4f6;
+  --input-bg:           #ffffff;
+  --bg-header-color:    #f7f7f9;
+  --header-scrolled-bg: rgba(255, 255, 255, 0.78);
+
+  --glass-bg:        rgba(0, 0, 0, 0.025);
+  --glass-bg-strong: rgba(0, 0, 0, 0.045);
+  --glass-border:    rgba(0, 0, 0, 0.09);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+
+  /* 30% */
+  --border-color:      rgba(0, 0, 0, 0.09);
+  --border-strong:     rgba(0, 0, 0, 0.16);
+  --subtitle-color:    rgb(88, 88, 98);
+  --muted-color:       rgb(128, 128, 140);
+  --icons-hover-color: #2a2a2e;
 
   /* Typography */
-  --title-color:         rgb(39, 39, 42);
+  --title-color: rgb(24, 24, 27);
+
+  /* Elevation — softer, cooler shadows read better on light surfaces */
+  --shadow-xs:        0 1px 2px rgba(24, 24, 27, 0.06);
+  --shadow-sm:        0 2px 8px rgba(24, 24, 27, 0.07);
+  --shadow-md:        0 8px 24px rgba(24, 24, 27, 0.09);
+  --shadow-lg:        0 18px 48px rgba(24, 24, 27, 0.13);
+  --shadow-card:      0 4px 20px rgba(24, 24, 27, 0.08);
+  --shadow-container: 0 24px 80px rgba(24, 24, 27, 0.1);
+  --ring-inset:       inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -102,19 +191,31 @@
 
 html {
   scroll-behavior: smooth;
+  /* Anchor jumps must clear the sticky header instead of hiding under it. */
+  scroll-padding-top: 6rem;
   scrollbar-width: thin;
-  scrollbar-color: var(--accent-color) rgba(0, 0, 0, 0.5);
+  scrollbar-color: rgb(var(--accent-rgb) / 0.5) transparent;
 }
 
 body {
-  background-color: var(--bg-primary-color);
   color: var(--title-color);
   font-family: var(--font-family);
-  font-display: swap;
+  font-size: var(--fs-base);
   letter-spacing: var(--letter-spacing);
-  transition: background-color var(--transition-normal), color var(--transition-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+
+  /* Ambient backdrop — two soft light sources bleeding in from the top corners.
+     Painted as background-image on <body> (with background-attachment: fixed)
+     rather than a fixed pseudo-element, because `overflow: clip` below would
+     otherwise interact badly with fixed-position children. */
+  background-color: var(--bg-primary-color);
+  background-image:
+    radial-gradient(58rem 38rem at 8% -12%, rgb(var(--accent-rgb) / 0.11), transparent 62%),
+    radial-gradient(46rem 34rem at 96% 4%,  rgb(var(--blue-rgb) / 0.07),   transparent 60%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   /* Guard against any element causing horizontal scroll (notably in RTL,
      where the page scrolls to the right by default and a centered container
@@ -123,36 +224,39 @@ body {
   overflow-x: clip;
 }
 
+/* Native scrollbar (WebKit/Blink) tuned to the theme */
+::-webkit-scrollbar        { width: 10px; height: 10px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  {
+  background: rgb(var(--accent-rgb) / 0.35);
+  border: 2px solid transparent;
+  background-clip: content-box;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--accent-rgb) / 0.6); background-clip: content-box; }
+
+::selection {
+  background: rgb(var(--accent-rgb) / 0.28);
+  color: var(--title-color);
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    BASE ELEMENTS
 ───────────────────────────────────────────────────────────────────────────── */
 
-h2 {
-  text-align: center;
-  font-size: 2.3rem;
-  font-weight: 700;
-  margin-bottom: 1.2rem;
-  position: relative;
-  color: var(--title-color);
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
-h2::after {
-  content: "";
-  width: 50px;
-  height: 3px;
-  background: var(--accent-color);
-  display: block;
-  margin: 0.6rem auto 0;
-  border-radius: 2px;
-}
-
-li  { list-style: none; }
+li { list-style: none; }
 
 a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  transition: all var(--transition-normal);
+  transition: color var(--transition-normal);
 }
 
 button {
@@ -160,36 +264,84 @@ button {
   cursor: pointer;
 }
 
-button:active { scale: 0.9; }
+button:active { scale: 0.97; }
+
+img { max-width: 100%; }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    LAYOUT UTILITIES
 ───────────────────────────────────────────────────────────────────────────── */
 
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-secondary-color);
   border: 1px solid var(--border-color);
-  max-width: min(var(--container-max-width), 90%);
+  border-top: 0;
+  max-width: min(var(--container-max-width), 92%);
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 var(--lg-container-padding);
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
   box-shadow: var(--shadow-container);
 }
 
 .main-content { flex: 1; }
 
+/* Section-to-section separator — a hairline that fades out at both ends so the
+   rule never collides with the container's own vertical border. */
 .divider {
-  border-bottom: 1px solid var(--border-color);
-  margin-block: 2rem;
+  position: relative;
+  height: 1px;
+  border: 0;
+  /* Half the section gap on each side, so two adjacent sections end up
+     exactly one --section-gap apart rather than two. */
+  margin-block: calc(var(--section-gap) / 2);
   margin-inline: calc(-1 * var(--lg-container-padding));
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-strong) 18%,
+    var(--border-strong) 82%,
+    transparent
+  );
+}
+
+/* Small diamond centred on the rule — a quiet typographic ornament */
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  translate: -50% -50%;
+  rotate: 45deg;
+  background: rgb(var(--accent-rgb) / 0.6);
+  border-radius: 1px;
 }
 
 .flex {
   display: flex;
   align-items: center;
+}
+
+/* Shared eyebrow pill used above section headings */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgb(var(--accent-rgb) / 0.28);
+  background: rgb(var(--accent-rgb) / 0.09);
+  color: var(--accent-color);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -198,7 +350,12 @@ button:active { scale: 0.9; }
 
 .skeleton-box,
 .skeleton-text {
-  background: linear-gradient(90deg, #222, #333, #222);
+  background: linear-gradient(
+    90deg,
+    var(--card-bg),
+    var(--surface-raised),
+    var(--card-bg)
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-md);
@@ -221,8 +378,8 @@ button:active { scale: 0.9; }
 button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-  border-radius: var(--radius-xs, 2px);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
 }
 
 .sr-only {
@@ -243,15 +400,16 @@ a:focus-visible {
 
 @media (max-width: 768px) {
   .container {
-    /* Use full viewport width on mobile — 90% leaves cosmetic side gutters
+    /* Use full viewport width on mobile — 92% leaves cosmetic side gutters
        that waste real estate and exaggerate any horizontal-overflow shift. */
     max-width: 100%;
     padding: 0 var(--md-container-padding);
     border-radius: 0;
+    border-inline: 0;
   }
 
   .divider {
-    margin-block: 1.5rem;
+    margin-block: clamp(2.5rem, 9vw, 3.5rem);
     margin-inline: calc(-1 * var(--md-container-padding));
   }
 }

@@ -1,28 +1,129 @@
-.skeleton-box,
-.skeleton-text {
-  background: linear-gradient(90deg, #222, #333, #222);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 8px;
+/* ────────────────────────────────────────────────────────────────────────────
+   Loading skeletons.
+
+   The shimmer itself (.skeleton-box / .skeleton-text) is defined once in
+   styles/index.css against theme tokens — duplicating it here with literal
+   greys is what made these placeholders read as dark blocks in light mode.
+   This file only carries the layout scaffolding the fallbacks need.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.skeleton-section {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-block: var(--space-5);
 }
 
-.skeleton-text {
-  height: 16px;
-  margin: 8px 0;
+/* Section header stand-in */
+.skeleton-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--space-6);
 }
 
-.skeleton-text.short {
-  width: 60%;
-}
-.skeleton-text.long {
-  width: 90%;
+.skeleton-header .skeleton-text {
+  margin: 0;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+.skeleton-pill {
+  height: 26px;
+  width: 120px;
+  border-radius: var(--radius-full);
+}
+
+.skeleton-title {
+  height: 34px;
+  width: min(240px, 60%);
+}
+
+.skeleton-subtitle {
+  height: 14px;
+  width: min(420px, 85%);
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────────────── */
+.skeleton-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2rem, 5vw, 4rem);
+  flex-wrap: wrap;
+  min-height: 60vh;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-block: var(--space-6);
+}
+
+.skeleton-hero__content {
+  flex: 1 1 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.skeleton-hero__avatar {
+  width: clamp(200px, 30vw, 300px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skeleton-hero__row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ─── Card grids ────────────────────────────────────────────────────────── */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  gap: var(--space-5);
+}
+
+.skeleton-card {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+.skeleton-card__media {
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+}
+
+.skeleton-card__body {
+  padding: 1.15rem 1.25rem 1.25rem;
+}
+
+/* ─── Skills ────────────────────────────────────────────────────────────── */
+.skeleton-panel {
+  padding: 1.4rem;
+  margin-bottom: var(--space-5);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+}
+
+.skeleton-panel__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
+
+.skeleton-tile {
+  height: 104px;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 640px) {
+  .skeleton-grid { grid-template-columns: 1fr; }
+
+  .skeleton-panel__grid { grid-template-columns: repeat(3, 1fr); }
+
+  .skeleton-tile { height: 84px; }
 }

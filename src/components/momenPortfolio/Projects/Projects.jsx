@@ -18,7 +18,9 @@ const Projects = () => {
   const {
     activeFilter,
     visibleProjects,
+    filterCounts,
     hasMore,
+    remaining,
     handleLoadMore,
     handleFilterChange,
   } = useProjects();
@@ -26,16 +28,18 @@ const Projects = () => {
   const isEmpty = visibleProjects.length === 0;
 
   return (
-    // h2 lives inside .projects-header alongside the filter — aria-label used instead
     <Section
       id="projects"
       className="projects"
-      aria-label={t("projects.heading")}
+      eyebrow={t("projects.eyebrow")}
+      heading={t("projects.heading")}
+      subtitle={t("projects.subtitle")}
     >
-      <div className="projects-header">
-        <h2>{t("projects.heading")}</h2>
-        <ProjectsFilter value={activeFilter} onChange={handleFilterChange} />
-      </div>
+      <ProjectsFilter
+        value={activeFilter}
+        onChange={handleFilterChange}
+        counts={filterCounts}
+      />
 
       <motion.div
         className="projects-grid"
@@ -56,7 +60,7 @@ const Projects = () => {
         </AnimatePresence>
       </motion.div>
 
-      {hasMore && <LoadMoreButton onClick={handleLoadMore} />}
+      {hasMore && <LoadMoreButton onClick={handleLoadMore} remaining={remaining} />}
     </Section>
   );
 };

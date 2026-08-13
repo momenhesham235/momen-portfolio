@@ -2,17 +2,19 @@ import "./skeleton.css";
 
 const SkillsSkeleton = () => {
   return (
-    <section className="skills skeleton-skills">
-      <div className="section-title skeleton-text short" />
-      {Array(2).fill(0).map((_, i) => (
-        <div key={i} className="skills-group">
-          <div className="skills-group-title skeleton-text short" />
-          <div className="skills-grid">
-            {Array(4).fill(0).map((_, j) => (
-              <div key={j} className="skill-card">
-                <div className="skeleton-box" style={{ height: 80 }} />
-                <div className="skeleton-text short" />
-              </div>
+    <section className="skeleton-section" aria-hidden="true">
+      <div className="skeleton-header">
+        <div className="skeleton-box skeleton-pill" />
+        <div className="skeleton-box skeleton-title" />
+        <div className="skeleton-box skeleton-subtitle" />
+      </div>
+
+      {Array(3).fill(0).map((_, i) => (
+        <div key={i} className="skeleton-panel">
+          <div className="skeleton-text short" style={{ width: "30%" }} />
+          <div className="skeleton-panel__grid">
+            {Array(6).fill(0).map((_, j) => (
+              <div key={j} className="skeleton-box skeleton-tile" />
             ))}
           </div>
         </div>

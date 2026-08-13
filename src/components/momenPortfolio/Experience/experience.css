@@ -1,180 +1,189 @@
 /* ────────────────────────────────────────────────────────────────────────────
-   Experience — modern alternating timeline
-   - Gradient gold rail down the center (left-rail on mobile)
-   - Animated marker with briefcase icon; pulse halo on "current" role
-   - Glass-morphism cards with subtle gold border on hover
+   Experience — alternating timeline
+   - Centre rail that fills with gold as the section scrolls past
+   - Briefcase marker on the rail; pulse halo on the "current" role
+   - Cards alternate sides on desktop, collapse to a single left rail on mobile
    - Full RTL flip via [dir="rtl"]
    ──────────────────────────────────────────────────────────────────────────── */
 
 .experience {
-  max-width: 1100px;
-  margin: auto;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
 }
 
-/* ─── Timeline rail ─────────────────────────────────────────────────────── */
+/* ─── Rail ──────────────────────────────────────────────────────────────── */
 .timeline {
   position: relative;
-  padding-block: 1rem;
+  padding-block: var(--space-4);
 }
 
-.timeline::before {
-  content: "";
+.timeline__rail {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
   width: 2px;
+  translate: -50% 0;
+  border-radius: var(--radius-full);
+  /* Unfilled track — faded at both ends so the line never terminates hard. */
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    var(--accent-color) 12%,
-    var(--accent-color) 88%,
+    var(--border-strong) 10%,
+    var(--border-strong) 90%,
     transparent 100%
   );
-  transform: translateX(-50%);
-  border-radius: 2px;
+}
+
+/* Gold fill — scaleY is driven by a scroll-linked Motion spring. */
+.timeline__rail-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-origin: top center;
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--accent-rgb) / 0.15) 0%,
+    var(--accent-color) 25%,
+    var(--accent-strong) 100%
+  );
+  box-shadow: 0 0 14px rgb(var(--accent-rgb) / 0.45);
 }
 
 /* ─── Item wrapper ──────────────────────────────────────────────────────── */
 .experience-item {
-  width: 50%;
-  padding: 1rem 2.25rem;
   position: relative;
+  width: 50%;
+  padding: var(--space-4) 2.5rem;
   box-sizing: border-box;
 }
 
-.experience-item--right {
-  margin-left: 50%;
-  text-align: left;
-}
+.experience-item--right { margin-left: 50%; }
+.experience-item--left  { margin-right: 50%; }
 
-.experience-item--left {
-  margin-right: 50%;
-  text-align: right;
-}
-
-/* RTL: swap sides so the visual order remains the same. */
+/* RTL: swap sides so the zig-zag reads the same way round. */
 [dir="rtl"] .experience-item--right {
   margin-left: 0;
   margin-right: 50%;
-  text-align: right;
 }
 
 [dir="rtl"] .experience-item--left {
   margin-right: 0;
   margin-left: 50%;
-  text-align: left;
 }
 
 /* ─── Marker (briefcase dot on the rail) ────────────────────────────────── */
 .experience-marker {
   position: absolute;
-  top: 1.75rem;
-  width: 36px;
-  height: 36px;
+  top: 2rem;
+  z-index: 2;
   display: grid;
   place-items: center;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: var(--card-bg, #1a1a1a);
+
+  background: var(--bg-secondary-color);
   color: var(--accent-color);
-  border: 2px solid var(--accent-color);
+  border: 2px solid rgb(var(--accent-rgb) / 0.55);
   font-size: 0.85rem;
-  z-index: 2;
-  transition: transform 0.3s ease, box-shadow 0.3s ease,
-    background 0.3s ease, color 0.3s ease;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    scale 0.3s var(--ease-spring);
 }
 
-.experience-item--right .experience-marker {
-  left: -18px;
-}
+.experience-item--right .experience-marker { left: -19px; }
+.experience-item--left  .experience-marker { right: -19px; }
 
-.experience-item--left .experience-marker {
-  right: -18px;
-}
-
-[dir="rtl"] .experience-item--right .experience-marker {
-  left: auto;
-  right: -18px;
-}
-
-[dir="rtl"] .experience-item--left .experience-marker {
-  right: auto;
-  left: -18px;
-}
+[dir="rtl"] .experience-item--right .experience-marker { left: auto; right: -19px; }
+[dir="rtl"] .experience-item--left  .experience-marker { right: auto; left: -19px; }
 
 .experience-item:hover .experience-marker {
   background: var(--accent-color);
-  color: #111;
-  transform: scale(1.08);
-  box-shadow: 0 0 0 6px rgba(184, 134, 11, 0.2);
+  color: var(--accent-on);
+  border-color: var(--accent-color);
+  scale: 1.1;
+  box-shadow: 0 0 0 6px rgb(var(--accent-rgb) / 0.18);
 }
 
-/* Pulse halo for the "current" role */
+/* Pulse halo for the "current" role. Uses box-shadow (not transform) so it
+   never competes with the hover `scale` above. */
 .experience-item.is-current .experience-marker {
-  box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.55);
+  border-color: var(--accent-color);
   animation: experience-pulse 2.4s ease-out infinite;
 }
 
 @keyframes experience-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.55);
-  }
-  70% {
-    box-shadow: 0 0 0 14px rgba(184, 134, 11, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(184, 134, 11, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .experience-item.is-current .experience-marker {
-    animation: none;
-  }
+  0%        { box-shadow: 0 0 0 0 rgb(var(--accent-rgb) / 0.5); }
+  70%       { box-shadow: 0 0 0 14px rgb(var(--accent-rgb) / 0); }
+  100%      { box-shadow: 0 0 0 0 rgb(var(--accent-rgb) / 0); }
 }
 
 /* ─── Card ──────────────────────────────────────────────────────────────── */
 .experience-card {
+  position: relative;
+  overflow: hidden;
   padding: 1.5rem 1.6rem;
-  border-radius: 18px;
+  border-radius: var(--radius-xl);
   background: var(--card-bg);
-  border: 1px solid rgba(184, 134, 11, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease,
-    border-color 0.3s ease;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm), var(--ring-inset);
   text-align: start;
+
+  transition:
+    transform 0.35s var(--ease-out-expo),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .experience-item:hover .experience-card {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.4);
-  border-color: rgba(184, 134, 11, 0.45);
+  transform: translateY(-5px);
+  border-color: rgb(var(--accent-rgb) / 0.4);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-soft);
 }
 
-/* Header row */
+/* Oversized step number, sunk into the card's corner as texture. */
+.experience-card__index {
+  position: absolute;
+  top: 0.35rem;
+  inset-inline-end: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--title-color);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+}
+
 .experience-card__header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
-.experience-card__heading {
-  min-width: 0;
-}
+.experience-card__heading { min-width: 0; }
 
 .experience-card__title {
-  font-size: 1.15rem;
   margin: 0;
-  line-height: 1.3;
-  color: var(--title-color, #fff);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--title-color);
 }
 
 .experience-card__company {
-  margin: 0.25rem 0 0;
+  margin: 0.28rem 0 0;
   color: var(--accent-color);
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: var(--fs-base);
+  font-weight: 600;
 }
 
 /* "Current" badge */
@@ -183,30 +192,23 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.7rem;
-  font-weight: 600;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.66rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(184, 134, 11, 0.14);
+  letter-spacing: 0.06em;
+  background: rgb(var(--accent-rgb) / 0.14);
   color: var(--accent-color);
-  border: 1px solid rgba(184, 134, 11, 0.4);
+  border: 1px solid rgb(var(--accent-rgb) / 0.35);
 }
 
 .experience-card__badge-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--accent-color);
-  box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.6);
   animation: experience-pulse 2.4s ease-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .experience-card__badge-dot {
-    animation: none;
-  }
 }
 
 /* Date row */
@@ -214,9 +216,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  margin: 0 0 1rem;
-  font-size: 0.85rem;
-  opacity: 0.75;
+  margin: 0 0 0.9rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--muted-color);
 }
 
 .experience-card__date svg {
@@ -230,28 +233,28 @@
   padding: 0;
   margin: 0 0 1rem;
   display: grid;
-  gap: 0.4rem;
+  gap: 0.45rem;
   text-align: start;
 }
 
 .experience-card__list li {
   position: relative;
-  padding-inline-start: 1.1rem;
-  font-size: 0.93rem;
-  line-height: 1.55;
-  opacity: 0.92;
+  padding-inline-start: 1.15rem;
+  color: var(--subtitle-color);
+  font-size: var(--fs-base);
+  line-height: 1.6;
 }
 
 .experience-card__list li::before {
   content: "";
   position: absolute;
   inset-inline-start: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  rotate: 45deg;
   background: var(--accent-color);
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 /* Tech chips */
@@ -261,37 +264,36 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.4rem;
 }
 
 .experience-card__tech li {
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.32rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(184, 134, 11, 0.12);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.26rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: rgb(var(--accent-rgb) / 0.09);
   color: var(--accent-color);
-  border: 1px solid rgba(184, 134, 11, 0.25);
-  transition: background 0.25s ease, color 0.25s ease,
-    transform 0.25s ease;
+  border: 1px solid rgb(var(--accent-rgb) / 0.22);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .experience-card__tech li:hover {
   background: var(--accent-color);
-  color: #111;
+  color: var(--accent-on);
   transform: translateY(-2px);
 }
 
 /* ─── Mobile: single-side rail ──────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .timeline::before {
-    left: 18px;
-    transform: none;
+@media (max-width: 820px) {
+  .timeline__rail {
+    left: 19px;
+    translate: 0 0;
   }
 
-  [dir="rtl"] .timeline::before {
+  [dir="rtl"] .timeline__rail {
     left: auto;
-    right: 18px;
+    right: 19px;
   }
 
   .experience-item,
@@ -308,13 +310,13 @@
   .experience-item,
   .experience-item--left,
   .experience-item--right {
-    padding: 1rem 1rem 1rem 3.25rem;
+    padding: 0.75rem 0 0.75rem 3.5rem;
   }
 
   [dir="rtl"] .experience-item,
   [dir="rtl"] .experience-item--left,
   [dir="rtl"] .experience-item--right {
-    padding: 1rem 3.25rem 1rem 1rem;
+    padding: 0.75rem 3.5rem 0.75rem 0;
   }
 
   .experience-item--left .experience-marker,
@@ -328,4 +330,6 @@
     left: auto;
     right: 0;
   }
+
+  .experience-card { padding: 1.25rem 1.15rem; }
 }

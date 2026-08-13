@@ -1,119 +1,244 @@
+/* ────────────────────────────────────────────────────────────────────────────
+   Project card — media block with hover quick-links, then body + tech chips.
+   ──────────────────────────────────────────────────────────────────────────── */
+
 .project-card {
-  border-radius: 18px;
-  overflow: hidden;
-  transition: all 0.35s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  background-color: var(--card-bg);
-  padding: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
+
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  box-shadow: var(--shadow-sm), var(--ring-inset);
+
+  transition:
+    transform 0.35s var(--ease-out-expo),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.35);
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-6px);
+  border-color: rgb(var(--accent-rgb) / 0.4);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-soft);
+}
+
+/* ─── Media ─────────────────────────────────────────────────────────────── */
+.project-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--surface-sunken);
 }
 
 .project-card__image {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
-  flex-shrink: 0;
+  transition: transform 0.55s var(--ease-out-expo);
 }
 
-.project-card:hover .project-card__image {
-  transform: scale(1.06);
+.project-card:hover .project-card__image,
+.project-card:focus-within .project-card__image {
+  transform: scale(1.07);
 }
 
+/* Bottom-up scrim keeps the chips readable over any screenshot. */
+.project-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.18) 42%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  opacity: 0.85;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.project-card:hover .project-card__scrim,
+.project-card:focus-within .project-card__scrim { opacity: 1; }
+
+/* Category + year chips */
+.project-card__category,
+.project-card__year {
+  position: absolute;
+  top: 0.7rem;
+  z-index: 2;
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.project-card__category {
+  inset-inline-start: 0.7rem;
+  background: rgb(var(--accent-rgb) / 0.9);
+  color: var(--accent-on);
+}
+
+.project-card__year {
+  inset-inline-end: 0.7rem;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-family: var(--font-mono);
+}
+
+/* Quick links — revealed on hover, always present for keyboard users. */
+.project-card__quick {
+  position: absolute;
+  z-index: 2;
+  inset-inline-end: 0.7rem;
+  bottom: 0.7rem;
+  display: flex;
+  gap: 0.4rem;
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s var(--ease-out-expo);
+}
+
+.project-card:hover .project-card__quick,
+.project-card:focus-within .project-card__quick {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card__quick-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: var(--radius-md);
+
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  font-size: 1.05rem;
+
+  transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+
+.project-card__quick-link:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--accent-on);
+  transform: translateY(-2px);
+}
+
+/* ─── Body ──────────────────────────────────────────────────────────────── */
 .project-card__content {
-  padding: 1.2rem 1.3rem;
   display: flex;
   flex-direction: column;
   flex: 1;
+  gap: 0.55rem;
+  padding: 1.15rem 1.25rem 1.25rem;
 }
 
 .project-card__title {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.35;
   color: var(--title-color);
-  line-height: 1.3;
-  min-height: 2.6em;
+
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .project-card__description {
-  color: var(--title-color);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  opacity: 0.85;
-  margin-bottom: 1rem;
+  margin: 0;
+  color: var(--subtitle-color);
+  font-size: var(--fs-base);
+  line-height: 1.65;
+
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.project-card__footer {
+/* Tech chips */
+.project-card__tech {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.project-card__links {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.project-card__link {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-md);
-  background: var(--input-bg);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
+.project-card__tech li {
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--glass-bg);
   color: var(--subtitle-color);
-  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  white-space: nowrap;
 }
 
-.project-card__link:hover {
-  background: var(--accent-color);
-  color: var(--title-color);
-  transform: translateY(-3px);
+.project-card__tech-more {
+  color: var(--accent-color) !important;
+  border-color: rgb(var(--accent-rgb) / 0.35) !important;
+  background: rgb(var(--accent-rgb) / 0.08) !important;
 }
 
+/* Footer link */
 .project-card__more {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  font-size: 0.9rem;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.7rem;
+  align-self: flex-start;
+
   color: var(--accent-color);
-  transition: 0.3s;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  transition: gap 0.25s ease, color 0.25s ease;
+}
+
+.project-card__more svg {
+  font-size: 0.95rem;
+  transition: transform 0.25s ease;
 }
 
 .project-card__more:hover {
   gap: 0.6rem;
-  color: var(--title-color);
+  color: var(--accent-strong);
 }
 
-@media (max-width: 768px) {
-  .project-card__image {
-    height: 160px;
-  }
+.project-card__more:hover svg { transform: translate(2px, -2px); }
 
-  .project-card__title {
-    font-size: 1.1rem;
-  }
+/* The arrow points away from the reading edge, so mirror it in RTL. */
+[dir="rtl"] .project-card__more svg { transform: scaleX(-1); }
+[dir="rtl"] .project-card__more:hover svg { transform: scaleX(-1) translate(2px, -2px); }
 
-  .project-card__description {
-    font-size: 0.85rem;
-  }
+@media (max-width: 640px) {
+  .project-card__title { font-size: 1.02rem; }
+
+  /* Touch devices never fire hover — pin the quick links open there. */
+  .project-card__quick { opacity: 1; transform: none; }
 }

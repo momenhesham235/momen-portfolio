@@ -5,12 +5,24 @@
     "firstName":   "Momen",
     "lastName":    "Hesham",
     "role":        "Frontend & Backend Developer",
+    "roles": [
+      "Frontend Engineer",
+      "React & Next.js Developer",
+      "React Native Developer",
+      "Node.js & API Builder",
+      "TypeScript Enthusiast"
+    ],
+    "available":   "Available for new opportunities",
     "bio":         "Building performant, accessible web experiences with React, TypeScript & Node.js.",
+    "stackLabel":  "Core technologies",
     "ctaPrimary":  "View My Work",
     "ctaSecondary":"Get In Touch",
+    "ctaResume":   "Resume",
+    "scrollCue":   "Scroll",
     "badge":       "Certified Developer"
   },
   "about": {
+    "eyebrow": "About me",
     "heading": "Professional Bio",
     "body":    "Software Engineer specializing in building scalable, production-ready web and mobile applications using <strong>React, Next.js, React Native, and Node.js</strong>. Experienced in developing high-performance, API-driven systems with a focus on clean architecture, performance optimization, and user experience.",
     "stats": [
@@ -20,7 +32,10 @@
     ]
   },
   "projects": {
+    "eyebrow":       "Selected work",
     "heading":       "Projects",
+    "subtitle":      "A selection of products I've designed, built and shipped — from landing pages to full-stack applications.",
+    "filterLabel":   "Filter projects by category",
     "loadMore":      "Show More",
     "noProjects":    "No projects found",
     "noProjectsFor": "for",
@@ -38,7 +53,9 @@
     }
   },
   "skills": {
-    "heading": "Skills",
+    "eyebrow":  "Toolbox",
+    "heading":  "Skills",
+    "subtitle": "The technologies I reach for day to day, across the front end, the back end, and everything in between.",
     "groups": {
       "frontend": "Frontend",
       "backend":  "Backend",
@@ -46,7 +63,9 @@
     }
   },
   "experience": {
-    "heading": "Experience",
+    "eyebrow":  "Career",
+    "heading":  "Experience",
+    "subtitle": "Where I've worked, what I built there, and the stack I built it with.",
     "present": "Present",
     "currentLabel": "Current",
     "items": [
@@ -90,7 +109,9 @@
     ]
   },
   "contact": {
+    "eyebrow":      "Say hello",
     "heading":      "Contact Me",
+    "subtitle":     "Have a project in mind, a role to fill, or just want to talk shop? My inbox is open.",
     "phone":        "+20 106 274 9282",
     "location":     "Egypt (Remote)",
     "availability": "Available for freelance & full-time",

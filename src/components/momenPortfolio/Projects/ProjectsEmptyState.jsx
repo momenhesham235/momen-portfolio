@@ -11,7 +11,8 @@ const ProjectsEmptyState = ({ activeFilter, onReset }) => {
         {hasFilter && (
           <>
             {" "}
-            {t("projects.noProjectsFor")} <strong>{activeFilter}</strong>
+            {t("projects.noProjectsFor")}{" "}
+            <strong>{t(`projects.filters.${activeFilter}`)}</strong>
           </>
         )}
       </p>

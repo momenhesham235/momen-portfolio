@@ -1,12 +1,40 @@
 .ds-card {
+  position: relative;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-xs), var(--ring-inset);
+  transition:
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-normal),
+    background-color var(--transition-normal);
+}
+
+/* Hairline sheen along the top edge — reads as a light catching the surface. */
+.ds-card::before {
+  content: "";
+  position: absolute;
+  inset-inline: 12%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--glass-highlight),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
 }
 
 .ds-card--hoverable:hover {
-  border-color: var(--accent-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgb(var(--accent-rgb) / 0.45);
+  box-shadow: var(--shadow-md), var(--shadow-glow-soft), var(--ring-inset);
+}
+
+.ds-card--hoverable:hover::before {
+  opacity: 1;
 }

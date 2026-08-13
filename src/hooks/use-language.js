@@ -4,19 +4,13 @@ import useLanguageTransitionStore from "@app/stores/language-transition-store";
 
 const FADE_OUT_MS = 180;
 
-const prefersReducedMotion = () =>
-  typeof window !== "undefined" &&
-  typeof window.matchMedia === "function" &&
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
 /**
  * Language hook — exposes current language, direction, and switchers.
  *
  * `changeLanguage`/`toggleLanguage` orchestrate a brief opacity fade
  * around `i18n.changeLanguage` so the `dir`/`lang` flip (and the
  * resulting layout snap between LTR ↔ RTL) happens while the content
- * is invisible. Respects `prefers-reduced-motion` — that path swaps
- * instantly, no animation.
+ * is invisible.
  *
  * @returns {Object}
  * @property {string} language        Current language code (e.g. "en", "ar")
@@ -39,11 +33,6 @@ export const useLanguage = () => {
     const { isTransitioning, start, end } =
       useLanguageTransitionStore.getState();
     if (isTransitioning) return;
-
-    if (prefersReducedMotion()) {
-      i18n.changeLanguage(lang);
-      return;
-    }
 
     start();
 

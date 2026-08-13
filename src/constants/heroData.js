@@ -1,5 +1,30 @@
 import { FaFacebook, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { TbBrandLeetcode } from "react-icons/tb";
+import { react, typescript, next, nodejs } from "@assets";
+
+/**
+ * Headline stack shown as chips under the hero bio — the shortlist a recruiter
+ * scans first, not the full skills matrix (that lives in the Skills section).
+ */
+export const heroStack = [
+  "React",
+  "TypeScript",
+  "Next.js",
+  "React Native",
+  "Node.js",
+  "MongoDB",
+];
+
+/**
+ * Small badges that orbit the hero portrait. Kept to four so they frame the
+ * avatar instead of crowding it.
+ */
+export const heroOrbitBadges = [
+  { id: "react", label: "React",      img: react,      position: "top-start" },
+  { id: "ts",    label: "TypeScript", img: typescript, position: "top-end"   },
+  { id: "next",  label: "Next.js",    img: next,       position: "bottom-start" },
+  { id: "node",  label: "Node.js",    img: nodejs,     position: "bottom-end"   },
+];
 
 /**
  * Social profile links — single source of truth, consumed by Hero & Footer.

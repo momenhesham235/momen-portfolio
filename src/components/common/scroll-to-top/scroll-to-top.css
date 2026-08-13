@@ -1,0 +1,84 @@
+/* ────────────────────────────────────────────────────────────────────────────
+   Back-to-top FAB with an integrated read-progress ring.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.scroll-top {
+  position: fixed;
+  inset-block-end: clamp(1rem, 3vw, 1.75rem);
+  inset-inline-end: clamp(1rem, 3vw, 1.75rem);
+  z-index: 90;
+
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-full);
+
+  background: var(--surface-raised);
+  border: 1px solid var(--border-color);
+  color: var(--subtitle-color);
+  box-shadow: var(--shadow-md), var(--ring-inset);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-normal);
+}
+
+.scroll-top:hover {
+  color: var(--accent-color);
+  border-color: rgb(var(--accent-rgb) / 0.45);
+  box-shadow: var(--shadow-md), var(--shadow-glow-soft);
+}
+
+/* Reset the global `button:active { scale: .97 }` — Motion owns this
+   element's transform, and a competing CSS scale fights the spring. */
+.scroll-top:active { scale: 1; }
+
+/* ─── Progress ring ─────────────────────────────────────────────────────── */
+.scroll-top__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Start the stroke at 12 o'clock instead of 3 o'clock. */
+  rotate: -90deg;
+  overflow: visible;
+}
+
+.scroll-top__ring-track,
+.scroll-top__ring-fill {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.scroll-top__ring-track {
+  stroke: var(--border-color);
+}
+
+.scroll-top__ring-fill {
+  stroke: var(--accent-color);
+}
+
+[dir="rtl"] .scroll-top__ring {
+  /* Mirror so the ring still fills clockwise from the top in RTL. */
+  scale: -1 1;
+  rotate: 90deg;
+}
+
+.scroll-top__icon {
+  position: relative;
+  font-size: 1.05rem;
+  transition: transform var(--transition-fast);
+}
+
+.scroll-top:hover .scroll-top__icon {
+  transform: translateY(-2px);
+}
+
+@media print {
+  .scroll-top { display: none; }
+}

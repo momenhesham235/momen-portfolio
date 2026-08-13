@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 // eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import useLanguageTransitionStore from "@app/stores/language-transition-store";
 import "./language-transition-veil.css";
 
@@ -13,9 +13,6 @@ import "./language-transition-veil.css";
  */
 const LanguageTransitionVeil = () => {
   const isTransitioning = useLanguageTransitionStore((s) => s.isTransitioning);
-  const reduced = useReducedMotion();
-
-  if (reduced) return null;
 
   return createPortal(
     <AnimatePresence>

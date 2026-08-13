@@ -26,7 +26,12 @@ const Bio = () => {
   const stats = t("about.stats", { returnObjects: true }) || [];
 
   return (
-    <Section id="bio" heading={t("about.heading")} className="bio">
+    <Section
+      id="bio"
+      className="bio"
+      eyebrow={t("about.eyebrow")}
+      heading={t("about.heading")}
+    >
       <motion.div
         className="bio-container"
         variants={containerVariants}

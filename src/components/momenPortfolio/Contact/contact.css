@@ -31,15 +31,15 @@
 
 .contact-info-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(184, 134, 11, 0.45);
-  box-shadow: 0 8px 32px rgba(184, 134, 11, 0.12);
+  border-color: rgb(var(--accent-rgb) / 0.45);
+  box-shadow: 0 8px 32px rgb(var(--accent-rgb) / 0.12);
 }
 
 .contact-info-card__icon {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: rgba(184, 134, 11, 0.12);
+  background: rgb(var(--accent-rgb) / 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,7 +87,7 @@
 }
 
 .light .contact-info-card__icon {
-  background: rgba(184, 134, 11, 0.1);
+  background: rgb(var(--accent-rgb) / 0.1);
 }
 
 /* ================= Responsive ================= */

@@ -43,7 +43,13 @@ const Contact = () => {
   ];
 
   return (
-    <Section id="contact" heading={t("contact.heading")} className="contact">
+    <Section
+      id="contact"
+      className="contact"
+      eyebrow={t("contact.eyebrow")}
+      heading={t("contact.heading")}
+      subtitle={t("contact.subtitle")}
+    >
 
       <div className="contact-info-grid">
         {infoItems.map((item) => (

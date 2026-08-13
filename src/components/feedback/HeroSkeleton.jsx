@@ -1,30 +1,36 @@
 import "./skeleton.css";
 
+/**
+ * Mirrors the Hero's real two-column layout so the lazy chunk swaps in without
+ * the page jumping — a placeholder of the wrong shape is its own layout shift.
+ */
 const HeroSkeleton = () => {
   return (
-    <section className="hero skeleton-hero" style={{ minHeight: "100vh" }}>
-      <div className="hero-container">
-        <div className="hero-left">
-          <div
-            className="avatar-wrapper skeleton-box"
-            style={{ width: 120, height: 120, borderRadius: "50%" }}
-          />
-          <div className="skeleton-text short" />
-          <div className="skeleton-text long" />
-          <div style={{ display: "flex", gap: "0.5rem" }}>
-            {Array(4).fill(0).map((_, i) => (
-              <div
-                key={i}
-                className="skeleton-box"
-                style={{ width: 40, height: 40, borderRadius: "50%" }}
-              />
-            ))}
-          </div>
+    <section className="skeleton-hero" aria-hidden="true">
+      <div className="skeleton-hero__content">
+        <div className="skeleton-box skeleton-pill" />
+        <div className="skeleton-text short" />
+        <div className="skeleton-box" style={{ height: 56, width: "80%" }} />
+        <div className="skeleton-text" style={{ width: "45%" }} />
+        <div className="skeleton-text long" />
+
+        <div className="skeleton-hero__row">
+          {Array(4).fill(0).map((_, i) => (
+            <div
+              key={i}
+              className="skeleton-box"
+              style={{ width: 84, height: 26, borderRadius: 6 }}
+            />
+          ))}
         </div>
-        <div className="hero-right">
-          <div className="skeleton-box" style={{ width: "100%", height: 200 }} />
+
+        <div className="skeleton-hero__row" style={{ marginTop: "0.5rem" }}>
+          <div className="skeleton-box" style={{ width: 148, height: 42, borderRadius: 10 }} />
+          <div className="skeleton-box" style={{ width: 132, height: 42, borderRadius: 10 }} />
         </div>
       </div>
+
+      <div className="skeleton-box skeleton-hero__avatar" />
     </section>
   );
 };

@@ -28,8 +28,8 @@
   padding: 1.5rem;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm), var(--ring-inset);
 }
 
 .bio-stat {
@@ -46,11 +46,16 @@
 }
 
 .bio-stat__value {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent-color);
+  font-size: 2.15rem;
+  font-weight: 800;
   line-height: 1;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .bio-stat__label {

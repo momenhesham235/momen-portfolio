@@ -1,7 +1,7 @@
 import { Link, useRouteError } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 // eslint-disable-next-line no-unused-vars
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import "./error-boundary.css";
 
 const containerVariants = {
@@ -21,7 +21,6 @@ const fadeUp = {
 const ErrorBoundary = () => {
   const { t } = useTranslation("portfolio");
   const error = useRouteError();
-  const reduced = useReducedMotion();
 
   const status = error?.status ?? 500;
   const message =
@@ -35,7 +34,7 @@ const ErrorBoundary = () => {
       <motion.div
         className="error-boundary__panel"
         variants={containerVariants}
-        initial={reduced ? false : "hidden"}
+        initial="hidden"
         animate="visible"
       >
         <motion.h1
