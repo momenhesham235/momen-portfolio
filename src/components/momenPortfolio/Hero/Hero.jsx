@@ -1,12 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
-import Lottie from "lottie-react";
 import { useTranslation } from "react-i18next";
 import { HiArrowRight, HiOutlineChevronDown } from "react-icons/hi2";
 import { FiDownload } from "react-icons/fi";
 
-import { codingAnimation } from "@assets";
 import { AVATAR_URL, RESUME_URL } from "@app/config/constants";
 import { socialLinks, heroStack, heroOrbitBadges } from "@constants/heroData";
 import { useMagnetic } from "@hooks/use-magnetic";
@@ -226,7 +224,6 @@ const Hero = () => {
                 </motion.span>
               </AnimatePresence>
             </span>
-            <span className="hero-roles__caret" aria-hidden="true" />
             <span className="sr-only">{roles.join(" · ")}</span>
           </motion.div>
 
@@ -311,10 +308,6 @@ const Hero = () => {
 
           <div className="hero-avatar-frame">
             <span className="hero-avatar-ring" aria-hidden="true" />
-
-            <div className="hero-lottie-bg" aria-hidden="true">
-              <Lottie animationData={codingAnimation} loop aria-hidden="true" />
-            </div>
 
             <img
               src={AVATAR_URL}

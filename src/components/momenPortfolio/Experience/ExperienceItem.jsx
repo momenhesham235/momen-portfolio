@@ -27,6 +27,7 @@ const ExperienceItem = ({
   index,
   total,
   deckProgress,
+  stacked,
   currentLabel,
 }) => {
   const ref = useRef(null);
@@ -67,21 +68,26 @@ const ExperienceItem = ({
       style={{ "--i": String(index) }}
       role="listitem"
     >
+      {/* Depth is only applied while the deck actually stacks. Flat mode still
+          gets the rise-and-fade entrance, but nothing that implies a card is
+          being buried — there is no card on top of it to do the burying. */}
       <motion.article
         className={`experience-card${isCurrent ? " is-current" : ""}`}
-        style={{ opacity, y, scale }}
+        style={stacked ? { opacity, y, scale } : { opacity, y }}
       >
-        {/* Darkening veil rather than lowered opacity — the card has to stay
-            fully opaque or the cards beneath would show straight through it. */}
-        <motion.span
-          className="experience-card__dim"
-          style={{ opacity: dim }}
-          aria-hidden="true"
-        />
+        {stacked && (
+          /* Darkening veil rather than lowered opacity — the card has to stay
+             fully opaque or the cards beneath would show straight through it. */
+          <motion.span
+            className="experience-card__dim"
+            style={{ opacity: dim }}
+            aria-hidden="true"
+          />
+        )}
 
         <motion.span
           className="experience-card__index"
-          style={{ y: indexY }}
+          style={stacked ? { y: indexY } : undefined}
           aria-hidden="true"
         >
           {String(index + 1).padStart(2, "0")}

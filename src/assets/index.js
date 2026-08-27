@@ -27,10 +27,6 @@ import github from "./skills/github.webp";
 import docker from "./skills/docker.webp";
 import figma from "./skills/figma.webp"
 
-// animations
-import codingAnimation from "./animations/Coding.json";
-import contactAnimation from "./animations/contactUs.json";
-
 export {
   // projects
   leno,
@@ -60,8 +56,4 @@ export {
   github,
   docker,
   figma,
-
-  // animations
-  codingAnimation,
-  contactAnimation,
 };

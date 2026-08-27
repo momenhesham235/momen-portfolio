@@ -46,6 +46,20 @@
   padding-bottom: var(--stack-gap);
 }
 
+/* ─── Flat fallback ─────────────────────────────────────────────────────────
+   Applied by Experience.jsx whenever the tallest card would not fit on screen
+   once pinned. Sticky has no notion of "too tall to pin" — it freezes the card
+   at the offset regardless, and the overflow below is then unreachable by
+   scrolling. Dropping back to normal flow costs the stacking effect but keeps
+   every card readable, which matters more.
+   ──────────────────────────────────────────────────────────────────────────── */
+.exp-stack--flat .exp-stack__item {
+  position: static;
+  /* The generous run-out only exists to buy each card its pinned dwell; in
+     flow it would read as a large unexplained gap. */
+  padding-bottom: var(--space-5);
+}
+
 /* ─── Progress rail ─────────────────────────────────────────────────────────
    A readout of the deck's scroll, parked in the gutter beside the cards.
 

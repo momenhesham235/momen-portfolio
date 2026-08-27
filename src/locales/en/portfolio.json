@@ -28,7 +28,7 @@
     "stats": [
       { "value": "3+",  "label": "Years coding" },
       { "value": "6+",  "label": "Projects shipped" },
-      { "value": "3",   "label": "Companies worked with" }
+      { "value": "2",   "label": "Companies worked with" }
     ]
   },
   "projects": {
@@ -71,39 +71,39 @@
     "items": [
       {
         "id": 1,
-        "title": "Front-end Developer",
-        "company": "Training Course",
-        "startDate": "Sep 2022",
-        "endDate": "Dec 2023",
-        "description": [
-          "Completed a summer training program at Mansoura University, gaining hands-on experience in full-stack web development.",
-          "Built and maintained applications using modern web technologies, with a focus on clean code, problem-solving, and real-world development practices."
-        ]
+        "title": "Mandatory Military Service",
+        "company": "Egyptian Armed Forces",
+        "startDate": "Aug 2024",
+        "endDate": "Dec 2025",
+        "description": []
       },
       {
         "id": 2,
-        "title": "Front-end Developer",
-        "company": "Sustainable Waste Management — Graduation Project",
-        "startDate": "Sep 2023",
-        "endDate": "Dec 2024",
-        "description": [
-          "Built a complete web platform including a public website and an admin dashboard.",
-          "Worked in an Agile team environment, collaborating on planning, implementation, and iteration cycles.",
-          "Focused on building responsive UI components, managing application state, and integrating dynamic data."
-        ]
-      },
-      {
-        "id": 3,
         "title": "Frontend Developer Trainee",
         "company": "Madkhol Capital | مدخول المالية",
         "startDate": "Feb 2026",
         "endDate": "May 2026",
         "description": [
-          "Contributing to the development of fintech solutions across mobile and web applications within the React ecosystem.",
-          "Assisting in building and refining features for the company's mobile application using React Native.",
-          "Collaborating on two core web platforms using React.js, ensuring high performance and scalable architecture.",
-          "Writing clean, maintainable code with TypeScript and participating in code reviews to align with industry best practices.",
-          "Integrating APIs, resolving Sentry-reported issues, and ensuring smooth feature deployments."
+          "Contributed production features to three fintech applications — two React web dashboards and one React Native mobile app — inside an established, scalable frontend architecture.",
+          "Implemented responsive, reusable UI components shared across both web dashboards, prioritising render performance and long-term maintainability.",
+          "Integrated REST APIs and triaged live production issues through Sentry, diagnosing reported errors and improving release stability.",
+          "Reviewed pull requests and worked in Agile cycles, helping keep code quality consistent through iterative delivery."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Frontend Developer",
+        "company": "ADEX",
+        "startDate": "May 2026",
+        "endDate": "Present",
+        "description": [
+          "Architected the frontend of a 13-module enterprise ERP — invoices, purchase orders, payments, manufacturers, customers, partners, accounts and financial reporting — where each feature slice owns its API layer, screens and state on one shared core.",
+          "Built a shared component and CRUD foundation of 58 components — data tables, form wrappers, validation, filtering, pagination — cutting a new module from 2–3 days to under one.",
+          "Integrated 63 typed REST endpoints through Axios and TanStack Query, with cached reads, optimistic updates and one consistent error-handling path.",
+          "Delivered role-based access control with permission-gated navigation, plus PDF/Excel export and barcode/QR scanning for warehouse workflows.",
+          "Implemented Arabic/English localization with full RTL across 19 translation namespaces — every screen mirrors without a second set of styles.",
+          "Engineered an image-based product configurator in layered SVG with clip-path masking: 7 garment parts across 5 views, with real-time colour, material, logo and text preview.",
+          "Shipped a 12-module restaurant admin dashboard covering orders, subscriptions, delivery, menu management, promotions and finance."
         ]
       }
     ]
