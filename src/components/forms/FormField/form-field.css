@@ -2,3 +2,62 @@
   display: flex;
   flex-direction: column;
 }
+
+/*
+  Grid, not block: a textarea is inline-level, and in a block wrapper it would
+  pick up the usual few pixels of baseline descender gap underneath. As a grid
+  item it sits flush. The ripple layers are absolutely positioned, so they stay
+  out of the grid entirely.
+*/
+.ds-form-field__control {
+  position: relative;
+  display: grid;
+}
+
+/*
+  The clipping mask. Overflow lives here rather than on the control wrapper so
+  the input's focus ring — a box-shadow that deliberately paints outside the
+  border box — is not sheared off along with the wave.
+*/
+.ds-form-field__ripple {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  pointer-events: none;
+}
+
+/*
+  Seeded from the interaction point published by useRipple.
+
+  Positioned with physical `left`, not `inset-inline-start`: the coordinate is
+  measured from the element's left edge in both directions, and pairing a
+  left-measured offset with a logical property would mirror every ripple in
+  Arabic.
+*/
+.ds-form-field__wave {
+  position: absolute;
+  left: var(--ripple-x, 50%);
+  top: var(--ripple-y, 50%);
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: rgb(var(--accent-rgb) / 0.3);
+  opacity: 0;
+}
+
+.ds-form-field__control.is-rippling .ds-form-field__wave {
+  animation: fieldRipple 0.62s var(--ease-out-expo) forwards;
+}
+
+@keyframes fieldRipple {
+  0%   { opacity: 0.85; transform: scale(0); }
+  100% { opacity: 0;    transform: scale(46); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-form-field__control.is-rippling .ds-form-field__wave {
+    animation: none;
+  }
+}

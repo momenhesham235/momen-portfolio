@@ -55,7 +55,16 @@ const DetailsProject = () => {
         </Button>
       </motion.div>
 
-      <motion.header className="project-details__hero" variants={fadeInUp}>
+      {/* Shares `layoutId` with the project card's media frame, so arriving
+          from the grid flies that thumbnail up into this hero instead of
+          cutting to it. Deliberately has no entrance variant of its own: a
+          fade-and-rise on top of the flight would fight it. Landing here
+          directly — no card to fly from — simply renders it in place, covered
+          by the page-level fade. */}
+      <motion.header
+        className="project-details__hero"
+        layoutId={`project-media-${project.id}`}
+      >
         <img
           src={project.image}
           alt={`${project.title} project screenshot`}

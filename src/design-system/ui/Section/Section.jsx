@@ -1,3 +1,5 @@
+import Reveal from "@components/common/reveal/Reveal";
+import SplitText from "@components/common/split-text/SplitText";
 import "./section.css";
 
 /**
@@ -42,14 +44,37 @@ const Section = ({
             headerAside ? " ds-section__header--split" : ""
           }`}
         >
+          {/* Each part of the header gets exactly one entrance: the eyebrow and
+              subtitle are uncovered by a clip curtain, the heading rises word
+              by word. Stacking both on one element reads as a stutter. */}
           <div className="ds-section__header-main">
-            {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-            {heading && (
-              <h2 id={hId} className="ds-section__heading">
-                {heading}
-              </h2>
+            {eyebrow && (
+              <Reveal as="span" className="eyebrow" duration={0.6} amount={0.6}>
+                {eyebrow}
+              </Reveal>
             )}
-            {subtitle && <p className="ds-section__subtitle">{subtitle}</p>}
+            {heading && (
+              <SplitText
+                as="h2"
+                id={hId}
+                text={heading}
+                gradient
+                className="ds-section__heading"
+                stagger={0.05}
+                amount={0.4}
+              />
+            )}
+            {subtitle && (
+              <Reveal
+                as="p"
+                className="ds-section__subtitle"
+                delay={0.14}
+                duration={0.75}
+                amount={0.4}
+              >
+                {subtitle}
+              </Reveal>
+            )}
           </div>
 
           {headerAside && (

@@ -79,6 +79,28 @@
   opacity: 0.55;
 }
 
+/* Pointer-tracked light, fed `--hx` / `--hy` by the section's pointermove.
+   Seeded off-canvas so it isn't parked in a corner before the pointer has
+   ever entered, and only fades in once the section is actually hovered. */
+.hero__spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: radial-gradient(
+    420px circle at var(--hx, -200px) var(--hy, -200px),
+    rgb(var(--accent-rgb) / 0.14),
+    transparent 70%
+  );
+}
+
+.hero:hover .hero__spotlight { opacity: 1; }
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .hero__spotlight { display: none; }
+}
+
 .hero-container {
   position: relative;
   z-index: 1;
@@ -294,7 +316,11 @@
   color: var(--accent-on);
   border: 1px solid transparent;
   box-shadow: 0 6px 22px rgb(var(--accent-rgb) / 0.3);
-  transition: box-shadow 0.28s ease, transform 0.22s ease;
+  /* Lift uses the standalone `translate` property, not `transform`: Motion
+     writes `transform` inline for the magnetic pull, and the two compose only
+     because CSS applies translate/rotate/scale before transform. Moving this
+     back into `transform` would make the pull and the lift cancel out. */
+  transition: box-shadow 0.28s ease, translate 0.22s ease;
 }
 
 .hero-cta__primary::after {
@@ -314,12 +340,12 @@
 
 .hero-cta__primary:hover {
   box-shadow: 0 10px 32px rgb(var(--accent-rgb) / 0.45);
-  transform: translateY(-2px);
+  translate: 0 -2px;
 }
 
 .hero-cta__primary:hover::after { transform: translateX(120%); }
 
-.hero-cta__primary:active { transform: translateY(0); }
+.hero-cta__primary:active { translate: 0 0; }
 
 .hero-cta__arrow {
   font-size: 1rem;
@@ -339,14 +365,14 @@
   border: 1px solid var(--border-strong);
   background: var(--glass-bg);
   transition: border-color 0.25s ease, color 0.25s ease,
-    background-color 0.25s ease, transform 0.22s ease;
+    background-color 0.25s ease, translate 0.22s ease;
 }
 
 .hero-cta__secondary:hover {
   border-color: rgb(var(--accent-rgb) / 0.55);
   color: var(--accent-color);
   background: rgb(var(--accent-rgb) / 0.07);
-  transform: translateY(-2px);
+  translate: 0 -2px;
 }
 
 /* Ghost — tertiary weight for the résumé download */
@@ -388,14 +414,14 @@
     color 0.22s ease,
     border-color 0.22s ease,
     background-color 0.22s ease,
-    transform 0.22s ease;
+    translate 0.22s ease;
 }
 
 .hero-social-link:hover {
   color: var(--accent-color);
   border-color: rgb(var(--accent-rgb) / 0.5);
   background-color: rgb(var(--accent-rgb) / 0.09);
-  transform: translateY(-3px);
+  translate: 0 -3px;
 }
 
 /* ── 7. Portrait column ── */

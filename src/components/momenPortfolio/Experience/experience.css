@@ -46,6 +46,65 @@
   padding-bottom: var(--stack-gap);
 }
 
+/* ─── Progress rail ─────────────────────────────────────────────────────────
+   A readout of the deck's scroll, parked in the gutter beside the cards.
+
+   It stops short of the bottom by one `--stack-gap`: that trailing padding is
+   the last card's pinned dwell, not deck travel, so running the rail into it
+   would show the line completing while the final card is still being read.
+   ──────────────────────────────────────────────────────────────────────────── */
+.exp-rail {
+  position: absolute;
+  inset-inline-start: -2.5rem;
+  top: 0.5rem;
+  bottom: var(--stack-gap);
+  width: 2px;
+  pointer-events: none;
+}
+
+.exp-rail__track,
+.exp-rail__fill {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1px;
+}
+
+.exp-rail__track {
+  background: var(--border-strong);
+}
+
+.exp-rail__fill {
+  background: var(--accent-gradient);
+  box-shadow: 0 0 12px rgb(var(--accent-rgb) / 0.5);
+  /* Grows downward from the top as the deck advances. Motion drives this via
+     `transform: scaleY()`; there is deliberately no CSS `scale` here, since
+     the two properties multiply and a `scale: 1 0` seed would pin the fill at
+     zero height no matter what Motion wrote. */
+  transform-origin: top center;
+}
+
+.exp-rail__dot {
+  position: absolute;
+  inset-inline-start: 50%;
+  width: 9px;
+  height: 9px;
+  /* Centred on the rail without using `transform` — Motion owns that slot for
+     the dot's own scale. */
+  margin-inline-start: -4.5px;
+  margin-top: -4.5px;
+  border-radius: 50%;
+  background: var(--bg-primary-color);
+  border: 2px solid var(--accent-color);
+}
+
+/* Below this the gutter disappears and the rail would sit on top of the cards. */
+@media (max-width: 900px) {
+  .exp-rail { display: none; }
+}
+
 /* ─── Card ──────────────────────────────────────────────────────────────── */
 .experience-card {
   position: relative;

@@ -1,0 +1,18 @@
+/* ────────────────────────────────────────────────────────────────────────────
+   Reveal — clip-path curtain.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.reveal {
+  /* Nothing by default: Motion owns clip-path until the animation settles. */
+  min-width: 0;
+}
+
+/*
+  Released once the reveal finishes. `!important` is deliberate: Motion leaves
+  its final `clip-path` on the inline style, and an inline declaration
+  otherwise outranks this rule — which would leave every shadow and focus ring
+  inside a settled Reveal permanently clipped at the border box.
+*/
+.reveal.is-settled {
+  clip-path: none !important;
+}

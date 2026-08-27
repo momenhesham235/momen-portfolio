@@ -19,6 +19,14 @@
    mode included — is a single three-number edit instead of ~50 hardcoded rgba()
    literals that silently drift out of sync with the theme.
 
+   The channels MUST stay space-separated. `rgb()` accepts either the legacy
+   comma form `rgb(r, g, b)` or the modern slash form `rgb(r g b / a)`, but
+   never a mix: writing the token as `214, 168, 74` expands the ~90 tinted
+   declarations across the app into `rgb(214, 168, 74 / 0.3)`, which is invalid
+   and drops to the property's initial value. That failure is near-silent —
+   backgrounds fall back to transparent and borders to currentColor, so the
+   layout is untouched and only the colour quietly goes missing.
+
    60-30-10 rule:
      60% → primary dark backgrounds & surfaces (--bg-*, --surface-*)
      30% → secondary neutral / supporting      (--border-*, --subtitle-*)
@@ -29,14 +37,14 @@
   color-scheme: dark;
 
   /* ── 10% — Accent (gold) ── */
-  --accent-rgb:          214, 168, 74;
+  --accent-rgb:          214 168 74;
   --accent-color:        rgb(var(--accent-rgb));
   --accent-strong:       #f0cd85;
   --accent-muted:        rgb(var(--accent-rgb) / 0.16);
   --accent-on:           #16130a;  /* readable text on a filled accent surface */
   --accent-gradient:     linear-gradient(135deg, #f5da9d 0%, #d6a84a 48%, #a3761f 100%);
 
-  --blue-rgb:            93, 188, 252;
+  --blue-rgb:            93 188 252;
   --blue-color:          rgb(var(--blue-rgb));
 
   /* ── 60% — Primary surfaces ── */
@@ -135,12 +143,12 @@
   color-scheme: light;
 
   /* 10% */
-  --accent-rgb:      166, 118, 15;
+  --accent-rgb:      166 118 15;
   --accent-strong:   #7d570a;
   --accent-on:       #ffffff;
   --accent-gradient: linear-gradient(135deg, #c99a2c 0%, #a6760f 50%, #7d570a 100%);
 
-  --blue-rgb:        0, 149, 246;
+  --blue-rgb:        0 149 246;
 
   /* 60% */
   --bg-primary-color:   #f2f2f5;

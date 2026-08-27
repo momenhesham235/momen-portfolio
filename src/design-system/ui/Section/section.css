@@ -60,15 +60,16 @@
   color: var(--title-color);
 
   /* The last glyph-row picks up a hint of gold so the heading reads as part of
-     the accent system without sacrificing contrast on the body of the word. */
-  background: linear-gradient(
+     the accent system without sacrificing contrast on the body of the word.
+
+     Handed to SplitText as a custom property rather than painted here: the
+     gradient has to sit on the individual words so their clipping boxes can
+     mask it during the reveal. See split-text.css. */
+  --split-gradient: linear-gradient(
     180deg,
     var(--title-color) 55%,
     rgb(var(--accent-rgb) / 0.75) 100%
   );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 /* ─── Subtitle ──────────────────────────────────────────────────────────── */

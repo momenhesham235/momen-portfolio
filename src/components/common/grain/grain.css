@@ -1,0 +1,49 @@
+/* ────────────────────────────────────────────────────────────────────────────
+   Film grain — fixed noise layer over the whole app.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.grain {
+  position: fixed;
+  /* Oversized and offset so the drift never exposes an untextured edge. */
+  inset: -150%;
+  z-index: 1;
+  pointer-events: none;
+
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+
+  /* fractalNoise at a high base frequency reads as photographic grain; a lower
+     frequency would read as clouds. `stitchTiles` keeps the tile seamless. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* Eight discrete positions rather than a smooth pan: real grain resamples
+     every frame, it does not slide. `steps()` gives that flicker for free. */
+  animation: grainDrift 0.7s steps(1) infinite;
+}
+
+@keyframes grainDrift {
+  0%   { transform: translate(0, 0); }
+  12%  { transform: translate(-4%, -3%); }
+  25%  { transform: translate(3%, -5%); }
+  37%  { transform: translate(-5%, 4%); }
+  50%  { transform: translate(4%, 3%); }
+  62%  { transform: translate(-3%, 5%); }
+  75%  { transform: translate(5%, -4%); }
+  87%  { transform: translate(-4%, -5%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Overlay blending against a light background turns the grain into haze;
+   multiply keeps it reading as texture. */
+[data-theme="light"] .grain {
+  mix-blend-mode: multiply;
+  opacity: 0.035;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    animation: none;
+    /* A still texture is fine; the flicker is what causes trouble. */
+    opacity: 0.03;
+  }
+}

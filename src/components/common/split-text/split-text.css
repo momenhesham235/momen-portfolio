@@ -1,0 +1,51 @@
+/* ────────────────────────────────────────────────────────────────────────────
+   SplitText — per-word rise out of a clipping box.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.split-text__inner {
+  display: inline;
+}
+
+/*
+  The clipping box.
+
+  `overflow: hidden` on an inline-block moves its baseline to the bottom margin
+  edge, which would crop every descender. The padding/negative-margin pair adds
+  room below the text and then takes the same amount back off the layout, so
+  descenders paint while the line box keeps its original height.
+
+  A space between the word boxes comes from the markup, not from a margin — the
+  space then scales with the font like real word spacing does.
+*/
+.split-text__word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
+}
+
+.split-text__glyph {
+  display: inline-block;
+  /* The rise is the only thing animating; hint it and nothing else. */
+  will-change: transform;
+}
+
+/* Gradient text is applied per glyph so the clipping box above still masks it.
+   See the note in SplitText.jsx for why an ancestor gradient does not work.
+
+   The default lives in the `var()` fallback rather than in a `--split-gradient`
+   declaration here: a consumer's own class would otherwise tie on specificity
+   and the winner would come down to stylesheet import order. */
+.split-text--gradient .split-text__glyph {
+  background: var(--split-gradient, var(--accent-gradient));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-text__glyph {
+    will-change: auto;
+  }
+}

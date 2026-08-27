@@ -1,0 +1,79 @@
+/* ────────────────────────────────────────────────────────────────────────────
+   Cursor follower — a trailing ring layered over the page.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  inset-inline-start: 0;
+  z-index: 9999;
+  pointer-events: none;
+  /* Motion writes translate into `transform`; the centring offset therefore
+     has to live on an inner element rather than fighting for the same slot. */
+  will-change: transform;
+}
+
+.cursor__ring {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin: -1.05rem 0 0 -1.05rem;
+
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgb(var(--accent-rgb) / 0.75);
+  background: rgb(var(--accent-rgb) / 0.06);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  transition:
+    width 0.28s var(--ease-out-expo),
+    height 0.28s var(--ease-out-expo),
+    margin 0.28s var(--ease-out-expo),
+    background-color 0.28s ease,
+    border-color 0.28s ease;
+}
+
+/* Over a plain link or control: shrink to a dot so it reads as a pointer hint
+   rather than competing with the element's own hover state. */
+.cursor--link .cursor__ring {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: -0.55rem 0 0 -0.55rem;
+  background: rgb(var(--accent-rgb) / 0.9);
+  border-color: transparent;
+}
+
+/* Over an opted-in region: grow into a labelled disc. */
+.cursor--labelled .cursor__ring {
+  width: 4.6rem;
+  height: 4.6rem;
+  margin: -2.3rem 0 0 -2.3rem;
+  background: rgb(var(--accent-rgb) / 0.92);
+  border-color: transparent;
+  box-shadow: 0 8px 26px rgb(var(--accent-rgb) / 0.35);
+}
+
+.cursor__label {
+  color: var(--accent-on);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/*
+  The native arrow is hidden only where the disc replaces it outright. Keeping
+  it everywhere else means aiming never depends on a spring-lagged follower.
+*/
+@media (hover: hover) and (pointer: fine) {
+  [data-cursor] { cursor: none; }
+  [data-cursor] a,
+  [data-cursor] button { cursor: pointer; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { display: none; }
+  [data-cursor] { cursor: auto; }
+}

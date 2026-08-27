@@ -10,6 +10,7 @@ import {
 
 import { Section } from "@design-system";
 import { skills } from "@constants/skills";
+import SkillsMarquee from "./SkillsMarquee.jsx";
 import "./skills.css";
 
 /** Group glyphs live here rather than in constants — they're presentation. */
@@ -113,6 +114,8 @@ const Skills = () => {
           </div>
         );
       })}
+
+      <SkillsMarquee />
     </Section>
   );
 };
