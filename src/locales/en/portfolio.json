@@ -108,6 +108,53 @@
       }
     ]
   },
+  "credentials": {
+    "eyebrow":  "Recognition",
+    "heading":  "Credentials",
+    "subtitle": "The awards, certifications and degree behind the work.",
+    "lanes": {
+      "awards":         "Honors & Awards",
+      "certifications": "Certifications"
+    },
+    "education": {
+      "label":    "Education",
+      "degree":   "B.Sc. Computer & Information Science — Software Engineering",
+      "school":   "Mansoura University",
+      "period":   "Sep 2020 – Jul 2024",
+      "gpaLabel": "GPA",
+      "gpa":      "3.22 / 4.0"
+    },
+    "awards": [
+      {
+        "title":          "2nd Place — Egyptian Startup Olympics (Student Path)",
+        "issuer":         "Innovation Support Fund (ISF), Egypt",
+        "date":           "Jul 2024",
+        "highlight":      "25,000 EGP",
+        "highlightLabel": "Innovation funding",
+        "description":    "Placed second nationally for Ecomate, a sustainability startup, judged on technical innovation and market potential."
+      },
+      {
+        "title":          "Venture Progress Pitch Winner",
+        "issuer":         "USAID Scholars Program, AUC",
+        "date":           "May 2024",
+        "highlight":      "25,000 EGP",
+        "highlightLabel": "Seed grant",
+        "description":    "Won a competitive startup pitch for Ecomate, judged on innovation and environmental impact."
+      }
+    ],
+    "certifications": [
+      {
+        "title":  "Full Stack Development",
+        "issuer": "Consulting of Computer & Information Center",
+        "date":   "Sep 2023 – Nov 2024"
+      },
+      {
+        "title":  "Frontend Development",
+        "issuer": "Consulting of Computer & Information Center",
+        "date":   "Sep – Oct 2022"
+      }
+    ]
+  },
   "contact": {
     "eyebrow":      "Say hello",
     "heading":      "Contact Me",

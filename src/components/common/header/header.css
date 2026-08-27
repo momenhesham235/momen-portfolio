@@ -518,16 +518,33 @@
 }
 
 /* ── 7. Responsive ── */
-@media (max-width: 900px) {
-  .header__nav-link { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
+
+/* The nav row is the widest thing in the header, and it is bounded by the
+   container's 4.8rem gutters rather than the viewport — so it runs out of room
+   a long way above any phone breakpoint. It also has no fallback: the links
+   are `white-space: nowrap` inside a non-scrolling bar, so once they stop
+   fitting they are clipped rather than wrapped, and the last item simply
+   disappears.
+   Between 1151px and 1280px the brand drops its role sub-line and the links
+   tighten, which buys back more width than the seventh link costs. Below that
+   the row cannot be made to fit and the drawer takes over instead — measured
+   at 1120px, rounded up for headroom on wider font stacks. */
+@media (min-width: 1151px) and (max-width: 1280px) {
+  /* Scoped to the top bar: the drawer header shows the same brand and has the
+     room for it. */
+  .header__inner > .header__brand .header__brand-role { display: none; }
+
+  .header__nav-link { padding: 0.4rem 0.6rem; }
+}
+
+@media (max-width: 1150px) {
+  .header__nav { display: none; }
+
+  .header__hamburger { display: inline-flex; }
 }
 
 @media (max-width: 820px) {
-  .header__nav { display: none; }
-
   .header__resume-btn:not(.header__resume-btn--full) { display: none; }
-
-  .header__hamburger { display: inline-flex; }
 }
 
 @media (max-width: 480px) {

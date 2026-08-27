@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 
-const SECTION_IDS = ["home", "bio", "projects", "experience", "skills", "contact"];
+const SECTION_IDS = [
+  "home",
+  "bio",
+  "projects",
+  "experience",
+  "skills",
+  "credentials",
+  "contact",
+];
 
 /**
  * Tracks which page section is currently in view.
